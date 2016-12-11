@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
   <title>Yunpeng&#39;s Notes</title>
-  <subtitle>Today is the 1st day of the rest of my life.</subtitle>
+  <subtitle>Do the same, think different</subtitle>
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
@@ -9,7 +9,7 @@
   <id>http://yoursite.com/</id>
   
   <author>
-    <name>Bai</name>
+    <name>Bai&#39;s Notes</name>
     <email>byp_note@163.com</email>
   </author>
   
