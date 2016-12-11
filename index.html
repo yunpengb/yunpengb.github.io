@@ -154,6 +154,71 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-2016-12-12-1" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/12/12/2016-12-12-1/">每日文件分类文件夹</a>
+    </h1>
+  
+
+        <a href="/2016/12/12/2016-12-12-1/" class="archive-article-date">
+  	<time datetime="2016-12-11T18:08:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-12-12</time>
+</a>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>&emsp;&emsp;经常工作的时候，每天处理大量的文件很容易混乱和丢失。<br>&emsp;&emsp;我有个想法，每天的工作用到的文件都独立的放到一个文件夹里。这样整齐一些也方便管理。<br>&emsp;&emsp;于是我用python写了一个小脚本。在安装了解释器的PC里只需要双击即可执行，即可生成以当天日期为名字的文件夹。</p>
+<!-- lang:python -->
+<pre><code># yunpeng daily work use
+import os
+import time
+
+def makeDIRwithDate():    
+    timestat = timestamp = time.strftime(&apos;%Y-%m-%d&apos;,time.localtime(time.time())) 
+    existdir = os.path.exists(timestat)
+    if not existdir:
+        os.mkdir(timestat)
+        print &quot;make dir:[%s]&quot; % timestat
+    else:
+        print &apos;folder[%s] already exists&apos; % timestat
+makeDIRwithDate()
+</code></pre><p>&emsp;&emsp;创建了文件夹后，剩下就是手工把每天用到的文件复制进去保存。效果如下图。</p>
+<p><img src="http://oi16bpd89.bkt.clouddn.com/dir.png" alt=""></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2016/12/12/2016-12-12-1/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+  
     <article id="post-hello-world" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
