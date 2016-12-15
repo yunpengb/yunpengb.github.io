@@ -6,17 +6,23 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Yunpeng&#39;s Notes</title>
+  <title>DIY 远程控制电源模块 | Yunpeng&#39;s Notes</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Think \ Summary \ Record \ Share">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Yunpeng's Notes">
-<meta property="og:url" content="http://yoursite.com/index.html">
+  <meta name="description" content="&amp;emsp;&amp;emsp;我们的自动化测试环境一直缺少一个可以远程控制的供电系统来控制Radio产品的开关机。之前在波兰的时候，我看到老外的自动化Lab全部采用的是商业控制产品，可使用web页面控制，也可以使用简单的协议控制（ssh或者Telnet发送简单的命令控制外部电路）。&amp;emsp;&amp;emsp;按照老外的配置，一套控制核心+几路ABB继电器+几路空开。我查了下报价，3000欧元一个控制中心，继">
+<meta property="og:type" content="article">
+<meta property="og:title" content="DIY 远程控制电源模块">
+<meta property="og:url" content="http://yoursite.com/2016/12/15/2016-12-15-1/index.html">
 <meta property="og:site_name" content="Yunpeng's Notes">
-<meta property="og:description" content="Think \ Summary \ Record \ Share">
+<meta property="og:description" content="&amp;emsp;&amp;emsp;我们的自动化测试环境一直缺少一个可以远程控制的供电系统来控制Radio产品的开关机。之前在波兰的时候，我看到老外的自动化Lab全部采用的是商业控制产品，可使用web页面控制，也可以使用简单的协议控制（ssh或者Telnet发送简单的命令控制外部电路）。&amp;emsp;&amp;emsp;按照老外的配置，一套控制核心+几路ABB继电器+几路空开。我查了下报价，3000欧元一个控制中心，继">
+<meta property="og:image" content="http://oi16bpd89.bkt.clouddn.com/setup_remote_power.jpg">
+<meta property="og:image" content="http://oi16bpd89.bkt.clouddn.com/logi1.png">
+<meta property="og:image" content="http://oi16bpd89.bkt.clouddn.com/remote_web.png">
+<meta property="og:image" content="http://oi16bpd89.bkt.clouddn.com/pinpin.png">
+<meta property="og:updated_time" content="2016-12-15T17:12:47.628Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Yunpeng's Notes">
-<meta name="twitter:description" content="Think \ Summary \ Record \ Share">
+<meta name="twitter:title" content="DIY 远程控制电源模块">
+<meta name="twitter:description" content="&amp;emsp;&amp;emsp;我们的自动化测试环境一直缺少一个可以远程控制的供电系统来控制Radio产品的开关机。之前在波兰的时候，我看到老外的自动化Lab全部采用的是商业控制产品，可使用web页面控制，也可以使用简单的协议控制（ssh或者Telnet发送简单的命令控制外部电路）。&amp;emsp;&amp;emsp;按照老外的配置，一套控制核心+几路ABB继电器+几路空开。我查了下报价，3000欧元一个控制中心，继">
+<meta name="twitter:image" content="http://oi16bpd89.bkt.clouddn.com/setup_remote_power.jpg">
   
     <link rel="alternative" href="/atom.xml" title="Yunpeng&#39;s Notes" type="application/atom+xml">
   
@@ -150,100 +156,14 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-    <article id="post-2016-12-16" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+            <article id="post-2016-12-15-1" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/12/16/2016-12-16/">python 实现在cmd里执行命令</a>
-    </h1>
-  
-
-        <a href="/2016/12/16/2016-12-16/" class="archive-article-date">
-  	<time datetime="2016-12-15T17:17:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-12-16</time>
-</a>
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>我在写脚本实现一些手动的工作自动化的过程中，有一个需求是<br>在win的cmd里输入命令，参考一些信息实现如下：</p>
-<pre><code>import os
-import re
-
-dir = &quot;FRM35.09.R01&quot;
-cmd = [&quot;C:&quot;,&quot;cd C:\\Temp_a\\&quot; + dir + &quot;\\C_Element\\SE_RFM\\SS_REL3\\RnD&quot;,&quot;dir&quot;]
-
-# execute command, and return the output
-def runCmd(cmd):
-    global r
-    r = os.popen(cmd)
-    text = r.read()
-    return text
-
-def closeCmd():
-    r.close()
-
-# for i in range(len(cmd)):
-    # result = runCmd(cmd[i])
-    # print (&quot;--&gt;Cmd send: %s&quot; % cmd[i])
-    # print (&quot;&lt;--Cmd back: %s&quot; % result)
-# closeCmd()
-
-cc = cmd[0]
-for i in range(1,len(cmd)):
-    cc = cc + &quot;&amp;&amp;&quot; + cmd[i]
-result = runCmd(cc)
-
-
-print (&quot;--&gt;Cmd send: %s&quot; % cc)
-print (&quot;&lt;--Cmd back: %s&quot; % result)
-
-#pattern = r&quot;^FRM-.*?LAR\n$&quot;
-pattern = r&quot;FRM-\w*&quot;
-res = re.findall(pattern,result)
-print res
-</code></pre>
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2016/12/16/2016-12-16/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-  
-    <article id="post-2016-12-15-1" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/12/15/2016-12-15-1/">DIY 远程控制电源模块</a>
+    <h1 class="article-title" itemprop="name">
+      DIY 远程控制电源模块
     </h1>
   
 
@@ -326,6 +246,27 @@ end)
       
 
       
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
     </div>
     <div class="article-info article-info-index">
       
@@ -333,369 +274,110 @@ end)
       
 
       
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2016/12/15/2016-12-15-1/">展开全文 >></a>
-        </p>
-      
 
       
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-  
-    <article id="post-2016-12-15" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
         
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/12/15/2016-12-15/">远程控制FSV读取EVM值</a>
-    </h1>
-  
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
 
-        <a href="/2016/12/15/2016-12-15/" class="archive-article-date">
-  	<time datetime="2016-12-15T15:10:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-12-15</time>
-</a>
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>&emsp;&emsp;经常要手动控制FSV测试RRH的上下行射频性能指标。重复操作太枯燥，还好查找手册发现了可以通过RJ45或者GPIB端口发送SCPI命令实现远程控制，<br>总结命令如下</p>
-<h3 id="测试-TX-EVM"><a href="#测试-TX-EVM" class="headerlink" title="测试 TX EVM"></a>测试 TX EVM</h3><table>
-<thead>
-<tr>
-<th><strong>command</strong></th>
-<th style="text-align:center"><strong>解释</strong></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>“*RST”</td>
-<td style="text-align:center">复位</td>
-</tr>
-<tr>
-<td>“INIT:CONT OFF”</td>
-<td style="text-align:center">初始化频谱仪模式</td>
-</tr>
-<tr>
-<td>“SYST:DISP:UPD ON”</td>
-<td style="text-align:center">屏幕给出显示</td>
-</tr>
-<tr>
-<td>“INST LTE”</td>
-<td style="text-align:center">初始化LTE选件</td>
-</tr>
-<tr>
-<td>“FREQ:CENT 2140 MHz”</td>
-<td style="text-align:center">设置测试的中心频率为2140Mhz</td>
-</tr>
-<tr>
-<td>“CONF:DL:BW BW5_00”</td>
-<td style="text-align:center">设置监测5M带宽</td>
-</tr>
-<tr>
-<td>“POW:AUTO2 ON”</td>
-<td style="text-align:center">打开自动调节增益</td>
-</tr>
-<tr>
-<td>“DISP:TRAC:Y:RLEV:OFFS 42”</td>
-<td style="text-align:center">设置外部线损为42dbm</td>
-</tr>
-<tr>
-<td>CALC2:FEED ‘STAT:ASUM’</td>
-<td style="text-align:center">进入TX总结页面</td>
-</tr>
-<tr>
-<td>INIT:CONT OFF</td>
-<td style="text-align:center">设置为单次测试模式</td>
-</tr>
-<tr>
-<td>INIT;*WAI</td>
-<td style="text-align:center">进行一次测试</td>
-</tr>
-<tr>
-<td>FETC:SUMM:EVM?</td>
-<td style="text-align:center">读取刚刚测试的EVM平均值</td>
-</tr>
-<tr>
-<td>FETC:SUMM:EVM:ALL:MAX?</td>
-<td style="text-align:center">读取EVM最大值</td>
-</tr>
-<tr>
-<td>FETC:SUMM:EVM:ALL:MIN?</td>
-<td style="text-align:center">读取EVM最小值</td>
-</tr>
-</tbody>
-</table>
-<h3 id="测试-TX-ACLR"><a href="#测试-TX-ACLR" class="headerlink" title="测试 TX ACLR"></a>测试 TX ACLR</h3><table>
-<thead>
-<tr>
-<th><strong>command</strong></th>
-<th style="text-align:center"><strong>解释</strong></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>“*RST”</td>
-<td style="text-align:center">复位</td>
-</tr>
-<tr>
-<td>“INIT:CONT OFF”</td>
-<td style="text-align:center">初始化频谱仪模式</td>
-</tr>
-<tr>
-<td>“SYST:DISP:UPD ON”</td>
-<td style="text-align:center">屏幕给出显示</td>
-</tr>
-<tr>
-<td>“INST LTE”</td>
-<td style="text-align:center">初始化LTE选件</td>
-</tr>
-<tr>
-<td>“FREQ:CENT “+s_Freq+”MHz”</td>
-<td style="text-align:center">设置中心频率</td>
-</tr>
-<tr>
-<td>“CONF:DL:BW BW”+s_BW</td>
-<td style="text-align:center">设置带宽</td>
-</tr>
-<tr>
-<td>“POW:AUTO2 ON”</td>
-<td style="text-align:center">打开自动控制增益</td>
-</tr>
-<tr>
-<td>“DISP:TRAC:Y:RLEV:OFFS “+s_CableLoss</td>
-<td style="text-align:center">设置外部线损</td>
-</tr>
-<tr>
-<td>“CALC2:FEED ‘SPEC:ACP’”</td>
-<td style="text-align:center">进入ACLR界面</td>
-</tr>
-<tr>
-<td>“INIT:CONT OFF”</td>
-<td style="text-align:center">进入单次测试模式</td>
-</tr>
-<tr>
-<td>“INIT;*WAI”</td>
-<td style="text-align:center">执行一次测试</td>
-</tr>
-<tr>
-<td>“CALC1:MARK:FUNC:POW:RES?”</td>
-<td style="text-align:center">取得刚刚的测试结果</td>
-</tr>
-</tbody>
-</table>
-<p>###测试RX EVM<br>主要是设置信号发生器，发出制定的波形文件</p>
-<table>
-<thead>
-<tr>
-<th><strong>command</strong></th>
-<th style="text-align:center"><strong>解释</strong></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>“*RST”</td>
-<td style="text-align:center">复位</td>
-</tr>
-<tr>
-<td>“ROSC:SOUR EXT”</td>
-<td style="text-align:center">使用外部时钟源</td>
-</tr>
-<tr>
-<td>“ROSC:EXT:FREQ 10MHz”</td>
-<td style="text-align:center">设置外部时钟源的频率是10Mhz</td>
-</tr>
-<tr>
-<td>“ROSC:EXT:SBAN NARR”</td>
-<td style="text-align:center">设置外部时钟源的同步要求为狭窄</td>
-</tr>
-<tr>
-<td>“BB:ARB:WAV:SEL ‘“+s_wavePath+”\“+”LTE_UL_4GMax<em>PN18</em>“+s<em>BandWidth+”</em>“+s_Modulation+”‘“</td>
-<td style="text-align:center">设置本地波形文件路径</td>
-</tr>
-<tr>
-<td>“FREQ “+s_Freq+”Mhz” + “BB:ARB:TRIG:SEQ AUTO”</td>
-<td style="text-align:center">设置发出的波形的频率</td>
-</tr>
-<tr>
-<td>“BB:ARB:STAT ON”</td>
-<td style="text-align:center">加载刚刚选择的波形</td>
-</tr>
-<tr>
-<td>“POW:OFFS “+s_OffSet</td>
-<td style="text-align:center">加入外部线损的计算</td>
-</tr>
-<tr>
-<td>“:POW “+s_RfOutLev + “OUTP ON”</td>
-<td style="text-align:center">打开外部输出</td>
-</tr>
-</tbody>
-</table>
-<p>写了个Python脚本，主要依靠telnet来发送上述命令实现控制和读取结果，代码放在<br><a href="https://github.com/yunpengb/rohde_schwarz_remote_control" target="_blank" rel="external">https://github.com/yunpengb/rohde_schwarz_remote_control</a></p>
-
-      
-
-      
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2016/12/15/2016-12-15-1/" alt="微信分享二维码">
     </div>
-    <div class="article-info article-info-index">
-      
-      
-      
+</div>
 
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2016/12/15/2016-12-15/">展开全文 >></a>
-        </p>
-      
-
+<div class="mask js-mask"></div>
       
       <div class="clearfix"></div>
     </div>
   </div>
 </article>
 
-
-
-
-
-
-
-
   
-    <article id="post-2016-12-12-1" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
+<nav id="article-nav">
+  
+    <a href="/2016/12/16/2016-12-16/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
         
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/12/12/2016-12-12-1/">每日文件分类文件夹</a>
-    </h1>
-  
-
-        <a href="/2016/12/12/2016-12-12-1/" class="archive-article-date">
-  	<time datetime="2016-12-11T18:08:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-12-12</time>
-</a>
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>&emsp;&emsp;经常工作的时候，每天处理大量的文件很容易混乱和丢失。<br>&emsp;&emsp;我有个想法，每天的工作用到的文件都独立的放到一个文件夹里。这样整齐一些也方便管理。<br>&emsp;&emsp;于是我用python写了一个小脚本。在安装了解释器的PC里只需要双击即可执行，即可生成以当天日期为名字的文件夹。</p>
-<!-- lang:python -->
-<pre><code># yunpeng daily work use
-import os
-import time
-
-def makeDIRwithDate():    
-    timestat = timestamp = time.strftime(&apos;%Y-%m-%d&apos;,time.localtime(time.time())) 
-    existdir = os.path.exists(timestat)
-    if not existdir:
-        os.mkdir(timestat)
-        print &quot;make dir:[%s]&quot; % timestat
-    else:
-        print &apos;folder[%s] already exists&apos; % timestat
-makeDIRwithDate()
-</code></pre><p>&emsp;&emsp;创建了文件夹后，剩下就是手工把每天用到的文件复制进去保存。效果如下图。</p>
-<p><img src="http://oi16bpd89.bkt.clouddn.com/dir.png" alt=""></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2016/12/12/2016-12-12-1/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-  
-    <article id="post-hello-world" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
+          python 实现在cmd里执行命令
         
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/12/11/hello-world/">Hello World</a>
-    </h1>
-  
-
-        <a href="/2016/12/11/hello-world/" class="archive-article-date">
-  	<time datetime="2016-12-10T16:32:37.194Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-12-11</time>
-</a>
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2016/12/11/hello-world/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
+      </div>
+    </a>
   
   
+    <a href="/2016/12/15/2016-12-15/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">远程控制FSV读取EVM值</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+
+
+
+
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="2016-12-15-1" data-title="DIY 远程控制电源模块" data-url="http://yoursite.com/2016/12/15/2016-12-15-1/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"yunpengb"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
 
 
           </div>
@@ -717,8 +399,8 @@ makeDIRwithDate()
     <script>
 	var yiliaConfig = {
 		mathjax: false,
-		isHome: true,
-		isPost: false,
+		isHome: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,
