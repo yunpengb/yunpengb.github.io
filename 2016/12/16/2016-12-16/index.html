@@ -16,30 +16,18 @@
   
 
   <meta name="description" content="我在写脚本实现一些手动的工作自动化的过程中，有一个需求是在win的cmd里输入命令，参考一些信息实现如下：
-import os
-import re
-
-dir = &amp;quot;FRM35.09.R01&amp;quot;
-cmd = [&amp;quot;C:&amp;quot;,&amp;quot;cd C:\\Temp_a\\&amp;quot; + dir + &amp;quot;\\C_Element\\SE_RFM\\SS_REL3\\">
+123456789101112131415161718192021222324252627282930313233import osimport recmd = [&quot;C:&quot;,&quot;cd C:\\Temp_a\\&quot; ,&quot;dir&quot;]# execute command, and return the">
 <meta property="og:type" content="article">
 <meta property="og:title" content="python 实现在cmd里执行命令">
 <meta property="og:url" content="http://yoursite.com/2016/12/16/2016-12-16/index.html">
 <meta property="og:site_name" content="Yunpeng's Notes">
 <meta property="og:description" content="我在写脚本实现一些手动的工作自动化的过程中，有一个需求是在win的cmd里输入命令，参考一些信息实现如下：
-import os
-import re
-
-dir = &amp;quot;FRM35.09.R01&amp;quot;
-cmd = [&amp;quot;C:&amp;quot;,&amp;quot;cd C:\\Temp_a\\&amp;quot; + dir + &amp;quot;\\C_Element\\SE_RFM\\SS_REL3\\">
-<meta property="og:updated_time" content="2016-12-15T17:19:17.645Z">
+123456789101112131415161718192021222324252627282930313233import osimport recmd = [&quot;C:&quot;,&quot;cd C:\\Temp_a\\&quot; ,&quot;dir&quot;]# execute command, and return the">
+<meta property="og:updated_time" content="2017-04-01T14:51:22.193Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="python 实现在cmd里执行命令">
 <meta name="twitter:description" content="我在写脚本实现一些手动的工作自动化的过程中，有一个需求是在win的cmd里输入命令，参考一些信息实现如下：
-import os
-import re
-
-dir = &amp;quot;FRM35.09.R01&amp;quot;
-cmd = [&amp;quot;C:&amp;quot;,&amp;quot;cd C:\\Temp_a\\&amp;quot; + dir + &amp;quot;\\C_Element\\SE_RFM\\SS_REL3\\">
+123456789101112131415161718192021222324252627282930313233import osimport recmd = [&quot;C:&quot;,&quot;cd C:\\Temp_a\\&quot; ,&quot;dir&quot;]# execute command, and return the">
 
   
 
@@ -204,42 +192,7 @@ cmd = [&amp;quot;C:&amp;quot;,&amp;quot;cd C:\\Temp_a\\&amp;quot; + dir + &amp;q
   <div class="article-content">
     
       <p>我在写脚本实现一些手动的工作自动化的过程中，有一个需求是<br>在win的cmd里输入命令，参考一些信息实现如下：</p>
-<pre><code>import os
-import re
-
-dir = &quot;FRM35.09.R01&quot;
-cmd = [&quot;C:&quot;,&quot;cd C:\\Temp_a\\&quot; + dir + &quot;\\C_Element\\SE_RFM\\SS_REL3\\RnD&quot;,&quot;dir&quot;]
-
-# execute command, and return the output
-def runCmd(cmd):
-    global r
-    r = os.popen(cmd)
-    text = r.read()
-    return text
-
-def closeCmd():
-    r.close()
-
-# for i in range(len(cmd)):
-    # result = runCmd(cmd[i])
-    # print (&quot;--&gt;Cmd send: %s&quot; % cmd[i])
-    # print (&quot;&lt;--Cmd back: %s&quot; % result)
-# closeCmd()
-
-cc = cmd[0]
-for i in range(1,len(cmd)):
-    cc = cc + &quot;&amp;&amp;&quot; + cmd[i]
-result = runCmd(cc)
-
-
-print (&quot;--&gt;Cmd send: %s&quot; % cc)
-print (&quot;&lt;--Cmd back: %s&quot; % result)
-
-#pattern = r&quot;^FRM-.*?LAR\n$&quot;
-pattern = r&quot;FRM-\w*&quot;
-res = re.findall(pattern,result)
-print res
-</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> os</div><div class="line"><span class="keyword">import</span> re</div><div class="line"></div><div class="line">cmd = [<span class="string">"C:"</span>,<span class="string">"cd C:\\Temp_a\\"</span> ,<span class="string">"dir"</span>]</div><div class="line"></div><div class="line"><span class="comment"># execute command, and return the output</span></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">runCmd</span><span class="params">(cmd)</span>:</span></div><div class="line">	<span class="keyword">global</span> r</div><div class="line">	r = os.popen(cmd)</div><div class="line">	text = r.read()</div><div class="line">	<span class="keyword">return</span> text</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">closeCmd</span><span class="params">()</span>:</span></div><div class="line">	r.close()</div><div class="line"></div><div class="line"><span class="comment"># for i in range(len(cmd)):</span></div><div class="line">	<span class="comment"># result = runCmd(cmd[i])</span></div><div class="line">	<span class="comment"># print ("--&gt;Cmd send: %s" % cmd[i])</span></div><div class="line">	<span class="comment"># print ("&lt;--Cmd back: %s" % result)</span></div><div class="line"><span class="comment"># closeCmd()</span></div><div class="line"></div><div class="line">cc = cmd[<span class="number">0</span>]</div><div class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>,len(cmd)):</div><div class="line">	cc = cc + <span class="string">"&amp;&amp;"</span> + cmd[i]</div><div class="line">result = runCmd(cc)</div><div class="line"></div><div class="line"></div><div class="line"><span class="keyword">print</span> (<span class="string">"--&gt;Cmd send: %s"</span> % cc)</div><div class="line"><span class="keyword">print</span> (<span class="string">"&lt;--Cmd back: %s"</span> % result)</div><div class="line"></div><div class="line">pattern = <span class="string">r"FRM-\w*"</span></div><div class="line">res = re.findall(pattern,result)</div><div class="line"><span class="keyword">print</span> res</div></pre></td></tr></table></figure>
     
   </div>
 </article>

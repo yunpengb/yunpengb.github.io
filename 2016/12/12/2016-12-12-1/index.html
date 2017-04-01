@@ -7,7 +7,7 @@
 <head>
   <meta charset="utf-8">
   
-  <title>每日文件分类文件夹 | Yunpeng&#39;s Notes</title>
+  <title>每日工作划分文件夹 | Yunpeng&#39;s Notes</title>
 
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -16,28 +16,19 @@
   
 
   <meta name="description" content="&amp;emsp;&amp;emsp;经常工作的时候，每天处理大量的文件很容易混乱和丢失。&amp;emsp;&amp;emsp;我有个想法，每天的工作用到的文件都独立的放到一个文件夹里。这样整齐一些也方便管理。&amp;emsp;&amp;emsp;于是我用python写了一个小脚本。在安装了解释器的PC里只需要双击即可执行，即可生成以当天日期为名字的文件夹。
-
-# yunpeng daily work use
-import os
-impo">
+123456789101112import osimport timedef m">
 <meta property="og:type" content="article">
-<meta property="og:title" content="每日文件分类文件夹">
+<meta property="og:title" content="每日工作划分文件夹">
 <meta property="og:url" content="http://yoursite.com/2016/12/12/2016-12-12-1/index.html">
 <meta property="og:site_name" content="Yunpeng's Notes">
 <meta property="og:description" content="&amp;emsp;&amp;emsp;经常工作的时候，每天处理大量的文件很容易混乱和丢失。&amp;emsp;&amp;emsp;我有个想法，每天的工作用到的文件都独立的放到一个文件夹里。这样整齐一些也方便管理。&amp;emsp;&amp;emsp;于是我用python写了一个小脚本。在安装了解释器的PC里只需要双击即可执行，即可生成以当天日期为名字的文件夹。
-
-# yunpeng daily work use
-import os
-impo">
+123456789101112import osimport timedef m">
 <meta property="og:image" content="http://oi16bpd89.bkt.clouddn.com/dir.png">
-<meta property="og:updated_time" content="2016-12-11T18:37:22.456Z">
+<meta property="og:updated_time" content="2017-04-01T14:37:44.586Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="每日文件分类文件夹">
+<meta name="twitter:title" content="每日工作划分文件夹">
 <meta name="twitter:description" content="&amp;emsp;&amp;emsp;经常工作的时候，每天处理大量的文件很容易混乱和丢失。&amp;emsp;&amp;emsp;我有个想法，每天的工作用到的文件都独立的放到一个文件夹里。这样整齐一些也方便管理。&amp;emsp;&amp;emsp;于是我用python写了一个小脚本。在安装了解释器的PC里只需要双击即可执行，即可生成以当天日期为名字的文件夹。
-
-# yunpeng daily work use
-import os
-impo">
+123456789101112import osimport timedef m">
 <meta name="twitter:image" content="http://oi16bpd89.bkt.clouddn.com/dir.png">
 
   
@@ -164,7 +155,7 @@ impo">
 <div class="content content-post CENTER">
    <article id="post-2016-12-12-1" class="article article-type-post" itemprop="blogPost">
   <header class="article-header">
-    <h1 class="post-title">每日文件分类文件夹</h1>
+    <h1 class="post-title">每日工作划分文件夹</h1>
 
     <div class="article-meta">
       <span>
@@ -203,21 +194,8 @@ impo">
   <div class="article-content">
     
       <p>&emsp;&emsp;经常工作的时候，每天处理大量的文件很容易混乱和丢失。<br>&emsp;&emsp;我有个想法，每天的工作用到的文件都独立的放到一个文件夹里。这样整齐一些也方便管理。<br>&emsp;&emsp;于是我用python写了一个小脚本。在安装了解释器的PC里只需要双击即可执行，即可生成以当天日期为名字的文件夹。</p>
-<!-- lang:python -->
-<pre><code># yunpeng daily work use
-import os
-import time
-
-def makeDIRwithDate():    
-    timestat = timestamp = time.strftime(&apos;%Y-%m-%d&apos;,time.localtime(time.time())) 
-    existdir = os.path.exists(timestat)
-    if not existdir:
-        os.mkdir(timestat)
-        print &quot;make dir:[%s]&quot; % timestat
-    else:
-        print &apos;folder[%s] already exists&apos; % timestat
-makeDIRwithDate()
-</code></pre><p>&emsp;&emsp;创建了文件夹后，剩下就是手工把每天用到的文件复制进去保存。效果如下图。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> os</div><div class="line"><span class="keyword">import</span> time</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">makeDIRwithDate</span><span class="params">()</span>:</span>    </div><div class="line">	timestat = timestamp = time.strftime(<span class="string">'%Y-%m-%d'</span>,time.localtime(time.time())) </div><div class="line">	existdir = os.path.exists(timestat)</div><div class="line">	<span class="keyword">if</span> <span class="keyword">not</span> existdir:</div><div class="line">		os.mkdir(timestat)</div><div class="line">		<span class="keyword">print</span> <span class="string">"make dir:[%s]"</span> % timestat</div><div class="line">	<span class="keyword">else</span>:</div><div class="line">		<span class="keyword">print</span> <span class="string">'folder[%s] already exists'</span> % timestat</div><div class="line">makeDIRwithDate()</div></pre></td></tr></table></figure>
+<p>&emsp;&emsp;创建了文件夹后，剩下就是手工把每天用到的文件复制进去保存。效果如下图。</p>
 <p><img src="http://oi16bpd89.bkt.clouddn.com/dir.png" alt=""></p>
 
     
@@ -249,7 +227,7 @@ makeDIRwithDate()
 
    
   <div class="box-prev-next clearfix">
-    <a class="show pull-left" href="/2016/12/11/hello-world/">
+    <a class="hide pull-left" href="/">
         <i class="icon icon-angle-left"></i>
     </a>
     <a class="show pull-right" href="/2016/12/15/2016-12-15/">
@@ -362,7 +340,7 @@ makeDIRwithDate()
   <section class="duoshuo-comments">
     <!-- 多说评论框 start -->
     <div class="ds-thread" data-thread-key="post-2016-12-12-1" 
-      data-title="每日文件分类文件夹" data-url="http://yoursite.com/2016/12/12/2016-12-12-1/index.html"></div>
+      data-title="每日工作划分文件夹" data-url="http://yoursite.com/2016/12/12/2016-12-12-1/index.html"></div>
     <!-- 多说评论框 end -->
   </section>
 

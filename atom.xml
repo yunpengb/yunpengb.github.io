@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2016-12-15T17:19:17.645Z</updated>
+  <updated>2017-04-01T14:51:22.193Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -20,54 +20,15 @@
     <link href="http://yoursite.com/2016/12/16/2016-12-16/"/>
     <id>http://yoursite.com/2016/12/16/2016-12-16/</id>
     <published>2016-12-15T17:17:00.000Z</published>
-    <updated>2016-12-15T17:19:17.645Z</updated>
+    <updated>2017-04-01T14:51:22.193Z</updated>
     
     <content type="html"><![CDATA[<p>我在写脚本实现一些手动的工作自动化的过程中，有一个需求是<br>在win的cmd里输入命令，参考一些信息实现如下：</p>
-<pre><code>import os
-import re
-
-dir = &quot;FRM35.09.R01&quot;
-cmd = [&quot;C:&quot;,&quot;cd C:\\Temp_a\\&quot; + dir + &quot;\\C_Element\\SE_RFM\\SS_REL3\\RnD&quot;,&quot;dir&quot;]
-
-# execute command, and return the output
-def runCmd(cmd):
-    global r
-    r = os.popen(cmd)
-    text = r.read()
-    return text
-
-def closeCmd():
-    r.close()
-
-# for i in range(len(cmd)):
-    # result = runCmd(cmd[i])
-    # print (&quot;--&gt;Cmd send: %s&quot; % cmd[i])
-    # print (&quot;&lt;--Cmd back: %s&quot; % result)
-# closeCmd()
-
-cc = cmd[0]
-for i in range(1,len(cmd)):
-    cc = cc + &quot;&amp;&amp;&quot; + cmd[i]
-result = runCmd(cc)
-
-
-print (&quot;--&gt;Cmd send: %s&quot; % cc)
-print (&quot;&lt;--Cmd back: %s&quot; % result)
-
-#pattern = r&quot;^FRM-.*?LAR\n$&quot;
-pattern = r&quot;FRM-\w*&quot;
-res = re.findall(pattern,result)
-print res
-</code></pre>]]></content>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> os</div><div class="line"><span class="keyword">import</span> re</div><div class="line"></div><div class="line">cmd = [<span class="string">"C:"</span>,<span class="string">"cd C:\\Temp_a\\"</span> ,<span class="string">"dir"</span>]</div><div class="line"></div><div class="line"><span class="comment"># execute command, and return the output</span></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">runCmd</span><span class="params">(cmd)</span>:</span></div><div class="line">	<span class="keyword">global</span> r</div><div class="line">	r = os.popen(cmd)</div><div class="line">	text = r.read()</div><div class="line">	<span class="keyword">return</span> text</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">closeCmd</span><span class="params">()</span>:</span></div><div class="line">	r.close()</div><div class="line"></div><div class="line"><span class="comment"># for i in range(len(cmd)):</span></div><div class="line">	<span class="comment"># result = runCmd(cmd[i])</span></div><div class="line">	<span class="comment"># print ("--&gt;Cmd send: %s" % cmd[i])</span></div><div class="line">	<span class="comment"># print ("&lt;--Cmd back: %s" % result)</span></div><div class="line"><span class="comment"># closeCmd()</span></div><div class="line"></div><div class="line">cc = cmd[<span class="number">0</span>]</div><div class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>,len(cmd)):</div><div class="line">	cc = cc + <span class="string">"&amp;&amp;"</span> + cmd[i]</div><div class="line">result = runCmd(cc)</div><div class="line"></div><div class="line"></div><div class="line"><span class="keyword">print</span> (<span class="string">"--&gt;Cmd send: %s"</span> % cc)</div><div class="line"><span class="keyword">print</span> (<span class="string">"&lt;--Cmd back: %s"</span> % result)</div><div class="line"></div><div class="line">pattern = <span class="string">r"FRM-\w*"</span></div><div class="line">res = re.findall(pattern,result)</div><div class="line"><span class="keyword">print</span> res</div></pre></td></tr></table></figure>]]></content>
     
     <summary type="html">
     
       &lt;p&gt;我在写脚本实现一些手动的工作自动化的过程中，有一个需求是&lt;br&gt;在win的cmd里输入命令，参考一些信息实现如下：&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;import os
-import re
-
-dir = &amp;quot;FRM35.09.R01&amp;quot;
-cmd = [&amp;quot
+&lt;figure class=&quot;highlight python&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div cl
     
     </summary>
     
@@ -79,7 +40,7 @@ cmd = [&amp;quot
     <link href="http://yoursite.com/2016/12/15/2016-12-15-1/"/>
     <id>http://yoursite.com/2016/12/15/2016-12-15-1/</id>
     <published>2016-12-15T15:39:00.000Z</published>
-    <updated>2016-12-15T17:12:47.628Z</updated>
+    <updated>2017-04-01T14:51:05.011Z</updated>
     
     <content type="html"><![CDATA[<p>&emsp;&emsp;我们的自动化测试环境一直缺少一个可以远程控制的供电系统来控制Radio产品的开关机。之前在波兰的时候，我看到老外的自动化Lab全部采用的是商业控制产品，可使用web页面控制，也可以使用简单的协议控制（ssh或者Telnet发送简单的命令控制外部电路）。<br>&emsp;&emsp;按照老外的配置，一套控制核心+几路ABB继电器+几路空开。我查了下报价，3000欧元一个控制中心，继电器也得300RMB一个。总体下来一万多RMB。就为了自动开个机，花销挺贵的。老板也没同意，搁置了这个想法一段时间。<br>&emsp;&emsp;后来混树莓派论坛的时候，我发现有人在用ESP8266组装各种很屌的玩意，其中就包括可控电源开关，很有意思。我随后淘宝了几只，一只只要25块，很便宜的说。<br>&emsp;&emsp;以下记录的就是实现可控电源开关的过程。</p>
 <h4 id="直接上demo图"><a href="#直接上demo图" class="headerlink" title="直接上demo图"></a>直接上demo图</h4><p><img src="http://oi16bpd89.bkt.clouddn.com/setup_remote_power.jpg" alt=""><br>&emsp;&emsp;这个demo使用的材料有：ESP8266开发板1只+ LED灯2个 + 电阻一只 + 若干导线 + 5V继电器一枚 + 小米移动电源一个，除掉小米移动电源，花销大概是50块不到。</p>
@@ -94,56 +55,8 @@ cmd = [&amp;quot
 <li>如果设置为低电平触发，平时D1 保持常开，需要下电的时候，把D1关闭，从+3.3V变为0V，刚好是继电器认可的“低电平”。此时会触发继电器吸合。受控链路断开。电源关闭。目的达成。（PS：后面的代码是写的电源常闭）</li>
 </ul>
 <p>&emsp;&emsp;这里比较凑巧的是3.3V可以给继电器供电。所以就不需要再麻烦给继电器连接额外的电源，从而可以把整个装置做的很小。<br>同时，毕竟它是一个IOT开发板，是带WIFI芯片的，可以连接路由器。<br>参考了dingzz的 <a href="http://blog.csdn.NET/dingzz/article/details/46876503" target="_blank" rel="external">http://blog.csdn.NET/dingzz/article/details/46876503</a> 文章<br>加入了一个网页特性，这里init.lua的代码如下(Lua脚本)：</p>
-<!-- lang:Lua -->
-<pre><code>print(&apos;Setting up WIFI...&apos;)
-wifi.setmode(wifi.STATION)
-wifi.sta.config(&apos;WIFI_ssid&apos;, &apos;wifi_password&apos;)
-wifi.sta.connect()
-tmr.alarm(1,1000,1,function()
-if wifi.sta.getip()==nil then
-print(&quot;IP unavaiable,Waiting...&quot;)
-else
-tmr.stop(1)
-print(&quot;Config done, IP is &quot;..wifi.sta.getip())
-end
-end)
-led1 = 1
-led2 = 2
-gpio.mode(led1, gpio.OUTPUT)
-gpio.mode(led2, gpio.OUTPUT)
-srv=net.createServer(net.TCP)
-srv:listen(80,function(conn)
-    conn:on(&quot;receive&quot;, function(client,request)
-        local buf = &quot;&quot;;
-        local _, _, method, path, vars = string.find(request, &quot;([A-Z]+) (.+)?(.+) HTTP&quot;);
-        if(method == nil)then
-            _, _, method, path = string.find(request, &quot;([A-Z]+) (.+) HTTP&quot;);
-        end
-        local _GET = {}
-        if (vars ~= nil)then
-            for k, v in string.gmatch(vars, &quot;(%w+)=(%w+)&amp;*&quot;) do
-                _GET[k] = v
-            end
-        end
-        buf = buf..&quot;&lt;h1&gt; ESP 8266 server&lt;/h1&gt;&quot;;
-        buf = buf..&quot;&lt;p&gt;switch1 &lt;a href=\&quot;?pin=ON1\&quot;&gt;&lt;button&gt;ON&lt;/button&gt;&lt;/a&gt; &lt;a href=\&quot;?pin=OFF1\&quot;&gt;&lt;button&gt;OFF&lt;/button&gt;&lt;/a&gt;&lt;/p&gt;&quot;;
-        buf = buf..&quot;&lt;p&gt;switch2 &lt;a href=\&quot;?pin=ON2\&quot;&gt;&lt;button&gt;ON&lt;/button&gt;&lt;/a&gt; &lt;a href=\&quot;?pin=OFF2\&quot;&gt;&lt;button&gt;OFF&lt;/button&gt;&lt;/a&gt;&lt;/p&gt;&quot;;
-        local _on,_off = &quot;&quot;,&quot;&quot;
-        if(_GET.pin == &quot;ON1&quot;)then
-              gpio.write(led1, gpio.HIGH);
-        elseif(_GET.pin == &quot;OFF1&quot;)then
-              gpio.write(led1, gpio.LOW);
-        elseif(_GET.pin == &quot;ON2&quot;)then
-              gpio.write(led2, gpio.HIGH);
-        elseif(_GET.pin == &quot;OFF2&quot;)then
-              gpio.write(led2, gpio.LOW);
-        end
-        client:send(buf);
-        client:close();
-        collectgarbage();
-    end)
-end)
-</code></pre><p>init.lua传入开发板后，每次开机都会执行它，<br>这是NodeMcu的设计。<br>这里代码实现的功能就是连接WIFI，并建立了一个网页server.<br>只要知道开发板的IP地址，就可以通过浏览器控制你想控制的电源。<br>效果是这样的：<br><img src="http://oi16bpd89.bkt.clouddn.com/remote_web.png" alt=""></p>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">print</span>(<span class="string">'Setting up WIFI...'</span>)</div><div class="line">wifi.setmode(wifi.STATION)</div><div class="line">wifi.sta.config(<span class="string">'WIFI_ssid'</span>, <span class="string">'wifi_password'</span>)</div><div class="line">wifi.sta.connect()</div><div class="line">tmr.alarm(<span class="number">1</span>,<span class="number">1000</span>,<span class="number">1</span>,<span class="function"><span class="keyword">function</span><span class="params">()</span></span></div><div class="line"><span class="keyword">if</span> wifi.sta.getip()==<span class="keyword">nil</span> <span class="keyword">then</span></div><div class="line"><span class="built_in">print</span>(<span class="string">"IP unavaiable,Waiting..."</span>)</div><div class="line"><span class="keyword">else</span></div><div class="line">tmr.stop(<span class="number">1</span>)</div><div class="line"><span class="built_in">print</span>(<span class="string">"Config done, IP is "</span>..wifi.sta.getip())</div><div class="line"><span class="keyword">end</span></div><div class="line"><span class="keyword">end</span>)</div><div class="line">led1 = <span class="number">1</span></div><div class="line">led2 = <span class="number">2</span></div><div class="line">gpio.mode(led1, gpio.OUTPUT)</div><div class="line">gpio.mode(led2, gpio.OUTPUT)</div><div class="line">srv=net.createServer(net.TCP)</div><div class="line">srv:listen(<span class="number">80</span>,<span class="function"><span class="keyword">function</span><span class="params">(conn)</span></span></div><div class="line">	conn:on(<span class="string">"receive"</span>, <span class="function"><span class="keyword">function</span><span class="params">(client,request)</span></span></div><div class="line">		<span class="keyword">local</span> buf = <span class="string">""</span>;</div><div class="line">		<span class="keyword">local</span> _, _, method, path, vars = <span class="built_in">string</span>.find(request, <span class="string">"([A-Z]+) (.+)?(.+) HTTP"</span>);</div><div class="line">		<span class="keyword">if</span>(method == <span class="keyword">nil</span>)<span class="keyword">then</span></div><div class="line">			_, _, method, path = <span class="built_in">string</span>.find(request, <span class="string">"([A-Z]+) (.+) HTTP"</span>);</div><div class="line">		<span class="keyword">end</span></div><div class="line">		<span class="keyword">local</span> _GET = &#123;&#125;</div><div class="line">		<span class="keyword">if</span> (vars ~= <span class="keyword">nil</span>)<span class="keyword">then</span></div><div class="line">			<span class="keyword">for</span> k, v <span class="keyword">in</span> <span class="built_in">string</span>.gmatch(vars, <span class="string">"(%w+)=(%w+)&amp;*"</span>) <span class="keyword">do</span></div><div class="line">				_GET[k] = v</div><div class="line">			<span class="keyword">end</span></div><div class="line">		<span class="keyword">end</span></div><div class="line">		buf = buf..<span class="string">"&lt;h1&gt; ESP 8266 server&lt;/h1&gt;"</span>;</div><div class="line">		buf = buf..<span class="string">"&lt;p&gt;switch1 &lt;a href=\"?pin=ON1\"&gt;&lt;button&gt;ON&lt;/button&gt;&lt;/a&gt; &lt;a href=\"?pin=OFF1\"&gt;&lt;button&gt;OFF&lt;/button&gt;&lt;/a&gt;&lt;/p&gt;"</span>;</div><div class="line">		buf = buf..<span class="string">"&lt;p&gt;switch2 &lt;a href=\"?pin=ON2\"&gt;&lt;button&gt;ON&lt;/button&gt;&lt;/a&gt; &lt;a href=\"?pin=OFF2\"&gt;&lt;button&gt;OFF&lt;/button&gt;&lt;/a&gt;&lt;/p&gt;"</span>;</div><div class="line">		<span class="keyword">local</span> _on,_off = <span class="string">""</span>,<span class="string">""</span></div><div class="line">		<span class="keyword">if</span>(_GET.pin == <span class="string">"ON1"</span>)<span class="keyword">then</span></div><div class="line">			  gpio.write(led1, gpio.HIGH);</div><div class="line">		<span class="keyword">elseif</span>(_GET.pin == <span class="string">"OFF1"</span>)<span class="keyword">then</span></div><div class="line">			  gpio.write(led1, gpio.LOW);</div><div class="line">		<span class="keyword">elseif</span>(_GET.pin == <span class="string">"ON2"</span>)<span class="keyword">then</span></div><div class="line">			  gpio.write(led2, gpio.HIGH);</div><div class="line">		<span class="keyword">elseif</span>(_GET.pin == <span class="string">"OFF2"</span>)<span class="keyword">then</span></div><div class="line">			  gpio.write(led2, gpio.LOW);</div><div class="line">		<span class="keyword">end</span></div><div class="line">		client:send(buf);</div><div class="line">		client:close();</div><div class="line">		<span class="built_in">collectgarbage</span>();</div><div class="line">	<span class="keyword">end</span>)</div><div class="line"><span class="keyword">end</span>)</div></pre></td></tr></table></figure>
+<p>init.lua传入开发板后，每次开机都会执行它，<br>这是NodeMcu的设计。<br>这里代码实现的功能就是连接WIFI，并建立了一个网页server.<br>只要知道开发板的IP地址，就可以通过浏览器控制你想控制的电源。<br>效果是这样的：<br><img src="http://oi16bpd89.bkt.clouddn.com/remote_web.png" alt=""></p>
 <h4 id="实验过程"><a href="#实验过程" class="headerlink" title="实验过程"></a>实验过程</h4><h5 id="1-init-lua-传到ESP8266里。"><a href="#1-init-lua-传到ESP8266里。" class="headerlink" title="1.  init.lua 传到ESP8266里。"></a>1.  init.lua 传到ESP8266里。</h5><p>开机，它即可连接上指定的WIFI信号，假如PC同时连入同一个无线网，就可以简单的通过网页访问ESP8266 server。<br>然后用浏览器打开IP地址（实际上，我之前调试的时候通过串口打印已经知道了这个IP，但是如果是首次换了脚本，直接通过外部电源开机，是不知道它的IP地址的。</p>
 <h5 id="2-测试开始："><a href="#2-测试开始：" class="headerlink" title="2. 测试开始："></a>2. 测试开始：</h5><p>插入小米电源，继电器供上了电，亮灯。<br>从串口可以看到，大概经过10秒，ESP8266自动连上WIFI，获得IP地址，在浏览器敲入这个IP地址可以进入WEB界面。<br>点击GPIO 0 ON，此时D1的高电平打开，但是LED并没有变化。<br>点击GPIO 2 OFF，此时D2变为低电平，然后应该是这个下降沿触发了继电器的输出端吸合，两端连接，形成回路。LED亮起。<br>点击GPIO 2 ON， D2变为高电平，继电器两端悬空，断开。LED灯熄灭。</p>
 <h5 id="实验结束"><a href="#实验结束" class="headerlink" title="实验结束"></a>实验结束</h5><p>&emsp;&emsp;如果和欧洲那个商用电源开关相比，不说安全和稳定性，咱这个功能也差不多了…嘿嘿，而且很便宜。<br>&emsp;&emsp;我使用的这个继电器是松乐的5V模块，我找了我们这的电源designer给我评估下这个小装置的安全性.他认为<br>继电器本身弱电和强电是分离的，是相对成熟的技术。所以没有什么风险。<br>&emsp;&emsp;这样我可以经由WIFI控制直流27V 和交流220V的设备无压力。只要不是频繁开关（也不建议这样做），都是OK的。后来我又加装了一个20A空气开关，防止短路情况发生。算是加了一道防护。<br>&emsp;&emsp;目前这个装置总是通过IP地址来控制，不太智能，我考虑后续再改进改进，比如加入一个字符串作为标志，然后通过ARP或者什么别的方式找标志，来实现“不知道IP地址”也可以建立通信的办法。<br>埋下待续。</p>
@@ -353,61 +266,21 @@ end)
   </entry>
   
   <entry>
-    <title>每日文件分类文件夹</title>
+    <title>每日工作划分文件夹</title>
     <link href="http://yoursite.com/2016/12/12/2016-12-12-1/"/>
     <id>http://yoursite.com/2016/12/12/2016-12-12-1/</id>
     <published>2016-12-11T18:08:00.000Z</published>
-    <updated>2016-12-11T18:37:22.456Z</updated>
+    <updated>2017-04-01T14:37:44.586Z</updated>
     
     <content type="html"><![CDATA[<p>&emsp;&emsp;经常工作的时候，每天处理大量的文件很容易混乱和丢失。<br>&emsp;&emsp;我有个想法，每天的工作用到的文件都独立的放到一个文件夹里。这样整齐一些也方便管理。<br>&emsp;&emsp;于是我用python写了一个小脚本。在安装了解释器的PC里只需要双击即可执行，即可生成以当天日期为名字的文件夹。</p>
-<!-- lang:python -->
-<pre><code># yunpeng daily work use
-import os
-import time
-
-def makeDIRwithDate():    
-    timestat = timestamp = time.strftime(&apos;%Y-%m-%d&apos;,time.localtime(time.time())) 
-    existdir = os.path.exists(timestat)
-    if not existdir:
-        os.mkdir(timestat)
-        print &quot;make dir:[%s]&quot; % timestat
-    else:
-        print &apos;folder[%s] already exists&apos; % timestat
-makeDIRwithDate()
-</code></pre><p>&emsp;&emsp;创建了文件夹后，剩下就是手工把每天用到的文件复制进去保存。效果如下图。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> os</div><div class="line"><span class="keyword">import</span> time</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">makeDIRwithDate</span><span class="params">()</span>:</span>    </div><div class="line">	timestat = timestamp = time.strftime(<span class="string">'%Y-%m-%d'</span>,time.localtime(time.time())) </div><div class="line">	existdir = os.path.exists(timestat)</div><div class="line">	<span class="keyword">if</span> <span class="keyword">not</span> existdir:</div><div class="line">		os.mkdir(timestat)</div><div class="line">		<span class="keyword">print</span> <span class="string">"make dir:[%s]"</span> % timestat</div><div class="line">	<span class="keyword">else</span>:</div><div class="line">		<span class="keyword">print</span> <span class="string">'folder[%s] already exists'</span> % timestat</div><div class="line">makeDIRwithDate()</div></pre></td></tr></table></figure>
+<p>&emsp;&emsp;创建了文件夹后，剩下就是手工把每天用到的文件复制进去保存。效果如下图。</p>
 <p><img src="http://oi16bpd89.bkt.clouddn.com/dir.png" alt=""></p>
 ]]></content>
     
     <summary type="html">
     
       &lt;p&gt;&amp;emsp;&amp;emsp;经常工作的时候，每天处理大量的文件很容易混乱和丢失。&lt;br&gt;&amp;emsp;&amp;emsp;我有个想法，每天的工作用到的文件都独立的放到一个文件夹里。这样整齐一些也方便管理。&lt;br&gt;&amp;emsp;&amp;emsp;于是我用python写了一个小脚本。在安装了解释器的
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>Hello World</title>
-    <link href="http://yoursite.com/2016/12/11/hello-world/"/>
-    <id>http://yoursite.com/2016/12/11/hello-world/</id>
-    <published>2016-12-10T16:32:37.194Z</published>
-    <updated>2016-12-10T16:32:37.194Z</updated>
-    
-    <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;Welcome to &lt;a href=&quot;https://hexo.io/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Hexo&lt;/a&gt;! This is your very first post. Check &lt;a href=&quot;https://hexo.
     
     </summary>
     
