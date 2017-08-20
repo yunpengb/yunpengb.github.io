@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2017-04-29T09:16:18.405Z</updated>
+  <updated>2016-12-11T16:47:10.512Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -14,6 +14,71 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Markdown 粘贴学习用</title>
+    <link href="http://yoursite.com/2017/08/20/test/"/>
+    <id>http://yoursite.com/2017/08/20/test/</id>
+    <published>2017-08-20T13:23:35.726Z</published>
+    <updated>2016-12-11T16:47:10.512Z</updated>
+    
+    <content type="html"><![CDATA[<h4 id="导语："><a href="#导语：" class="headerlink" title="导语："></a>导语：</h4><blockquote>
+<p><a href="http://zh.wikipedia.org/wiki/Markdown" target="_blank" rel="external">Markdown</a>是一种轻量级的<strong>「标记语言」</strong>，它的优点很多</p>
+</blockquote>
+<p><img src="http://ww3.sinaimg.cn/large/6aee7dbbgw1effia3l1xoj214z0n8dkl.jpg" alt=""></p>
+<p>###一，认识Markdown<br>在刚才的导语里提到，</p>
+<ul>
+<li><em><a href="www.google.com">创始人语法说明</a></em></li>
+<li><em><a href="www.google.com">Markdown中文版语法说明</a></em></li>
+</ul>
+<h3 id="使用Markdown的优点"><a href="#使用Markdown的优点" class="headerlink" title="使用Markdown的优点"></a>使用Markdown的优点</h3><ul>
+<li>专注你的文字内容</li>
+<li>轻松的导出HTML</li>
+</ul>
+<ol>
+<li>专注</li>
+<li>轻松</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>Tables</th>
+<th style="text-align:center">Are</th>
+<th style="text-align:right">Cool</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>col 3 is</td>
+<td style="text-align:center">right-aligned</td>
+<td style="text-align:right">$1600</td>
+</tr>
+<tr>
+<td>col 2 is</td>
+<td style="text-align:center">centered</td>
+<td style="text-align:right">$12</td>
+</tr>
+<tr>
+<td>zebra stripes</td>
+<td style="text-align:center">are neat</td>
+<td style="text-align:right">$1</td>
+</tr>
+</tbody>
+</table>
+<p>代码段<br><code>hello world!</code></p>
+<hr>
+<p>######参考文献<br><a href="http://jianshu.io/users/ea86ff9520da" target="_blank" rel="external">Te_Lee</a>,<br><a href="http://jianshu.io/p/1e402922ee32" target="_blank" rel="external">「Markdown——入门指南」</a></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h4 id=&quot;导语：&quot;&gt;&lt;a href=&quot;#导语：&quot; class=&quot;headerlink&quot; title=&quot;导语：&quot;&gt;&lt;/a&gt;导语：&lt;/h4&gt;&lt;blockquote&gt;
+&lt;p&gt;&lt;a href=&quot;http://zh.wikipedia.org/wiki/Markdown&quot; targe
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>MarkDown 小总结</title>
