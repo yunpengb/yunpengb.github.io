@@ -7,7 +7,7 @@
 <head>
   <meta charset="utf-8">
   
-  <title>每日工作划分文件夹 | Yunpeng&#39;s Notes</title>
+  <title>MicroPython ESP8266 操作指南 | White Note</title>
 
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -15,21 +15,19 @@
     <meta name="keywords" content="forsigner,Python,工具,创新,Server" />
   
 
-  <meta name="description" content="&amp;emsp;&amp;emsp;经常工作的时候，每天处理大量的文件很容易混乱和丢失。&amp;emsp;&amp;emsp;我有个想法，每天的工作用到的文件都独立的放到一个文件夹里。这样整齐一些也方便管理。&amp;emsp;&amp;emsp;于是我用python写了一个小脚本。在安装了解释器的PC里只需要双击即可执行，即可生成以当天日期为名字的文件夹。
-123456789101112import osimport timedef m">
+  <meta name="description" content="##擦掉flashMicroPython的 intro 里1.4里有介绍。另外，如果是在win os下，擦除flash的命令大概是1esptool.py --port com3 erase_flash
+##刷入MicroPython 固件下载对应ESP8266的MicroPython固件的地址在这里 download ，你会得到类似esp8266-20170108-v1.8.7.bin 这样命名的">
 <meta property="og:type" content="article">
-<meta property="og:title" content="每日工作划分文件夹">
-<meta property="og:url" content="http://yoursite.com/2016/12/12/2016-12-12-1/index.html">
-<meta property="og:site_name" content="Yunpeng's Notes">
-<meta property="og:description" content="&amp;emsp;&amp;emsp;经常工作的时候，每天处理大量的文件很容易混乱和丢失。&amp;emsp;&amp;emsp;我有个想法，每天的工作用到的文件都独立的放到一个文件夹里。这样整齐一些也方便管理。&amp;emsp;&amp;emsp;于是我用python写了一个小脚本。在安装了解释器的PC里只需要双击即可执行，即可生成以当天日期为名字的文件夹。
-123456789101112import osimport timedef m">
-<meta property="og:image" content="http://oi16bpd89.bkt.clouddn.com/dir.png">
-<meta property="og:updated_time" content="2017-04-01T14:37:44.586Z">
+<meta property="og:title" content="MicroPython ESP8266 操作指南">
+<meta property="og:url" content="http://yoursite.com/2017/03/20/ESP_MicroPython_Guide/index.html">
+<meta property="og:site_name" content="White Note">
+<meta property="og:description" content="##擦掉flashMicroPython的 intro 里1.4里有介绍。另外，如果是在win os下，擦除flash的命令大概是1esptool.py --port com3 erase_flash
+##刷入MicroPython 固件下载对应ESP8266的MicroPython固件的地址在这里 download ，你会得到类似esp8266-20170108-v1.8.7.bin 这样命名的">
+<meta property="og:updated_time" content="2017-08-20T12:29:07.371Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="每日工作划分文件夹">
-<meta name="twitter:description" content="&amp;emsp;&amp;emsp;经常工作的时候，每天处理大量的文件很容易混乱和丢失。&amp;emsp;&amp;emsp;我有个想法，每天的工作用到的文件都独立的放到一个文件夹里。这样整齐一些也方便管理。&amp;emsp;&amp;emsp;于是我用python写了一个小脚本。在安装了解释器的PC里只需要双击即可执行，即可生成以当天日期为名字的文件夹。
-123456789101112import osimport timedef m">
-<meta name="twitter:image" content="http://oi16bpd89.bkt.clouddn.com/dir.png">
+<meta name="twitter:title" content="MicroPython ESP8266 操作指南">
+<meta name="twitter:description" content="##擦掉flashMicroPython的 intro 里1.4里有介绍。另外，如果是在win os下，擦除flash的命令大概是1esptool.py --port com3 erase_flash
+##刷入MicroPython 固件下载对应ESP8266的MicroPython固件的地址在这里 download ，你会得到类似esp8266-20170108-v1.8.7.bin 这样命名的">
 
   
 
@@ -150,17 +148,22 @@
 </div>
 
 
+  <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#已知问题"><span class="toc-text">已知问题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考"><span class="toc-text">参考</span></a></li></ol>
+  </div>
+
 
 
 <div class="content content-post CENTER">
-   <article id="post-2016-12-12-1" class="article article-type-post" itemprop="blogPost">
+   <article id="post-ESP_MicroPython_Guide" class="article article-type-post" itemprop="blogPost">
   <header class="article-header">
-    <h1 class="post-title">每日工作划分文件夹</h1>
+    <h1 class="post-title">MicroPython ESP8266 操作指南</h1>
 
     <div class="article-meta">
       <span>
         <i class="icon-calendar"></i>
-        <span>2016.12.12</span>
+        <span>2017.03.20</span>
       </span>
 
       
@@ -185,7 +188,7 @@
 
       
         <i class="icon-comment"></i> 
-        <span class="ds-thread-count" data-thread-key="post-2016-12-12-1"><i class="fa fa-spinner fa-spin"></i></span> 条评论
+        <span class="ds-thread-count" data-thread-key="post-ESP_MicroPython_Guide"><i class="fa fa-spinner fa-spin"></i></span> 条评论
       
       
     </div>
@@ -193,10 +196,17 @@
 
   <div class="article-content">
     
-      <p>&emsp;&emsp;经常工作的时候，每天处理大量的文件很容易混乱和丢失。<br>&emsp;&emsp;我有个想法，每天的工作用到的文件都独立的放到一个文件夹里。这样整齐一些也方便管理。<br>&emsp;&emsp;于是我用python写了一个小脚本。在安装了解释器的PC里只需要双击即可执行，即可生成以当天日期为名字的文件夹。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> os</div><div class="line"><span class="keyword">import</span> time</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">makeDIRwithDate</span><span class="params">()</span>:</span>    </div><div class="line">	timestat = timestamp = time.strftime(<span class="string">'%Y-%m-%d'</span>,time.localtime(time.time())) </div><div class="line">	existdir = os.path.exists(timestat)</div><div class="line">	<span class="keyword">if</span> <span class="keyword">not</span> existdir:</div><div class="line">		os.mkdir(timestat)</div><div class="line">		<span class="keyword">print</span> <span class="string">"make dir:[%s]"</span> % timestat</div><div class="line">	<span class="keyword">else</span>:</div><div class="line">		<span class="keyword">print</span> <span class="string">'folder[%s] already exists'</span> % timestat</div><div class="line">makeDIRwithDate()</div></pre></td></tr></table></figure>
-<p>&emsp;&emsp;创建了文件夹后，剩下就是手工把每天用到的文件复制进去保存。效果如下图。</p>
-<p><img src="http://oi16bpd89.bkt.clouddn.com/dir.png" alt=""></p>
+      <p>##擦掉flash<br>MicroPython的 <a href="http://docs.micropython.org/en/latest/esp8266/esp8266/tutorial/intro.html#intro" target="_blank" rel="external">intro</a> 里1.4里有介绍。<br>另外，如果是在win os下，擦除flash的命令大概是<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">esptool.py --port com3 erase_flash</div></pre></td></tr></table></figure></p>
+<p>##刷入MicroPython 固件<br>下载对应ESP8266的MicroPython固件的地址在这里 <a href="http://www.micropython.org/download" target="_blank" rel="external">download</a> ，<br>你会得到类似esp8266-20170108-v1.8.7.bin 这样命名的文件。<br>刷入方法在上面的1.4节也有介绍，主要就是依靠下面这句<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">esptool.py --port com3 --baud 115200 write_flash --flash_size=detect 0 esp8266-20170108-v1.8.7.bin</div></pre></td></tr></table></figure></p>
+<p>注意，我尝试过512k专属版，似乎不好用，所以还是使用长期稳定版比较好（每夜版没有试过）。</p>
+<p>##查看文件系统<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">uos.listdir() # 查看路径下的文件</div><div class="line">uos.listdir(&apos;dir&apos;) #查看文件夹下的文件</div><div class="line">uos.getcwd() #查看当前目录, 根目录是&apos;&apos;</div><div class="line">uos.chdir()  #改变当前目录</div></pre></td></tr></table></figure></p>
+<p>##查看文件<br>使用打开文件的方法<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">f = open(&apos;main.py&apos;, &apos;r&apos;)</div><div class="line">f.read()</div><div class="line">&quot;print(&apos;Welcome~&apos;)\nprint(&apos;Hello!&apos;)\n&quot;</div></pre></td></tr></table></figure></p>
+<p>##删除文件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">uos.remove(&apos;main.py&apos;)</div></pre></td></tr></table></figure></p>
+<p>##Software Reset<br>在串口可用的时候，输入Ctrl + D 即可软复位</p>
+<p>##Hardware Reset<br>断电时硬复位</p>
+<p>##常用工具<br> <a href="https://github.com/salesiopark/ESPyHarp" target="_blank" rel="external">ESPyHarp</a><br> 是一个可以给MP传输文件的java程序，win下使用，硬伤是无法快速便捷的中断com占用，导致使用起来不方便。<br><a href="https://github.com/micropython/webrepl/archive/master.zip" target="_blank" rel="external">webrepl client html</a><br>是一个网页形式的文件传输工具，使用起来比较方便，每次连接一般是要输入密码（根据MP的设置来）.<br>esptool<br>这个上面都有说，python 公共库里集成了，使用pip安装<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">pip install esptool</div></pre></td></tr></table></figure></p>
+<h2 id="已知问题"><a href="#已知问题" class="headerlink" title="已知问题"></a>已知问题</h2><p>利用http 按钮发送反馈的时候，不能使用360浏览器，它会拦截反馈信息</p>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a href="http://www.micropython.org" target="_blank" rel="external">MicroPython官网</a><br><a href="https://my.oschina.net/shaoziyang/blog/781235" target="_blank" rel="external">介绍1</a><br><a href="http://bbs.eeworld.com.cn/forum-243-1.html" target="_blank" rel="external">论坛</a><br><a href="http://blog.csdn.net/yannanxiu/article/details/53966374" target="_blank" rel="external">介绍2</a></p>
 
     
   </div>
@@ -227,10 +237,10 @@
 
    
   <div class="box-prev-next clearfix">
-    <a class="hide pull-left" href="/">
+    <a class="show pull-left" href="/2017/01/20/py_esp_server/">
         <i class="icon icon-angle-left"></i>
     </a>
-    <a class="show pull-right" href="/2016/12/15/2016-12-15/">
+    <a class="show pull-right" href="/2017/04/29/markdown_summary/">
         <i class="icon icon-angle-right"></i>
     </a>
   </div>
@@ -339,8 +349,8 @@
     
   <section class="duoshuo-comments">
     <!-- 多说评论框 start -->
-    <div class="ds-thread" data-thread-key="post-2016-12-12-1" 
-      data-title="每日工作划分文件夹" data-url="http://yoursite.com/2016/12/12/2016-12-12-1/index.html"></div>
+    <div class="ds-thread" data-thread-key="post-ESP_MicroPython_Guide" 
+      data-title="MicroPython ESP8266 操作指南" data-url="http://yoursite.com/2017/03/20/ESP_MicroPython_Guide/index.html"></div>
     <!-- 多说评论框 end -->
   </section>
 
