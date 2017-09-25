@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2016-12-11T16:47:10.512Z</updated>
+  <updated>2017-09-25T14:31:20.604Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -14,6 +14,86 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>将Notepad++ 配置成Python IDE</title>
+    <link href="http://yoursite.com/2017/09/25/config_notepad_to_pyide/"/>
+    <id>http://yoursite.com/2017/09/25/config_notepad_to_pyide/</id>
+    <published>2017-09-25T13:40:00.000Z</published>
+    <updated>2017-09-25T14:31:20.604Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="一、必要条件"><a href="#一、必要条件" class="headerlink" title="一、必要条件"></a>一、必要条件</h2><ul>
+<li>安装好Python解释器</li>
+<li>安装好Notepad++ ,目前建议安装X86-7.4.2 版本，X64的版本没有插件管理器，且X86-7.4.2版本以上的版本暂时也没有插件管理器。</li>
+</ul>
+<h2 id="二、配置nppexec插件"><a href="#二、配置nppexec插件" class="headerlink" title="二、配置nppexec插件"></a>二、配置nppexec插件</h2><ol>
+<li><p>安装nppexec 插件<br>点击菜单里的插件–plugin manager —show piugin manager , 选择nppexec插件安装。中间可能会碰到升级plugin manager的提示。有时候会升级多次。</p>
+</li>
+<li><p>配置运行python的命令</p>
+</li>
+</ol>
+<p>点击插件– nppexec–execute<br>在弹出的界面里，command里输入<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">npp_save</div><div class="line">cd &quot;$(CURRENT_DIRECTORY)&quot;</div><div class="line">C:\Python27\python.exe &quot;$(FILE_NAME)&quot;</div></pre></td></tr></table></figure></p>
+<p>将这个动作保存，名字起为py27</p>
+<p><img src="http://oi16bpd89.bkt.clouddn.com/201709252159_444.png" alt=""></p>
+<p>然后打开高级设置</p>
+<p><img src="http://oi16bpd89.bkt.clouddn.com/201709252201_751.png" alt=""></p>
+<p>为刚才编辑的命令集绑定一个项目run py27，上面的“Place to the Macros submenu”可勾可不勾</p>
+<p><img src="http://oi16bpd89.bkt.clouddn.com/201709252204_120.png" alt=""></p>
+<ol>
+<li>然后再为这个项目绑定一个快捷键</li>
+</ol>
+<p>点击菜单： 运行—管理快捷键 —plugin commands ，找到Plugin commands 选项卡下的run py27,为它定义一个快捷键。<br>至此大功告成。以后每次编写程序，按下快捷键，即可在窗口直接看到运行结果。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;一、必要条件&quot;&gt;&lt;a href=&quot;#一、必要条件&quot; class=&quot;headerlink&quot; title=&quot;一、必要条件&quot;&gt;&lt;/a&gt;一、必要条件&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;安装好Python解释器&lt;/li&gt;
+&lt;li&gt;安装好Notepad++ ,目前建议安装X86-7.
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>WIN Python环境指南恢复指南</title>
+    <link href="http://yoursite.com/2017/09/17/recover_python/"/>
+    <id>http://yoursite.com/2017/09/17/recover_python/</id>
+    <published>2017-09-17T04:04:00.000Z</published>
+    <updated>2017-09-25T14:34:25.895Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="一、恢复Python开发环境的场景"><a href="#一、恢复Python开发环境的场景" class="headerlink" title="一、恢复Python开发环境的场景"></a>一、恢复Python开发环境的场景</h3><ul>
+<li>重装系统</li>
+<li>转移到新的工作站</li>
+</ul>
+<h2 id="二、需要备份的材料"><a href="#二、需要备份的材料" class="headerlink" title="二、需要备份的材料"></a>二、需要备份的材料</h2><ul>
+<li>编辑器\IDE （这个就不多说了）</li>
+<li>Python解释器套装（一般为Cpython）</li>
+</ul>
+<h2 id="三、Python解释器和依赖包的备份"><a href="#三、Python解释器和依赖包的备份" class="headerlink" title="三、Python解释器和依赖包的备份"></a>三、Python解释器和依赖包的备份</h2><ol>
+<li>Cpython解释器就到官网下载安装即可恢复</li>
+<li><p>对于第三方库，如果你可以上网的话，做一个你的环境的备份的方法如下</p>
+<ol>
+<li><p>cmd输入下面的命令</p>
+<p>pip freeze &gt; requirements.txt</p>
+<p>将环境下所有的第三方库重定向到requirements.txt 这个文件内，<br>在新的PC上安装完解释器后，输入<br> pip install -r requirements.txt<br>即可快速安装原来列出的第三方库</p>
+</li>
+</ol>
+</li>
+<li>如果网络没法使用，备份的方法再议，可能需要打包工具</li>
+</ol>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;一、恢复Python开发环境的场景&quot;&gt;&lt;a href=&quot;#一、恢复Python开发环境的场景&quot; class=&quot;headerlink&quot; title=&quot;一、恢复Python开发环境的场景&quot;&gt;&lt;/a&gt;一、恢复Python开发环境的场景&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;重装系统
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>Markdown 粘贴学习用</title>

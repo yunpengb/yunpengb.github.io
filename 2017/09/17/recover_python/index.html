@@ -7,7 +7,7 @@
 <head>
   <meta charset="utf-8">
   
-  <title>远程控制FSV读取EVM值 | White Note</title>
+  <title>WIN Python环境指南恢复指南 | White Note</title>
 
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -15,85 +15,55 @@
     <meta name="keywords" content="forsigner,Python,工具,创新,Server" />
   
 
-  <meta name="description" content="&amp;emsp;&amp;emsp;经常要手动控制FSV测试RRH的上下行射频性能指标。重复操作太枯燥，还好查找手册发现了可以通过RJ45或者GPIB端口发送SCPI命令实现远程控制，总结命令如下
-测试 TX EVM
+  <meta name="description" content="一、恢复Python开发环境的场景
+重装系统
+转移到新的工作站
 
+二、需要备份的材料
+编辑器\IDE （这个就不多说了）
+Python解释器套装（一般为Cpython）
 
-command
-解释
+三、Python解释器和依赖包的备份
+Cpython解释器就到官网下载安装即可恢复
+对于第三方库，如果你可以上网的话，做一个你的环境的备份的方法如下
 
-
-
-
-“*RST”
-复位
-
-
-“INIT:CONT OFF”
-初始化频谱仪模式
-
-
-“SYST:DISP:UPD ON”
-屏幕给出显示
-
-
-“INST LTE”
-初始">
+cmd输入下面的命令
+pip freeze &amp;gt; requirement">
 <meta property="og:type" content="article">
-<meta property="og:title" content="远程控制FSV读取EVM值">
-<meta property="og:url" content="http://yoursite.com/2015/05/15/remote_control_FSV/index.html">
+<meta property="og:title" content="WIN Python环境指南恢复指南">
+<meta property="og:url" content="http://yoursite.com/2017/09/17/recover_python/index.html">
 <meta property="og:site_name" content="White Note">
-<meta property="og:description" content="&amp;emsp;&amp;emsp;经常要手动控制FSV测试RRH的上下行射频性能指标。重复操作太枯燥，还好查找手册发现了可以通过RJ45或者GPIB端口发送SCPI命令实现远程控制，总结命令如下
-测试 TX EVM
+<meta property="og:description" content="一、恢复Python开发环境的场景
+重装系统
+转移到新的工作站
 
+二、需要备份的材料
+编辑器\IDE （这个就不多说了）
+Python解释器套装（一般为Cpython）
 
-command
-解释
+三、Python解释器和依赖包的备份
+Cpython解释器就到官网下载安装即可恢复
+对于第三方库，如果你可以上网的话，做一个你的环境的备份的方法如下
 
-
-
-
-“*RST”
-复位
-
-
-“INIT:CONT OFF”
-初始化频谱仪模式
-
-
-“SYST:DISP:UPD ON”
-屏幕给出显示
-
-
-“INST LTE”
-初始">
-<meta property="og:updated_time" content="2017-08-20T12:30:00.360Z">
+cmd输入下面的命令
+pip freeze &amp;gt; requirement">
+<meta property="og:updated_time" content="2017-09-25T14:34:25.895Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="远程控制FSV读取EVM值">
-<meta name="twitter:description" content="&amp;emsp;&amp;emsp;经常要手动控制FSV测试RRH的上下行射频性能指标。重复操作太枯燥，还好查找手册发现了可以通过RJ45或者GPIB端口发送SCPI命令实现远程控制，总结命令如下
-测试 TX EVM
+<meta name="twitter:title" content="WIN Python环境指南恢复指南">
+<meta name="twitter:description" content="一、恢复Python开发环境的场景
+重装系统
+转移到新的工作站
 
+二、需要备份的材料
+编辑器\IDE （这个就不多说了）
+Python解释器套装（一般为Cpython）
 
-command
-解释
+三、Python解释器和依赖包的备份
+Cpython解释器就到官网下载安装即可恢复
+对于第三方库，如果你可以上网的话，做一个你的环境的备份的方法如下
 
-
-
-
-“*RST”
-复位
-
-
-“INIT:CONT OFF”
-初始化频谱仪模式
-
-
-“SYST:DISP:UPD ON”
-屏幕给出显示
-
-
-“INST LTE”
-初始">
+cmd输入下面的命令
+pip freeze &amp;gt; requirement">
 
   
 
@@ -216,20 +186,20 @@ command
 
   <div id="toc" class="toc-article">
     <strong class="toc-title">Posts List</strong>
-    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#测试-TX-EVM"><span class="toc-text">测试 TX EVM</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#测试-TX-ACLR"><span class="toc-text">测试 TX ACLR</span></a></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#一、恢复Python开发环境的场景"><span class="toc-text">一、恢复Python开发环境的场景</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#二、需要备份的材料"><span class="toc-text">二、需要备份的材料</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#三、Python解释器和依赖包的备份"><span class="toc-text">三、Python解释器和依赖包的备份</span></a>
   </div>
 
 
 
 <div class="content content-post CENTER">
-   <article id="post-remote_control_FSV" class="article article-type-post" itemprop="blogPost">
+   <article id="post-recover_python" class="article article-type-post" itemprop="blogPost">
   <header class="article-header">
-    <h1 class="post-title">远程控制FSV读取EVM值</h1>
+    <h1 class="post-title">WIN Python环境指南恢复指南</h1>
 
     <div class="article-meta">
       <span>
         <i class="icon-calendar"></i>
-        <span>2015.05.15</span>
+        <span>2017.09.17</span>
       </span>
 
       
@@ -254,7 +224,7 @@ command
 
       
         <i class="icon-comment"></i> 
-        <span class="ds-thread-count" data-thread-key="post-remote_control_FSV"><i class="fa fa-spinner fa-spin"></i></span> 条评论
+        <span class="ds-thread-count" data-thread-key="post-recover_python"><i class="fa fa-spinner fa-spin"></i></span> 条评论
       
       
     </div>
@@ -262,179 +232,26 @@ command
 
   <div class="article-content">
     
-      <p>&emsp;&emsp;经常要手动控制FSV测试RRH的上下行射频性能指标。重复操作太枯燥，还好查找手册发现了可以通过RJ45或者GPIB端口发送SCPI命令实现远程控制，<br>总结命令如下</p>
-<h3 id="测试-TX-EVM"><a href="#测试-TX-EVM" class="headerlink" title="测试 TX EVM"></a>测试 TX EVM</h3><table>
-<thead>
-<tr>
-<th><strong>command</strong></th>
-<th style="text-align:center"><strong>解释</strong></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>“*RST”</td>
-<td style="text-align:center">复位</td>
-</tr>
-<tr>
-<td>“INIT:CONT OFF”</td>
-<td style="text-align:center">初始化频谱仪模式</td>
-</tr>
-<tr>
-<td>“SYST:DISP:UPD ON”</td>
-<td style="text-align:center">屏幕给出显示</td>
-</tr>
-<tr>
-<td>“INST LTE”</td>
-<td style="text-align:center">初始化LTE选件</td>
-</tr>
-<tr>
-<td>“FREQ:CENT 2140 MHz”</td>
-<td style="text-align:center">设置测试的中心频率为2140Mhz</td>
-</tr>
-<tr>
-<td>“CONF:DL:BW BW5_00”</td>
-<td style="text-align:center">设置监测5M带宽</td>
-</tr>
-<tr>
-<td>“POW:AUTO2 ON”</td>
-<td style="text-align:center">打开自动调节增益</td>
-</tr>
-<tr>
-<td>“DISP:TRAC:Y:RLEV:OFFS 42”</td>
-<td style="text-align:center">设置外部线损为42dbm</td>
-</tr>
-<tr>
-<td>CALC2:FEED ‘STAT:ASUM’</td>
-<td style="text-align:center">进入TX总结页面</td>
-</tr>
-<tr>
-<td>INIT:CONT OFF</td>
-<td style="text-align:center">设置为单次测试模式</td>
-</tr>
-<tr>
-<td>INIT;*WAI</td>
-<td style="text-align:center">进行一次测试</td>
-</tr>
-<tr>
-<td>FETC:SUMM:EVM?</td>
-<td style="text-align:center">读取刚刚测试的EVM平均值</td>
-</tr>
-<tr>
-<td>FETC:SUMM:EVM:ALL:MAX?</td>
-<td style="text-align:center">读取EVM最大值</td>
-</tr>
-<tr>
-<td>FETC:SUMM:EVM:ALL:MIN?</td>
-<td style="text-align:center">读取EVM最小值</td>
-</tr>
-</tbody>
-</table>
-<h3 id="测试-TX-ACLR"><a href="#测试-TX-ACLR" class="headerlink" title="测试 TX ACLR"></a>测试 TX ACLR</h3><table>
-<thead>
-<tr>
-<th><strong>command</strong></th>
-<th style="text-align:center"><strong>解释</strong></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>“*RST”</td>
-<td style="text-align:center">复位</td>
-</tr>
-<tr>
-<td>“INIT:CONT OFF”</td>
-<td style="text-align:center">初始化频谱仪模式</td>
-</tr>
-<tr>
-<td>“SYST:DISP:UPD ON”</td>
-<td style="text-align:center">屏幕给出显示</td>
-</tr>
-<tr>
-<td>“INST LTE”</td>
-<td style="text-align:center">初始化LTE选件</td>
-</tr>
-<tr>
-<td>“FREQ:CENT “+s_Freq+”MHz”</td>
-<td style="text-align:center">设置中心频率</td>
-</tr>
-<tr>
-<td>“CONF:DL:BW BW”+s_BW</td>
-<td style="text-align:center">设置带宽</td>
-</tr>
-<tr>
-<td>“POW:AUTO2 ON”</td>
-<td style="text-align:center">打开自动控制增益</td>
-</tr>
-<tr>
-<td>“DISP:TRAC:Y:RLEV:OFFS “+s_CableLoss</td>
-<td style="text-align:center">设置外部线损</td>
-</tr>
-<tr>
-<td>“CALC2:FEED ‘SPEC:ACP’”</td>
-<td style="text-align:center">进入ACLR界面</td>
-</tr>
-<tr>
-<td>“INIT:CONT OFF”</td>
-<td style="text-align:center">进入单次测试模式</td>
-</tr>
-<tr>
-<td>“INIT;*WAI”</td>
-<td style="text-align:center">执行一次测试</td>
-</tr>
-<tr>
-<td>“CALC1:MARK:FUNC:POW:RES?”</td>
-<td style="text-align:center">取得刚刚的测试结果</td>
-</tr>
-</tbody>
-</table>
-<p>###测试RX EVM<br>主要是设置信号发生器，发出制定的波形文件</p>
-<table>
-<thead>
-<tr>
-<th><strong>command</strong></th>
-<th style="text-align:center"><strong>解释</strong></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>“*RST”</td>
-<td style="text-align:center">复位</td>
-</tr>
-<tr>
-<td>“ROSC:SOUR EXT”</td>
-<td style="text-align:center">使用外部时钟源</td>
-</tr>
-<tr>
-<td>“ROSC:EXT:FREQ 10MHz”</td>
-<td style="text-align:center">设置外部时钟源的频率是10Mhz</td>
-</tr>
-<tr>
-<td>“ROSC:EXT:SBAN NARR”</td>
-<td style="text-align:center">设置外部时钟源的同步要求为狭窄</td>
-</tr>
-<tr>
-<td>“BB:ARB:WAV:SEL ‘“+s_wavePath+”\“+”LTE_UL_4GMax<em>PN18</em>“+s<em>BandWidth+”</em>“+s_Modulation+”‘“</td>
-<td style="text-align:center">设置本地波形文件路径</td>
-</tr>
-<tr>
-<td>“FREQ “+s_Freq+”Mhz” + “BB:ARB:TRIG:SEQ AUTO”</td>
-<td style="text-align:center">设置发出的波形的频率</td>
-</tr>
-<tr>
-<td>“BB:ARB:STAT ON”</td>
-<td style="text-align:center">加载刚刚选择的波形</td>
-</tr>
-<tr>
-<td>“POW:OFFS “+s_OffSet</td>
-<td style="text-align:center">加入外部线损的计算</td>
-</tr>
-<tr>
-<td>“:POW “+s_RfOutLev + “OUTP ON”</td>
-<td style="text-align:center">打开外部输出</td>
-</tr>
-</tbody>
-</table>
-<p>写了个Python脚本，主要依靠telnet来发送上述命令实现控制和读取结果，代码放在<br><a href="https://github.com/yunpengb/rohde_schwarz_remote_control" target="_blank" rel="external">https://github.com/yunpengb/rohde_schwarz_remote_control</a></p>
+      <h3 id="一、恢复Python开发环境的场景"><a href="#一、恢复Python开发环境的场景" class="headerlink" title="一、恢复Python开发环境的场景"></a>一、恢复Python开发环境的场景</h3><ul>
+<li>重装系统</li>
+<li>转移到新的工作站</li>
+</ul>
+<h2 id="二、需要备份的材料"><a href="#二、需要备份的材料" class="headerlink" title="二、需要备份的材料"></a>二、需要备份的材料</h2><ul>
+<li>编辑器\IDE （这个就不多说了）</li>
+<li>Python解释器套装（一般为Cpython）</li>
+</ul>
+<h2 id="三、Python解释器和依赖包的备份"><a href="#三、Python解释器和依赖包的备份" class="headerlink" title="三、Python解释器和依赖包的备份"></a>三、Python解释器和依赖包的备份</h2><ol>
+<li>Cpython解释器就到官网下载安装即可恢复</li>
+<li><p>对于第三方库，如果你可以上网的话，做一个你的环境的备份的方法如下</p>
+<ol>
+<li><p>cmd输入下面的命令</p>
+<p>pip freeze &gt; requirements.txt</p>
+<p>将环境下所有的第三方库重定向到requirements.txt 这个文件内，<br>在新的PC上安装完解释器后，输入<br> pip install -r requirements.txt<br>即可快速安装原来列出的第三方库</p>
+</li>
+</ol>
+</li>
+<li>如果网络没法使用，备份的方法再议，可能需要打包工具</li>
+</ol>
 
     
   </div>
@@ -465,10 +282,10 @@ command
 
    
   <div class="box-prev-next clearfix">
-    <a class="show pull-left" href="/2015/04/09/py_cmd/">
+    <a class="show pull-left" href="/2017/08/20/test/">
         <i class="icon icon-angle-left"></i>
     </a>
-    <a class="show pull-right" href="/2016/08/15/DIY_remote_power_switch/">
+    <a class="show pull-right" href="/2017/09/25/config_notepad_to_pyide/">
         <i class="icon icon-angle-right"></i>
     </a>
   </div>
@@ -577,8 +394,8 @@ command
     
   <section class="duoshuo-comments">
     <!-- 多说评论框 start -->
-    <div class="ds-thread" data-thread-key="post-remote_control_FSV" 
-      data-title="远程控制FSV读取EVM值" data-url="http://yoursite.com/2015/05/15/remote_control_FSV/index.html"></div>
+    <div class="ds-thread" data-thread-key="post-recover_python" 
+      data-title="WIN Python环境指南恢复指南" data-url="http://yoursite.com/2017/09/17/recover_python/index.html"></div>
     <!-- 多说评论框 end -->
   </section>
 
