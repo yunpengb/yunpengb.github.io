@@ -7,7 +7,7 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Markdown 粘贴学习用 | White Note</title>
+  <title>MicroPython 访问DHT11获得温湿度数据 | White Note</title>
 
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -15,117 +15,71 @@
     <meta name="keywords" content="forsigner,Python,工具,创新,Server" />
   
 
-  <meta name="description" content="导语：
-Markdown是一种轻量级的「标记语言」，它的优点很多
+  <meta name="description" content="如题目的
+获取数据
 
 
-###一，认识Markdown在刚才的导语里提到，
+温度
+湿度
 
-创始人语法说明
-Markdown中文版语法说明
+demo需要的硬件
+ESP8266开发板*1，预计TB售价20块不到
+DHT11 温湿度传感器*1，预计TB售价3块
+实验用的面包板*2和面包线几根
+5k 欧姆的电阻一个，（按照DHT11的手册推荐使用）
 
-使用Markdown的优点
-专注你的文字内容
-轻松的导出HTML
+组装方法如下图
 
+实物图
 
-专注
-轻松
-
-
-
-
-Tables
-Are
-Cool
-
-
-
-
-col 3 is
-right-aligned
-$1600
-
-
-col 2 is
-centered">
+这里比较好理解，电源供给从8266的3.3V连接带DHT11的vcc，地线从8266的GND连接到DHT11的GND，然后在本">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Markdown 粘贴学习用">
-<meta property="og:url" content="http://yoursite.com/2017/08/20/test/index.html">
+<meta property="og:title" content="MicroPython 访问DHT11获得温湿度数据">
+<meta property="og:url" content="http://yoursite.com/2017/09/09/useMP_read_temp_from_DHT11/index.html">
 <meta property="og:site_name" content="White Note">
-<meta property="og:description" content="导语：
-Markdown是一种轻量级的「标记语言」，它的优点很多
+<meta property="og:description" content="如题目的
+获取数据
 
 
-###一，认识Markdown在刚才的导语里提到，
+温度
+湿度
 
-创始人语法说明
-Markdown中文版语法说明
+demo需要的硬件
+ESP8266开发板*1，预计TB售价20块不到
+DHT11 温湿度传感器*1，预计TB售价3块
+实验用的面包板*2和面包线几根
+5k 欧姆的电阻一个，（按照DHT11的手册推荐使用）
 
-使用Markdown的优点
-专注你的文字内容
-轻松的导出HTML
+组装方法如下图
 
+实物图
 
-专注
-轻松
-
-
-
-
-Tables
-Are
-Cool
-
-
-
-
-col 3 is
-right-aligned
-$1600
-
-
-col 2 is
-centered">
-<meta property="og:image" content="http://ww3.sinaimg.cn/large/6aee7dbbgw1effia3l1xoj214z0n8dkl.jpg">
-<meta property="og:updated_time" content="2016-12-11T16:47:10.512Z">
+这里比较好理解，电源供给从8266的3.3V连接带DHT11的vcc，地线从8266的GND连接到DHT11的GND，然后在本">
+<meta property="og:image" content="http://oi16bpd89.bkt.clouddn.com/201709092325_611.png">
+<meta property="og:image" content="http://oi16bpd89.bkt.clouddn.com/201709092327_154.png">
+<meta property="og:image" content="http://oi16bpd89.bkt.clouddn.com/pinpin.png">
+<meta property="og:updated_time" content="2017-10-21T15:03:00.278Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Markdown 粘贴学习用">
-<meta name="twitter:description" content="导语：
-Markdown是一种轻量级的「标记语言」，它的优点很多
+<meta name="twitter:title" content="MicroPython 访问DHT11获得温湿度数据">
+<meta name="twitter:description" content="如题目的
+获取数据
 
 
-###一，认识Markdown在刚才的导语里提到，
+温度
+湿度
 
-创始人语法说明
-Markdown中文版语法说明
+demo需要的硬件
+ESP8266开发板*1，预计TB售价20块不到
+DHT11 温湿度传感器*1，预计TB售价3块
+实验用的面包板*2和面包线几根
+5k 欧姆的电阻一个，（按照DHT11的手册推荐使用）
 
-使用Markdown的优点
-专注你的文字内容
-轻松的导出HTML
+组装方法如下图
 
+实物图
 
-专注
-轻松
-
-
-
-
-Tables
-Are
-Cool
-
-
-
-
-col 3 is
-right-aligned
-$1600
-
-
-col 2 is
-centered">
-<meta name="twitter:image" content="http://ww3.sinaimg.cn/large/6aee7dbbgw1effia3l1xoj214z0n8dkl.jpg">
+这里比较好理解，电源供给从8266的3.3V连接带DHT11的vcc，地线从8266的GND连接到DHT11的GND，然后在本">
+<meta name="twitter:image" content="http://oi16bpd89.bkt.clouddn.com/201709092325_611.png">
 
   
 
@@ -247,21 +201,21 @@ centered">
 
 
   <div id="toc" class="toc-article">
-    <strong class="toc-title">Posts List</strong>
-    <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#导语："><span class="toc-text">导语：</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#使用Markdown的优点"><span class="toc-text">使用Markdown的优点</span></a>
+    <strong class="toc-title">文章目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#如题"><span class="toc-text">如题</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#目的"><span class="toc-text">目的</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#demo需要的硬件"><span class="toc-text">demo需要的硬件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#组装方法"><span class="toc-text">组装方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#读取温湿度的Code"><span class="toc-text">读取温湿度的Code</span></a></li></ol></li></ol>
   </div>
 
 
 
 <div class="content content-post CENTER">
-   <article id="post-test" class="article article-type-post" itemprop="blogPost">
+   <article id="post-useMP_read_temp_from_DHT11" class="article article-type-post" itemprop="blogPost">
   <header class="article-header">
-    <h1 class="post-title">Markdown 粘贴学习用</h1>
+    <h1 class="post-title">MicroPython 访问DHT11获得温湿度数据</h1>
 
     <div class="article-meta">
       <span>
         <i class="icon-calendar"></i>
-        <span>2017.08.20</span>
+        <span>2017.09.09</span>
       </span>
 
       
@@ -286,7 +240,7 @@ centered">
 
       
         <i class="icon-comment"></i> 
-        <span class="ds-thread-count" data-thread-key="post-test"><i class="fa fa-spinner fa-spin"></i></span> 条评论
+        <span class="ds-thread-count" data-thread-key="post-useMP_read_temp_from_DHT11"><i class="fa fa-spinner fa-spin"></i></span> 条评论
       
       
     </div>
@@ -294,52 +248,27 @@ centered">
 
   <div class="article-content">
     
-      <h4 id="导语："><a href="#导语：" class="headerlink" title="导语："></a>导语：</h4><blockquote>
-<p><a href="http://zh.wikipedia.org/wiki/Markdown" target="_blank" rel="external">Markdown</a>是一种轻量级的<strong>「标记语言」</strong>，它的优点很多</p>
-</blockquote>
-<p><img src="http://ww3.sinaimg.cn/large/6aee7dbbgw1effia3l1xoj214z0n8dkl.jpg" alt=""></p>
-<p>###一，认识Markdown<br>在刚才的导语里提到，</p>
-<ul>
-<li><em><a href="www.google.com">创始人语法说明</a></em></li>
-<li><em><a href="www.google.com">Markdown中文版语法说明</a></em></li>
-</ul>
-<h3 id="使用Markdown的优点"><a href="#使用Markdown的优点" class="headerlink" title="使用Markdown的优点"></a>使用Markdown的优点</h3><ul>
-<li>专注你的文字内容</li>
-<li>轻松的导出HTML</li>
+      <h1 id="如题"><a href="#如题" class="headerlink" title="如题"></a>如题</h1><h2 id="目的"><a href="#目的" class="headerlink" title="目的"></a>目的</h2><ul>
+<li>获取数据</li>
 </ul>
 <ol>
-<li>专注</li>
-<li>轻松</li>
+<li>温度</li>
+<li>湿度</li>
 </ol>
-<table>
-<thead>
-<tr>
-<th>Tables</th>
-<th style="text-align:center">Are</th>
-<th style="text-align:right">Cool</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>col 3 is</td>
-<td style="text-align:center">right-aligned</td>
-<td style="text-align:right">$1600</td>
-</tr>
-<tr>
-<td>col 2 is</td>
-<td style="text-align:center">centered</td>
-<td style="text-align:right">$12</td>
-</tr>
-<tr>
-<td>zebra stripes</td>
-<td style="text-align:center">are neat</td>
-<td style="text-align:right">$1</td>
-</tr>
-</tbody>
-</table>
-<p>代码段<br><code>hello world!</code></p>
-<hr>
-<p>######参考文献<br><a href="http://jianshu.io/users/ea86ff9520da" target="_blank" rel="external">Te_Lee</a>,<br><a href="http://jianshu.io/p/1e402922ee32" target="_blank" rel="external">「Markdown——入门指南」</a></p>
+<h2 id="demo需要的硬件"><a href="#demo需要的硬件" class="headerlink" title="demo需要的硬件"></a>demo需要的硬件</h2><ul>
+<li>ESP8266开发板*1，预计TB售价20块不到</li>
+<li>DHT11 温湿度传感器*1，预计TB售价3块</li>
+<li>实验用的面包板*2和面包线几根</li>
+<li>5k 欧姆的电阻一个，（按照DHT11的手册推荐使用）</li>
+</ul>
+<h2 id="组装方法"><a href="#组装方法" class="headerlink" title="组装方法"></a>组装方法</h2><p>如下图</p>
+<p><img src="http://oi16bpd89.bkt.clouddn.com/201709092325_611.png" alt=""></p>
+<p>实物图</p>
+<p><img src="http://oi16bpd89.bkt.clouddn.com/201709092327_154.png" alt=""></p>
+<p>这里比较好理解，电源供给从8266的3.3V连接带DHT11的vcc，地线从8266的GND连接到DHT11的GND，然后在本次说明中，dht11的data线和ESP8266的D2口（GPIO4）相连，这里的5K电阻是参考了DHT11文档中推荐的连接用上的、</p>
+<h2 id="读取温湿度的Code"><a href="#读取温湿度的Code" class="headerlink" title="读取温湿度的Code"></a>读取温湿度的Code</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">import dht</div><div class="line">import machine</div><div class="line">from time import sleep</div><div class="line"></div><div class="line">d = dht.DHT11(machine.Pin(4))</div><div class="line">d.measure()</div><div class="line"></div><div class="line">while True:</div><div class="line">    sleep(1)</div><div class="line">    print (&quot;temp is [%s]&quot; % str(d.temperature()))</div><div class="line">    print (&quot;hum is [%s]&quot; % str(d.humidity()))</div><div class="line">    print (&quot;\r&quot;)</div><div class="line">    sleep(1)</div></pre></td></tr></table></figure>
+<p>再次附上8266的PIN脚图</p>
+<p><img src="http://oi16bpd89.bkt.clouddn.com/pinpin.png" alt=""></p>
 
     
   </div>
@@ -370,7 +299,7 @@ centered">
 
    
   <div class="box-prev-next clearfix">
-    <a class="show pull-left" href="/2017/04/29/markdown_summary/">
+    <a class="show pull-left" href="/2017/08/20/markdown_demo/">
         <i class="icon icon-angle-left"></i>
     </a>
     <a class="show pull-right" href="/2017/09/17/recover_python/">
@@ -395,7 +324,7 @@ centered">
   <span id="cover" class="cover hide"></span>
   <div id="modal-dialog" class="modal-dialog hide-dialog">
     <div class="modal-header">
-      <span id="close" class="btn-close">Close</span>
+      <span id="close" class="btn-close">关闭</span>
     </div>
     <hr>
     <div class="modal-body">
@@ -482,8 +411,8 @@ centered">
     
   <section class="duoshuo-comments">
     <!-- 多说评论框 start -->
-    <div class="ds-thread" data-thread-key="post-test" 
-      data-title="Markdown 粘贴学习用" data-url="http://yoursite.com/2017/08/20/test/index.html"></div>
+    <div class="ds-thread" data-thread-key="post-useMP_read_temp_from_DHT11" 
+      data-title="MicroPython 访问DHT11获得温湿度数据" data-url="http://yoursite.com/2017/09/09/useMP_read_temp_from_DHT11/index.html"></div>
     <!-- 多说评论框 end -->
   </section>
 
