@@ -15,19 +15,19 @@
     <meta name="keywords" content="forsigner,Python,工具,创新,Server" />
   
 
-  <meta name="description" content="##擦掉flashMicroPython的 intro 里1.4里有介绍。另外，如果是在win os下，擦除flash的命令大概是1esptool.py --port com3 erase_flash
-##刷入MicroPython 固件下载对应ESP8266的MicroPython固件的地址在这里 download ，你会得到类似esp8266-20170108-v1.8.7.bin 这样命名的">
+  <meta name="description" content="擦掉flashMicroPython的 intro 里1.4里有介绍。另外，如果是在win os下，擦除flash的命令大概是1esptool.py --port com3 erase_flash
+刷入MicroPython 固件下载对应ESP8266的MicroPython固件的地址在这里 download ，你会得到类似esp8266-20170108-v1.8.7.bin 这样命名的文件。刷">
 <meta property="og:type" content="article">
 <meta property="og:title" content="MicroPython ESP8266 操作指南">
 <meta property="og:url" content="http://yoursite.com/2017/03/20/ESP_MicroPython_Guide/index.html">
 <meta property="og:site_name" content="White Note">
-<meta property="og:description" content="##擦掉flashMicroPython的 intro 里1.4里有介绍。另外，如果是在win os下，擦除flash的命令大概是1esptool.py --port com3 erase_flash
-##刷入MicroPython 固件下载对应ESP8266的MicroPython固件的地址在这里 download ，你会得到类似esp8266-20170108-v1.8.7.bin 这样命名的">
-<meta property="og:updated_time" content="2017-08-20T12:29:07.371Z">
+<meta property="og:description" content="擦掉flashMicroPython的 intro 里1.4里有介绍。另外，如果是在win os下，擦除flash的命令大概是1esptool.py --port com3 erase_flash
+刷入MicroPython 固件下载对应ESP8266的MicroPython固件的地址在这里 download ，你会得到类似esp8266-20170108-v1.8.7.bin 这样命名的文件。刷">
+<meta property="og:updated_time" content="2017-11-23T13:48:23.133Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="MicroPython ESP8266 操作指南">
-<meta name="twitter:description" content="##擦掉flashMicroPython的 intro 里1.4里有介绍。另外，如果是在win os下，擦除flash的命令大概是1esptool.py --port com3 erase_flash
-##刷入MicroPython 固件下载对应ESP8266的MicroPython固件的地址在这里 download ，你会得到类似esp8266-20170108-v1.8.7.bin 这样命名的">
+<meta name="twitter:description" content="擦掉flashMicroPython的 intro 里1.4里有介绍。另外，如果是在win os下，擦除flash的命令大概是1esptool.py --port com3 erase_flash
+刷入MicroPython 固件下载对应ESP8266的MicroPython固件的地址在这里 download ，你会得到类似esp8266-20170108-v1.8.7.bin 这样命名的文件。刷">
 
   
 
@@ -149,8 +149,8 @@
 
 
   <div id="toc" class="toc-article">
-    <strong class="toc-title">Posts List</strong>
-    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#已知问题"><span class="toc-text">已知问题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考"><span class="toc-text">参考</span></a></li></ol>
+    <strong class="toc-title">文章目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#擦掉flash"><span class="toc-text">擦掉flash</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#刷入MicroPython-固件"><span class="toc-text">刷入MicroPython 固件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#查看文件系统"><span class="toc-text">查看文件系统</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#查看文件"><span class="toc-text">查看文件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#删除文件"><span class="toc-text">删除文件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Software-Reset"><span class="toc-text">Software Reset</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Hardware-Reset"><span class="toc-text">Hardware Reset</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#常用工具"><span class="toc-text">常用工具</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#已知问题"><span class="toc-text">已知问题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考"><span class="toc-text">参考</span></a></li></ol>
   </div>
 
 
@@ -196,15 +196,15 @@
 
   <div class="article-content">
     
-      <p>##擦掉flash<br>MicroPython的 <a href="http://docs.micropython.org/en/latest/esp8266/esp8266/tutorial/intro.html#intro" target="_blank" rel="external">intro</a> 里1.4里有介绍。<br>另外，如果是在win os下，擦除flash的命令大概是<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">esptool.py --port com3 erase_flash</div></pre></td></tr></table></figure></p>
-<p>##刷入MicroPython 固件<br>下载对应ESP8266的MicroPython固件的地址在这里 <a href="http://www.micropython.org/download" target="_blank" rel="external">download</a> ，<br>你会得到类似esp8266-20170108-v1.8.7.bin 这样命名的文件。<br>刷入方法在上面的1.4节也有介绍，主要就是依靠下面这句<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">esptool.py --port com3 --baud 115200 write_flash --flash_size=detect 0 esp8266-20170108-v1.8.7.bin</div></pre></td></tr></table></figure></p>
+      <h2 id="擦掉flash"><a href="#擦掉flash" class="headerlink" title="擦掉flash"></a>擦掉flash</h2><p>MicroPython的 <a href="http://docs.micropython.org/en/latest/esp8266/esp8266/tutorial/intro.html#intro" target="_blank" rel="external">intro</a> 里1.4里有介绍。<br>另外，如果是在win os下，擦除flash的命令大概是<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">esptool.py --port com3 erase_flash</div></pre></td></tr></table></figure></p>
+<h2 id="刷入MicroPython-固件"><a href="#刷入MicroPython-固件" class="headerlink" title="刷入MicroPython 固件"></a>刷入MicroPython 固件</h2><p>下载对应ESP8266的MicroPython固件的地址在这里 <a href="http://www.micropython.org/download" target="_blank" rel="external">download</a> ，<br>你会得到类似esp8266-20170108-v1.8.7.bin 这样命名的文件。<br>刷入方法在上面的1.4节也有介绍，主要就是依靠下面这句<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">esptool.py --port com3 --baud 115200 write_flash --flash_size=detect 0 esp8266-20170108-v1.8.7.bin</div></pre></td></tr></table></figure></p>
 <p>注意，我尝试过512k专属版，似乎不好用，所以还是使用长期稳定版比较好（每夜版没有试过）。</p>
-<p>##查看文件系统<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">uos.listdir() # 查看路径下的文件</div><div class="line">uos.listdir(&apos;dir&apos;) #查看文件夹下的文件</div><div class="line">uos.getcwd() #查看当前目录, 根目录是&apos;&apos;</div><div class="line">uos.chdir()  #改变当前目录</div></pre></td></tr></table></figure></p>
-<p>##查看文件<br>使用打开文件的方法<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">f = open(&apos;main.py&apos;, &apos;r&apos;)</div><div class="line">f.read()</div><div class="line">&quot;print(&apos;Welcome~&apos;)\nprint(&apos;Hello!&apos;)\n&quot;</div></pre></td></tr></table></figure></p>
-<p>##删除文件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">uos.remove(&apos;main.py&apos;)</div></pre></td></tr></table></figure></p>
-<p>##Software Reset<br>在串口可用的时候，输入Ctrl + D 即可软复位</p>
-<p>##Hardware Reset<br>断电时硬复位</p>
-<p>##常用工具<br> <a href="https://github.com/salesiopark/ESPyHarp" target="_blank" rel="external">ESPyHarp</a><br> 是一个可以给MP传输文件的java程序，win下使用，硬伤是无法快速便捷的中断com占用，导致使用起来不方便。<br><a href="https://github.com/micropython/webrepl/archive/master.zip" target="_blank" rel="external">webrepl client html</a><br>是一个网页形式的文件传输工具，使用起来比较方便，每次连接一般是要输入密码（根据MP的设置来）.<br>esptool<br>这个上面都有说，python 公共库里集成了，使用pip安装<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">pip install esptool</div></pre></td></tr></table></figure></p>
+<h2 id="查看文件系统"><a href="#查看文件系统" class="headerlink" title="查看文件系统"></a>查看文件系统</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">uos.listdir() # 查看路径下的文件</div><div class="line">uos.listdir(&apos;dir&apos;) #查看文件夹下的文件</div><div class="line">uos.getcwd() #查看当前目录, 根目录是&apos;&apos;</div><div class="line">uos.chdir()  #改变当前目录</div></pre></td></tr></table></figure>
+<h2 id="查看文件"><a href="#查看文件" class="headerlink" title="查看文件"></a>查看文件</h2><p>使用打开文件的方法<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">f = open(&apos;main.py&apos;, &apos;r&apos;)</div><div class="line">f.read()</div><div class="line">&quot;print(&apos;Welcome~&apos;)\nprint(&apos;Hello!&apos;)\n&quot;</div></pre></td></tr></table></figure></p>
+<h2 id="删除文件"><a href="#删除文件" class="headerlink" title="删除文件"></a>删除文件</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">uos.remove(&apos;main.py&apos;)</div></pre></td></tr></table></figure>
+<h2 id="Software-Reset"><a href="#Software-Reset" class="headerlink" title="Software Reset"></a>Software Reset</h2><p>在串口可用的时候，输入Ctrl + D 即可软复位</p>
+<h2 id="Hardware-Reset"><a href="#Hardware-Reset" class="headerlink" title="Hardware Reset"></a>Hardware Reset</h2><p>断电时硬复位</p>
+<h2 id="常用工具"><a href="#常用工具" class="headerlink" title="常用工具"></a>常用工具</h2><p> <a href="https://github.com/salesiopark/ESPyHarp" target="_blank" rel="external">ESPyHarp</a><br> 是一个可以给MP传输文件的java程序，win下使用，硬伤是无法快速便捷的中断com占用，导致使用起来不方便。<br><a href="https://github.com/micropython/webrepl/archive/master.zip" target="_blank" rel="external">webrepl client html</a><br>是一个网页形式的文件传输工具，使用起来比较方便，每次连接一般是要输入密码（根据MP的设置来）.<br>esptool<br>这个上面都有说，python 公共库里集成了，使用pip安装<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">pip install esptool</div></pre></td></tr></table></figure></p>
 <h2 id="已知问题"><a href="#已知问题" class="headerlink" title="已知问题"></a>已知问题</h2><p>利用http 按钮发送反馈的时候，不能使用360浏览器，它会拦截反馈信息</p>
 <h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a href="http://www.micropython.org" target="_blank" rel="external">MicroPython官网</a><br><a href="https://my.oschina.net/shaoziyang/blog/781235" target="_blank" rel="external">介绍1</a><br><a href="http://bbs.eeworld.com.cn/forum-243-1.html" target="_blank" rel="external">论坛</a><br><a href="http://blog.csdn.net/yannanxiu/article/details/53966374" target="_blank" rel="external">介绍2</a></p>
 
@@ -262,7 +262,7 @@
   <span id="cover" class="cover hide"></span>
   <div id="modal-dialog" class="modal-dialog hide-dialog">
     <div class="modal-header">
-      <span id="close" class="btn-close">Close</span>
+      <span id="close" class="btn-close">关闭</span>
     </div>
     <hr>
     <div class="modal-body">

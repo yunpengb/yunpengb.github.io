@@ -7,7 +7,7 @@
 <head>
   <meta charset="utf-8">
   
-  <title>将Notepad++ 配置成Python IDE | White Note</title>
+  <title>在Ubuntu上搭建一个自己的Dokuwiki | White Note</title>
 
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -15,35 +15,55 @@
     <meta name="keywords" content="forsigner,Python,工具,创新,Server" />
   
 
-  <meta name="description" content="一、必要条件
-安装好Python解释器
-安装好Notepad++ ,目前建议安装X86-7.4.2 版本，X64的版本没有插件管理器，且X86-7.4.2版本以上的版本暂时也没有插件管理器。
+  <meta name="description" content="一、 前言有一个wiki是很方便的，主要可以用来：  
 
-二、配置nppexec插件
-安装nppexec 插件点击菜单里的插件–plugin manager —show piugin manager , 选择nppexec插件安装。中间可能会碰到升级plugin">
+记录自己的项目活动相关信息  
+记录测试需求  
+记录备忘事项，方便其他人查看  
+加入评论，可以形成部分电子白板的功能  
+
+二、安装细节
+首先需要有一个ubuntu主机，我选择的是16.04 64bit的桌面系统
+在主机上安装apache2  
+ 1sudo apt-get install apache2
+
+安装php5.6  
+ $">
 <meta property="og:type" content="article">
-<meta property="og:title" content="将Notepad++ 配置成Python IDE">
-<meta property="og:url" content="http://yoursite.com/2017/09/25/config_notepad_to_pyide/index.html">
+<meta property="og:title" content="在Ubuntu上搭建一个自己的Dokuwiki">
+<meta property="og:url" content="http://yoursite.com/2017/09/24/install_dokuwiki_on_ubuntu/index.html">
 <meta property="og:site_name" content="White Note">
-<meta property="og:description" content="一、必要条件
-安装好Python解释器
-安装好Notepad++ ,目前建议安装X86-7.4.2 版本，X64的版本没有插件管理器，且X86-7.4.2版本以上的版本暂时也没有插件管理器。
+<meta property="og:description" content="一、 前言有一个wiki是很方便的，主要可以用来：  
 
-二、配置nppexec插件
-安装nppexec 插件点击菜单里的插件–plugin manager —show piugin manager , 选择nppexec插件安装。中间可能会碰到升级plugin">
-<meta property="og:image" content="http://oi16bpd89.bkt.clouddn.com/201709252159_444.png">
-<meta property="og:image" content="http://oi16bpd89.bkt.clouddn.com/201709252201_751.png">
-<meta property="og:image" content="http://oi16bpd89.bkt.clouddn.com/201709252204_120.png">
-<meta property="og:updated_time" content="2017-09-25T14:31:20.604Z">
+记录自己的项目活动相关信息  
+记录测试需求  
+记录备忘事项，方便其他人查看  
+加入评论，可以形成部分电子白板的功能  
+
+二、安装细节
+首先需要有一个ubuntu主机，我选择的是16.04 64bit的桌面系统
+在主机上安装apache2  
+ 1sudo apt-get install apache2
+
+安装php5.6  
+ $">
+<meta property="og:updated_time" content="2017-11-23T14:52:54.023Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="将Notepad++ 配置成Python IDE">
-<meta name="twitter:description" content="一、必要条件
-安装好Python解释器
-安装好Notepad++ ,目前建议安装X86-7.4.2 版本，X64的版本没有插件管理器，且X86-7.4.2版本以上的版本暂时也没有插件管理器。
+<meta name="twitter:title" content="在Ubuntu上搭建一个自己的Dokuwiki">
+<meta name="twitter:description" content="一、 前言有一个wiki是很方便的，主要可以用来：  
 
-二、配置nppexec插件
-安装nppexec 插件点击菜单里的插件–plugin manager —show piugin manager , 选择nppexec插件安装。中间可能会碰到升级plugin">
-<meta name="twitter:image" content="http://oi16bpd89.bkt.clouddn.com/201709252159_444.png">
+记录自己的项目活动相关信息  
+记录测试需求  
+记录备忘事项，方便其他人查看  
+加入评论，可以形成部分电子白板的功能  
+
+二、安装细节
+首先需要有一个ubuntu主机，我选择的是16.04 64bit的桌面系统
+在主机上安装apache2  
+ 1sudo apt-get install apache2
+
+安装php5.6  
+ $">
 
   
 
@@ -166,20 +186,20 @@
 
   <div id="toc" class="toc-article">
     <strong class="toc-title">文章目录</strong>
-    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#一、必要条件"><span class="toc-text">一、必要条件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#二、配置nppexec插件"><span class="toc-text">二、配置nppexec插件</span></a></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#一、-前言"><span class="toc-text">一、 前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#二、安装细节"><span class="toc-text">二、安装细节</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#三、-使用小技巧："><span class="toc-text">三、 使用小技巧：</span></a></li></ol>
   </div>
 
 
 
 <div class="content content-post CENTER">
-   <article id="post-config_notepad_to_pyide" class="article article-type-post" itemprop="blogPost">
+   <article id="post-install_dokuwiki_on_ubuntu" class="article article-type-post" itemprop="blogPost">
   <header class="article-header">
-    <h1 class="post-title">将Notepad++ 配置成Python IDE</h1>
+    <h1 class="post-title">在Ubuntu上搭建一个自己的Dokuwiki</h1>
 
     <div class="article-meta">
       <span>
         <i class="icon-calendar"></i>
-        <span>2017.09.25</span>
+        <span>2017.09.24</span>
       </span>
 
       
@@ -204,7 +224,7 @@
 
       
         <i class="icon-comment"></i> 
-        <span class="ds-thread-count" data-thread-key="post-config_notepad_to_pyide"><i class="fa fa-spinner fa-spin"></i></span> 条评论
+        <span class="ds-thread-count" data-thread-key="post-install_dokuwiki_on_ubuntu"><i class="fa fa-spinner fa-spin"></i></span> 条评论
       
       
     </div>
@@ -212,27 +232,42 @@
 
   <div class="article-content">
     
-      <h2 id="一、必要条件"><a href="#一、必要条件" class="headerlink" title="一、必要条件"></a>一、必要条件</h2><ul>
-<li>安装好Python解释器</li>
-<li>安装好Notepad++ ,目前建议安装X86-7.4.2 版本，X64的版本没有插件管理器，且X86-7.4.2版本以上的版本暂时也没有插件管理器。</li>
+      <h2 id="一、-前言"><a href="#一、-前言" class="headerlink" title="一、 前言"></a>一、 前言</h2><p>有一个wiki是很方便的，主要可以用来：  </p>
+<ul>
+<li>记录自己的项目活动相关信息  </li>
+<li>记录测试需求  </li>
+<li>记录备忘事项，方便其他人查看  </li>
+<li>加入评论，可以形成部分电子白板的功能  </li>
 </ul>
-<h2 id="二、配置nppexec插件"><a href="#二、配置nppexec插件" class="headerlink" title="二、配置nppexec插件"></a>二、配置nppexec插件</h2><ol>
-<li><p>安装nppexec 插件<br>点击菜单里的插件–plugin manager —show piugin manager , 选择nppexec插件安装。中间可能会碰到升级plugin manager的提示。有时候会升级多次。</p>
+<h2 id="二、安装细节"><a href="#二、安装细节" class="headerlink" title="二、安装细节"></a>二、安装细节</h2><ol>
+<li>首先需要有一个ubuntu主机，我选择的是16.04 64bit的桌面系统</li>
+<li><p>在主机上安装apache2  </p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo apt-get install apache2</div></pre></td></tr></table></figure>
 </li>
-<li><p>配置运行python的命令</p>
+<li><p>安装php5.6  </p>
+<p> $ sudo apt-get install python-software-properties<br> $ sudo add-apt-repository ppa:ondrej/php<br> $ sudo apt-get update<br> $ sudo apt-get -y install php5.6 php5.6-mcrypt php5.6-mbstring php5.6-curl   php5.6-cli php5.6-mysql php5.6-gd php5.6-intl php5.6-xsl php5.6-zip  </p>
 </li>
 </ol>
-<p>点击插件– nppexec–execute<br>在弹出的界面里，command里输入<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">npp_save</div><div class="line">cd &quot;$(CURRENT_DIRECTORY)&quot;</div><div class="line">C:\Python27\python.exe &quot;$(FILE_NAME)&quot;</div></pre></td></tr></table></figure></p>
-<p>将这个动作保存，名字起为py27</p>
-<p><img src="http://oi16bpd89.bkt.clouddn.com/201709252159_444.png" alt=""></p>
-<p>然后打开高级设置</p>
-<p><img src="http://oi16bpd89.bkt.clouddn.com/201709252201_751.png" alt=""></p>
-<p>为刚才编辑的命令集绑定一个项目run py27，上面的“Place to the Macros submenu”可勾可不勾</p>
-<p><img src="http://oi16bpd89.bkt.clouddn.com/201709252204_120.png" alt=""></p>
+<p>安装结束后，查询php版本：<br>    php -v</p>
 <ol>
-<li>然后再为这个项目绑定一个快捷键</li>
+<li><p>安装Dokuwiki  </p>
+<p> sudo wget <a href="https://download.dokuwiki.org/out/dokuwiki-c5525093cf2c4f47e2e5d2439fe13964.tgz" target="_blank" rel="external">https://download.dokuwiki.org/out/dokuwiki-c5525093cf2c4f47e2e5d2439fe13964.tgz</a> –no-check-certificate</p>
+</li>
 </ol>
-<p>点击菜单： 运行—管理快捷键 —plugin commands ，找到Plugin commands 选项卡下的run py27,为它定义一个快捷键。<br>至此大功告成。以后每次编写程序，按下快捷键，即可在窗口直接看到运行结果。</p>
+<p>下载压缩包后，解压，然后将内容放在 /var/www/html/dokuwiki/下，然后修改dokuwiki文件夹的所有者为阿帕奇，  </p>
+<pre><code>sudo chown -R www-data:www-data /var/www/html/dokuwiki
+sudo chmod -R 707 /var/www/html/dokuwiki
+</code></pre><p>浏览器输入<a href="http://localhost/dokuwiki/install.php" target="_blank" rel="external">http://localhost/dokuwiki/install.php</a> 应该可以查看到新安装的提示页面。</p>
+<ol>
+<li>配置Dokuwiki<br>按照上述的流程，安装完成Dokuwiki后，理论上，ubuntu上apache2 这个process的owner就是www-data:www-data, 而dokuwiki文件夹的所有者也是www-data:www-data。所有的功能都是通过浏览器实现。后台apache2会根据wiki网页自动地生成页面文件，所以不需要wiki使用者再通过linux去维护这个服务。</li>
+</ol>
+<h2 id="三、-使用小技巧："><a href="#三、-使用小技巧：" class="headerlink" title="三、 使用小技巧："></a>三、 使用小技巧：</h2><ul>
+<li>在浏览器的地址上后缀加上，aaa:bbb就会自动产生一个aaa文件夹，并在aaa文件夹下自动产生bbb页面，此时点击页面上的创建此页面，然后就顺利的完成了新建页面的动作。   </li>
+<li>dokuwiki有几款很好用的插件，插件可以通过浏览器安装，需要到插件下载页下载zip格式的插件，然后使用dokuwiki管理员页面的自定义插件选项卡上传，自动安装成功。</li>
+<li>通过管理员的设置，可以隐藏很多按钮，让wiki的主界面简洁一些，隐藏媒体管理器，输入media即可。</li>
+<li>dokuwiki有很强大的用户管理功能，可以设置分组，且可以设置查看权限。有效使用可以效率翻倍。</li>
+<li>dokuwiki有很多强大的功能都是通过插件实现的，后面我再更新一个介绍插件的文章。 </li>
+</ul>
 
     
   </div>
@@ -263,10 +298,10 @@
 
    
   <div class="box-prev-next clearfix">
-    <a class="show pull-left" href="/2017/09/24/install_dokuwiki_on_ubuntu/">
+    <a class="show pull-left" href="/2017/09/17/recover_python/">
         <i class="icon icon-angle-left"></i>
     </a>
-    <a class="show pull-right" href="/2017/10/20/build_platform_by_pyunit/">
+    <a class="show pull-right" href="/2017/09/25/config_notepad_to_pyide/">
         <i class="icon icon-angle-right"></i>
     </a>
   </div>
@@ -375,8 +410,8 @@
     
   <section class="duoshuo-comments">
     <!-- 多说评论框 start -->
-    <div class="ds-thread" data-thread-key="post-config_notepad_to_pyide" 
-      data-title="将Notepad++ 配置成Python IDE" data-url="http://yoursite.com/2017/09/25/config_notepad_to_pyide/index.html"></div>
+    <div class="ds-thread" data-thread-key="post-install_dokuwiki_on_ubuntu" 
+      data-title="在Ubuntu上搭建一个自己的Dokuwiki" data-url="http://yoursite.com/2017/09/24/install_dokuwiki_on_ubuntu/index.html"></div>
     <!-- 多说评论框 end -->
   </section>
 

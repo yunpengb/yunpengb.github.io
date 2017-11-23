@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+
+
+  <html class="light page-post">
+
+
+<head>
+  <meta charset="utf-8">
+  
+  <title>使用Pyunit构建一个灵活的全自动测试平台 | White Note</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+    <meta name="keywords" content="forsigner,Python,工具,创新,Server" />
+  
+
+  <meta name="description" content="&amp;emsp;&amp;emsp;主要讨论的话题：  
+
+方案背景
+方案实现
+
+一、方案背景掌握python脚本的编写，希望通过使用简单的框架，实现全自动化测试
+&amp;emsp;&amp;emsp;1.1 方案产生
+产品测试的需求分析中，发现所有的测试步骤都可以通过python自动化控制。尤其是HTX工具可以使用pywin32控制，射频仪表可以通过pyvisa控制。
+已经有一些通过python实现好的单个脚本的话，需">
+<meta property="og:type" content="article">
+<meta property="og:title" content="使用Pyunit构建一个灵活的全自动测试平台">
+<meta property="og:url" content="http://yoursite.com/2017/10/20/build_platform_by_pyunit/index.html">
+<meta property="og:site_name" content="White Note">
+<meta property="og:description" content="&amp;emsp;&amp;emsp;主要讨论的话题：  
+
+方案背景
+方案实现
+
+一、方案背景掌握python脚本的编写，希望通过使用简单的框架，实现全自动化测试
+&amp;emsp;&amp;emsp;1.1 方案产生
+产品测试的需求分析中，发现所有的测试步骤都可以通过python自动化控制。尤其是HTX工具可以使用pywin32控制，射频仪表可以通过pyvisa控制。
+已经有一些通过python实现好的单个脚本的话，需">
+<meta property="og:image" content="http://oi16bpd89.bkt.clouddn.com/201710312150_58.png">
+<meta property="og:image" content="http://oi16bpd89.bkt.clouddn.com/201710312224_172.png">
+<meta property="og:updated_time" content="2017-11-23T13:52:59.665Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="使用Pyunit构建一个灵活的全自动测试平台">
+<meta name="twitter:description" content="&amp;emsp;&amp;emsp;主要讨论的话题：  
+
+方案背景
+方案实现
+
+一、方案背景掌握python脚本的编写，希望通过使用简单的框架，实现全自动化测试
+&amp;emsp;&amp;emsp;1.1 方案产生
+产品测试的需求分析中，发现所有的测试步骤都可以通过python自动化控制。尤其是HTX工具可以使用pywin32控制，射频仪表可以通过pyvisa控制。
+已经有一些通过python实现好的单个脚本的话，需">
+<meta name="twitter:image" content="http://oi16bpd89.bkt.clouddn.com/201710312150_58.png">
+
+  
+
+  
+    <link rel="icon" href="/favicon.ico">
+  
+
+  <link href="/css/styles.css?v=c114cbe6" rel="stylesheet">
+
+
+  
+    <link rel="stylesheet" href="/css/personal-style.css">
+  
+
+  
+
+  
+
+  
+
+
+  
+    <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  
+
+  
+    <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  
+</head>
+
+<body>
+
+
+  
+    <span id="toolbox-mobile" class="toolbox-mobile">盒子</span>
+  
+
+  <div class="post-header CENTER">
+   
+  <div class="toolbox">
+    <a class="toolbox-entry" href="/">
+      <span class="toolbox-entry-text">盒子</span>
+      <i class="icon-angle-down"></i>
+      <i class="icon-home"></i>
+    </a>
+    <ul class="list-toolbox">
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/archives/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            博客
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/category/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            分类
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/tag/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            标签
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/link/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            友链
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/about/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            关于
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/atom.xml"
+            rel="noopener noreferrer"
+            target="_blank"
+            >
+            RSS
+          </a>
+        </li>
+      
+    </ul>
+  </div>
+
+
+</div>
+
+
+  <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#一、方案背景"><span class="toc-text">一、方案背景</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#emsp-emsp-1-1-方案产生"><span class="toc-text">  1.1 方案产生</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#emsp-emsp-1-2-方案简介"><span class="toc-text">   1.2 方案简介</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#a-什么是Pyunit"><span class="toc-text">a. 什么是Pyunit</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#c-用白盒测试框架来测黑盒真的好吗"><span class="toc-text">c.用白盒测试框架来测黑盒真的好吗</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#emsp-emsp-1-3-Pyunit的特点："><span class="toc-text">   1.3 Pyunit的特点：</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#批量处理能力"><span class="toc-text">批量处理能力</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#二元扁平结构"><span class="toc-text">二元扁平结构</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Pyunit强在用例管理，注意做好单个脚本的架构设计和质量控制"><span class="toc-text">Pyunit强在用例管理，注意做好单个脚本的架构设计和质量控制</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#成熟、高质量的单个脚本，是实现系统的关键"><span class="toc-text">成熟、高质量的单个脚本，是实现系统的关键</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#测试组特性"><span class="toc-text">测试组特性</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#丰富的初始化和扫尾功能"><span class="toc-text">丰富的初始化和扫尾功能</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#二、方案实现"><span class="toc-text">二、方案实现</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-一定要有详细的测试需求："><span class="toc-text">2.1 一定要有详细的测试需求：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-根据需求，实现用例的脚本"><span class="toc-text">2.2 根据需求，实现用例的脚本</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-按照Pyunit的格式，集成为测试组"><span class="toc-text">2.3 按照Pyunit的格式，集成为测试组</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-4-编写框架，应该注意的事情："><span class="toc-text">2.4 编写框架，应该注意的事情：</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#三、-其他注意事项："><span class="toc-text">三、 其他注意事项：</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#3-3-最后把pyunit的官方文档附上，还有中文版哦"><span class="toc-text">3.3 最后把pyunit的官方文档附上，还有中文版哦</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#四、以后有时间，需要研究下，下面的高级工具"><span class="toc-text">四、以后有时间，需要研究下，下面的高级工具</span></a></li></ol></li></ol>
+  </div>
+
+
+
+<div class="content content-post CENTER">
+   <article id="post-build_platform_by_pyunit" class="article article-type-post" itemprop="blogPost">
+  <header class="article-header">
+    <h1 class="post-title">使用Pyunit构建一个灵活的全自动测试平台</h1>
+
+    <div class="article-meta">
+      <span>
+        <i class="icon-calendar"></i>
+        <span>2017.10.20</span>
+      </span>
+
+      
+        <span class="article-author">
+          <i class="icon-user"></i>
+          <span>Bai&#39;s Notes</span>
+        </span>
+      
+
+      
+
+
+      
+
+      
+      <i class="fa fa-eye"></i> 
+        <span id="busuanzi_container_page_pv">
+           &nbsp热度 <span id="busuanzi_value_page_pv">
+           <i class="fa fa-spinner fa-spin"></i></span>℃
+        </span>
+      
+
+      
+        <i class="icon-comment"></i> 
+        <span class="ds-thread-count" data-thread-key="post-build_platform_by_pyunit"><i class="fa fa-spinner fa-spin"></i></span> 条评论
+      
+      
+    </div>
+  </header>
+
+  <div class="article-content">
+    
+      <p><img src="http://oi16bpd89.bkt.clouddn.com/201710312150_58.png" alt=""></p>
+<p>&emsp;&emsp;主要讨论的话题：  </p>
+<ol>
+<li>方案背景</li>
+<li>方案实现</li>
+</ol>
+<h2 id="一、方案背景"><a href="#一、方案背景" class="headerlink" title="一、方案背景"></a>一、方案背景</h2><p>掌握python脚本的编写，希望通过使用简单的框架，实现全自动化测试</p>
+<h4 id="emsp-emsp-1-1-方案产生"><a href="#emsp-emsp-1-1-方案产生" class="headerlink" title="&emsp;&emsp;1.1 方案产生"></a>&emsp;&emsp;1.1 方案产生</h4><ul>
+<li>产品测试的需求分析中，发现所有的测试步骤都可以通过python自动化控制。尤其是HTX工具可以使用pywin32控制，射频仪表可以通过pyvisa控制。</li>
+<li>已经有一些通过python实现好的单个脚本的话，需要简单改写为Pyunit的格式。</li>
+<li>使用pyunit做执行框架，使用开源的HTMLTestRunner作为测试报告生成工具</li>
+</ul>
+<h4 id="emsp-emsp-1-2-方案简介"><a href="#emsp-emsp-1-2-方案简介" class="headerlink" title="&emsp;&emsp; 1.2 方案简介"></a>&emsp;&emsp; 1.2 方案简介</h4><h4 id="a-什么是Pyunit"><a href="#a-什么是Pyunit" class="headerlink" title="a. 什么是Pyunit"></a>a. 什么是Pyunit</h4><ul>
+<li>简介：Pyunit是专业单元测试框架，通过断言方法，判断测试结果。 优雅简洁，被设计用于白盒测试。但是由于它足够简单，我认为可以用它编写更复杂一点点的脚本，用于作产品测试。</li>
+<li>背景：Pyunit是Python版本的Junit, 隶属于Xunit系列，XUnit系列里最有名的是Junit<br> Junit是一款开源框架，在业界是单元测试的标杆。</li>
+<li>Pyunit大概出现于1999年左右，于2002年在python2.1往后的版本中被官方收录（python始于1989年，往后数第13年），成为官方集成的内建包。往后每个官方版本安装之后，直接可以import unittest。<h4 id="c-用白盒测试框架来测黑盒真的好吗"><a href="#c-用白盒测试框架来测黑盒真的好吗" class="headerlink" title="c.用白盒测试框架来测黑盒真的好吗"></a>c.用白盒测试框架来测黑盒真的好吗</h4>其实Pyunit本身是用来写白盒测试的，我也一度觉得似乎用的工具不太匹配，很low，很不专业，后来逐渐改变了这种想法。测试活动的中心目的是，管理好测试的过程和结果，至于工具，尽力而为，只要能达到测试目的的工具，就是好工具。在有余力的时候，可以继续研究和转移到更高效的测试框架上。</li>
+</ul>
+<h4 id="emsp-emsp-1-3-Pyunit的特点："><a href="#emsp-emsp-1-3-Pyunit的特点：" class="headerlink" title="&emsp;&emsp; 1.3 Pyunit的特点："></a>&emsp;&emsp; 1.3 Pyunit的特点：</h4><ul>
+<li><h5 id="批量处理能力"><a href="#批量处理能力" class="headerlink" title="批量处理能力"></a>批量处理能力</h5> Pyunit像一顶机关枪，只要有足够的子弹，就可以持续射击。适合组织批量执行case。</li>
+<li><h5 id="二元扁平结构"><a href="#二元扁平结构" class="headerlink" title="二元扁平结构"></a>二元扁平结构</h5> Pyunit使用的时候，分为两部分code:<br> 执行器部分和测试用例部分，建议两部分分开，定义好接口后，分层管理code,这样单独修改某个文件不会牵连其他code，方便code管理和维护。测试用例部分建议做总体的设计和优化，这样方便迭代和扩展用例</li>
+</ul>
+<ul>
+<li><h5 id="Pyunit强在用例管理，注意做好单个脚本的架构设计和质量控制"><a href="#Pyunit强在用例管理，注意做好单个脚本的架构设计和质量控制" class="headerlink" title="Pyunit强在用例管理，注意做好单个脚本的架构设计和质量控制"></a>Pyunit强在用例管理，注意做好单个脚本的架构设计和质量控制</h5> Pyunit并不是具有魔力的万金油，   它依赖于测试用例code部分的质量，所以作为测试脚本的开发和维护者，需要做好case本身的细节管理。包测试需求量化，和测试脚本调试以及版本控制。这些都做到，就可以顺畅的跑测试，并且以后扩展case也不难了。</li>
+<li><h5 id="成熟、高质量的单个脚本，是实现系统的关键"><a href="#成熟、高质量的单个脚本，是实现系统的关键" class="headerlink" title="成熟、高质量的单个脚本，是实现系统的关键"></a>成熟、高质量的单个脚本，<em>是实现系统的关键</em></h5>  只有大量实现好并且调试通过的单个用例，才可以使用Pyunit框架，将它们串联成一串弹夹，然后如机关枪般串联发射。  </li>
+<li><h5 id="测试组特性"><a href="#测试组特性" class="headerlink" title="测试组特性"></a>测试组特性</h5><ul>
+<li>Pyunit可通过定义类来实现测试用例的集合，每个类是一个测试组，每个类方法是一个case。</li>
+<li>内个case 通过断言语句实现最终结果的判断。</li>
+</ul>
+</li>
+<li><h5 id="丰富的初始化和扫尾功能"><a href="#丰富的初始化和扫尾功能" class="headerlink" title="丰富的初始化和扫尾功能"></a>丰富的初始化和扫尾功能</h5><p>  支持单个用例前后的初始化操作和扫尾操作，<br>  也支持整个测试组前后的初始化操作和扫尾操作</p>
+</li>
+</ul>
+<h2 id="二、方案实现"><a href="#二、方案实现" class="headerlink" title="二、方案实现"></a>二、方案实现</h2><h3 id="2-1-一定要有详细的测试需求："><a href="#2-1-一定要有详细的测试需求：" class="headerlink" title="2.1 一定要有详细的测试需求："></a>2.1 一定要有详细的测试需求：</h3><p>&emsp;&emsp;自动化没有详细的测试需求就是扯淡，测试需求是测试的基本输入，没有之一。  </p>
+<p>下面是一个例子：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">Version: 17</div><div class="line">Author: 刘德华</div><div class="line">Create Time: 1999-01-01</div><div class="line">Update Time: 1999-08-08</div><div class="line">Setup Need: TAD-PC \ LMP \ VLAN258 \ FSV \ RF cable \ Power Switch</div><div class="line">  </div><div class="line">AHFB 5Mhz带宽，下行载波的射频性能中的ACLR指标检查</div><div class="line">1. AHFB上电</div><div class="line">2. 等待40秒，此时应该开机结束，可以ping通101.1的IP地址</div><div class="line">3. 初始化HTX，等待同步结束，等待5秒</div><div class="line">4. 建立第一路的TX载波，频率为1962.5Mhz</div><div class="line">5. 等待10秒，此时载波应该处于稳定状态</div><div class="line">6. 通过GPIB接口连接罗德施瓦茨的FSV，复位FSV</div><div class="line">7. FSV进入Lte Mode</div><div class="line">8. FSV设置当前测量频率为1962.5Mhz，带宽为5Mhz</div><div class="line">9. FSV设置使用外部参考信号，并设置频率为10Mhz信号</div><div class="line">10.FSV设置使用连续测量模式</div><div class="line">11.FSV设置外部线损</div><div class="line">12.FSV读取一次ACLR结果</div><div class="line">13.通过ssh连接，读取命令dapd -stat 0的返回结果</div><div class="line">13.删除第一路的TX载波</div><div class="line">14.以上操作中没有报错，且ACLR的值小于-45db 则为PASS，否则为FAIL</div></pre></td></tr></table></figure></p>
+<p>通过这个例子，可以看到</p>
+<ul>
+<li>测试需求是一次操作的真实写照，是一个执行清单，量化而具体，不管手动还是自动执行，均可以照着操作。  </li>
+<li>如果可能，在记录上最好再加上测试环境的信息，越丰富越好，比如依赖的硬件设备（TADX\系统模块\时钟盒子），需要几个DUT参与测试, 是否需要DUT处在特殊的状态下，等等都要注明下。</li>
+<li>每个case都需要清晰的测试预期，也就是Pass和Fail的判断准绳，如果没有，请标注好待观察，然后将多次测试的数据收集起来，作为经验值的输入信息。</li>
+</ul>
+<p><img src="http://oi16bpd89.bkt.clouddn.com/201710312224_172.png" alt=""></p>
+<h3 id="2-2-根据需求，实现用例的脚本"><a href="#2-2-根据需求，实现用例的脚本" class="headerlink" title="2.2 根据需求，实现用例的脚本"></a>2.2 根据需求，实现用例的脚本</h3><ol>
+<li>有了上述的需求清单，再去实现单个python脚本就容易一些</li>
+<li>新加入的测试用例需要几个有经验的同事一起review,大家多提意见，才可以集思广益，发现一些细节的疏漏，避免漏测和误测。</li>
+</ol>
+<h3 id="2-3-按照Pyunit的格式，集成为测试组"><a href="#2-3-按照Pyunit的格式，集成为测试组" class="headerlink" title="2.3 按照Pyunit的格式，集成为测试组"></a>2.3 按照Pyunit的格式，集成为测试组</h3><p>下面是我实现的一个基本例子，里面也有log和HTML report功能。 </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">from testGroup1 import *</div><div class="line">import unittest</div><div class="line">import sys</div><div class="line"></div><div class="line"></div><div class="line">def ak47():</div><div class="line">    suiteTest = unittest.TestSuite()</div><div class="line">    </div><div class="line">    suiteTest.addTest(txPerformance(&quot;tx_power_pipe1&quot;))</div><div class="line">    suiteTest.addTest(txPerformance(&quot;tx_Aclr_low_pipe1&quot;))</div><div class="line">    suiteTest.addTest(txPerformance(&quot;tx_Aclr_high_pipe1&quot;))</div><div class="line">    </div><div class="line">    return suiteTest</div><div class="line"></div><div class="line">if __name__ == &apos;__main__&apos;:</div><div class="line">    runner.run(ak47())</div></pre></td></tr></table></figure>
+<p>测试组1的简单Demo<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div></pre></td><td class="code"><pre><div class="line"># -*- coding:utf-8 -*-</div><div class="line"></div><div class="line">import unittest</div><div class="line">from def1 import *</div><div class="line">from time import sleep</div><div class="line">import time</div><div class="line"></div><div class="line">class txPerf(unittest.TestCase):</div><div class="line"># class TxPerf(object):    </div><div class="line">    </div><div class="line">    @classmethod</div><div class="line">    def setUpClass(cls):</div><div class="line">        </div><div class="line">        cls.lloogg = None</div><div class="line">        </div><div class="line">        </div><div class="line">        # ==== log instance init ====</div><div class="line">        tim = timestamp()</div><div class="line">        </div><div class="line">        cls.lloogg = &quot;log\\&quot; + &quot;case_TxPerf_&quot;+ tim + &quot;.log&quot;</div><div class="line">        # cls.lloogg = &quot;case_TxPerf.log&quot;</div><div class="line">        </div><div class="line">        msg = &quot;~~~~~~~~~~ Case Start [%s] at %s ~~~~~~~~~~&quot; % (&quot;TX_Performance&quot;,str(tim))</div><div class="line">        logAndPrint(msg,cls.lloogg)</div><div class="line">        </div><div class="line">        # ==== powerSupply instance init and power on ====</div><div class="line">        unit_power_on()</div><div class="line">        sleep(2)</div><div class="line">        msg = &quot;~~~ unit power on step Done ~~~&quot;</div><div class="line">        logAndPrint(msg,cls.lloogg)</div><div class="line">        </div><div class="line">        # ~~~~~~~~ active 4 carrier ~~~~~~~~</div><div class="line">        for pipe in range(4):</div><div class="line">            activeTxCarr(pipe+1)</div><div class="line">            sleep(2)</div><div class="line">            </div><div class="line">            msg = &quot;============ Pipe %d Active Tx OK ============&quot; % (pipe+1)</div><div class="line">            logAndPrint(msg,cls.lloogg)</div><div class="line">        </div><div class="line">        </div><div class="line">    @classmethod</div><div class="line">    def tearDownClass(cls):</div><div class="line">        sleep(1)</div><div class="line">        attempts = 0</div><div class="line">        allrecover = False</div><div class="line">        while attempts &lt; 2 and not allrecover:</div><div class="line">            try:</div><div class="line">                killnoUseprocess()</div><div class="line">                allrecover = True</div><div class="line">            except:</div><div class="line">                print &quot;error happen in clear environment for %d time &quot; % attempts</div><div class="line">                attempts += 1</div><div class="line">                sleep(3)</div><div class="line">        </div><div class="line">        # ==== power down ====</div><div class="line">        unit_power_down()</div><div class="line">        </div><div class="line">        # ==== log time ====</div><div class="line">        tim = timestamp()</div><div class="line">        msg = &quot;~~~~~~~~~~ Case ShutDown [%s] at %s ~~~~~~~~~~&quot; % (&quot;TX_Performance&quot;,str(tim))</div><div class="line">        logAndPrint(msg,cls.lloogg)</div><div class="line"></div><div class="line">    def setUp(self):</div><div class="line">        print &quot;===case init...&quot;</div><div class="line">        sleep(1)</div><div class="line">        pass</div><div class="line"></div><div class="line">    def tearDown(self):</div><div class="line">        print &quot;===case clear...&quot;</div><div class="line">        sleep(0.3)</div><div class="line">        pass</div><div class="line">    </div><div class="line">    def tx_power_pipe1(self):</div><div class="line">        readpower = 37.2</div><div class="line">        txp = readpower</div><div class="line">        msg = &quot;AHFB Tx Power low should below 36 and 38&quot;</div><div class="line">        print msg</div><div class="line">        sleep(1)</div><div class="line">        </div><div class="line">        msg = &quot;Test Over, get tx power on pipe1 is &quot;+ str(readpower)</div><div class="line">        logAndPrint(msg,self.lloogg)</div><div class="line">        </div><div class="line">        assert 36 &lt; txp &lt; 38 , &quot;power should between 36 and 38&quot;</div><div class="line">    </div><div class="line">    def tx_Aclr_low_pipe1(self):</div><div class="line">        readAclrLow = -56</div><div class="line">        </div><div class="line">        msg = &quot;aclr low should below -45&quot;</div><div class="line">        print msg</div><div class="line">        sleep(1)</div><div class="line">        </div><div class="line">        msg = &quot;Test Over, get tx aclr low on pipe1 is &quot;+ str(readAclrLow)</div><div class="line">        logAndPrint(msg,self.lloogg)</div><div class="line">        </div><div class="line">        assert readAclrLow &lt; -45</div><div class="line"></div><div class="line">    def tx_Aclr_high_pipe1(self):</div><div class="line">        readAclrHigh = -34</div><div class="line">        </div><div class="line">        msg = &quot;aclr low should below -45&quot;</div><div class="line">        print msg</div><div class="line">        sleep(1)</div><div class="line">        </div><div class="line">        msg = &quot;Test Over, get tx aclr high on pipe1 is &quot;+ str(readAclrHigh)</div><div class="line">        logAndPrint(msg,self.lloogg)</div><div class="line">        </div><div class="line">        assert readAclrHigh &lt; -45</div><div class="line">    </div><div class="line">if __name__ == &quot;__main__&quot;:</div><div class="line">    unittest.main()</div></pre></td></tr></table></figure></p>
+<h3 id="2-4-编写框架，应该注意的事情："><a href="#2-4-编写框架，应该注意的事情：" class="headerlink" title="2.4 编写框架，应该注意的事情："></a>2.4 编写框架，应该注意的事情：</h3><ul>
+<li>建议将每个测试组，放入不同的py文件，方便code管理。</li>
+<li>每个测试组起名字的时候，最好使用容易理解，独立的名字</li>
+<li>在测试组的类里，需要仔细想清楚初始化和扫尾需要做的事情，避免拖沓和无意义的操作。</li>
+<li>通过以下4个对象完成前后场景的高级功能：  <ol>
+<li>setUpClass 这个类方法，负责测试组前的初始化动作。适合放入“所有测试case只需要干一次的事情”（比如Radio开机上电）</li>
+<li>tearDownClass 这个类方法，负责测试组后的扫尾动作。适合放入“所有case都结束的时候执行的动作” （比如Radio下电，比如发送邮件通知测试者，测试结束）</li>
+<li>setUp 这个成员函数，负责每个case 执行前的初始化动作。适合放入“对于每个case都需要的初始动作，建议尽量少放入动作”</li>
+<li>tearDown 这个成员函数，负责每个case执行后的扫尾动作。适合放入“对于每个case执行完后都需要的动作，一般为清理环境的动作，尽量少放入动作”</li>
+</ol>
+</li>
+</ul>
+<h2 id="三、-其他注意事项："><a href="#三、-其他注意事项：" class="headerlink" title="三、 其他注意事项："></a>三、 其他注意事项：</h2><ul>
+<li>在执行“执行脚本”的时候，会在终端中打印当前测试的实时状态：<ul>
+<li>一个点表示Pass</li>
+<li>一个大写的F表示Fail</li>
+<li>一个大写的E表示异常，说明case非正常结束，可以在后面的报告中查看提示信息</li>
+</ul>
+</li>
+<li>建议在脚本里，尽量少用Print 函数，因为所有的打印信息都会被收集到HTML报告中，会显得很臃肿而且杂乱。一个优秀的测试系统，应该把必要的信息（case是Pass还是Fail）放在测试报告里，其他的详细信息（测试的过程，步骤的record,关键位置的mark信息）全部收录到测试log中。</li>
+<li>再次强调，这个系统依赖高质量的单个测试脚本，每个测试case应当经过几轮的验证和过滤再加入到测试系统里。否则不仅是一场不停修改错误的折磨人的循环，同时也是浪费大家的时间。对于测试活动来说，时间很重要，规则很重要。</li>
+<li>我在pyunit_demo\box 下面放了一个 check_set1.py 作为一个后悔药的例子 ，如果单独的脚本依然有问题，还是有办法在短时间内做debug检查的，那就是将测试组改写成独立的类，然后单独的调用它，观察过程是否正常，是否会报错。</li>
+</ul>
+<h4 id="3-3-最后把pyunit的官方文档附上，还有中文版哦"><a href="#3-3-最后把pyunit的官方文档附上，还有中文版哦" class="headerlink" title="3.3 最后把pyunit的官方文档附上，还有中文版哦"></a>3.3 最后把pyunit的官方文档附上，还有中文版哦</h4><p>pyunit.sourceforge.net/  </p>
+<h3 id="四、以后有时间，需要研究下，下面的高级工具"><a href="#四、以后有时间，需要研究下，下面的高级工具" class="headerlink" title="四、以后有时间，需要研究下，下面的高级工具"></a>四、以后有时间，需要研究下，下面的高级工具</h3><ul>
+<li>测试框架 Robot framework</li>
+<li>流行的CI外挂  Jenkins</li>
+</ul>
+
+    
+  </div>
+</article>
+
+
+   
+  <div class="text-center donation">
+    <div class="inner-donation">
+      <span class="btn-donation">支持一下</span>
+      <div class="donation-body">
+        <div class="tip text-center">扫一扫，支持我</div>
+        <ul class="theme.donation.items.length">
+        
+          <li class="item">
+            <img src="/images/qr-wechat.png" alt="">
+          </li>
+        
+          <li class="item">
+            <img src="/images/qr-alipay.png" alt="">
+          </li>
+        
+        </ul>
+      </div>
+    </div>
+  </div>
+
+
+   
+  <div class="box-prev-next clearfix">
+    <a class="show pull-left" href="/2017/09/25/config_notepad_to_pyide/">
+        <i class="icon icon-angle-left"></i>
+    </a>
+    <a class="hide pull-right" href="/">
+        <i class="icon icon-angle-right"></i>
+    </a>
+  </div>
+
+
+
+
+</div>
+
+
+  <a id="backTop" class="back-top">
+    <i class="icon-angle-up"></i>
+  </a>
+
+
+
+
+  <div class="modal" id="modal">
+  <span id="cover" class="cover hide"></span>
+  <div id="modal-dialog" class="modal-dialog hide-dialog">
+    <div class="modal-header">
+      <span id="close" class="btn-close">关闭</span>
+    </div>
+    <hr>
+    <div class="modal-body">
+      <ul class="list-toolbox">
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/archives/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              博客
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/category/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              分类
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/tag/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              标签
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/link/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              友链
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/about/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              关于
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/atom.xml"
+              rel="noopener noreferrer"
+              target="_blank"
+              >
+              RSS
+            </a>
+          </li>
+        
+      </ul>
+
+    </div>
+  </div>
+</div>
+
+
+
+  
+      <div class="fexo-comments comments-post">
+    
+
+    
+  <section class="duoshuo-comments">
+    <!-- 多说评论框 start -->
+    <div class="ds-thread" data-thread-key="post-build_platform_by_pyunit" 
+      data-title="使用Pyunit构建一个灵活的全自动测试平台" data-url="http://yoursite.com/2017/10/20/build_platform_by_pyunit/index.html"></div>
+    <!-- 多说评论框 end -->
+  </section>
+
+
+
+
+  <script type="text/javascript">
+  var duoshuoQuery = {short_name:"yunpengb"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0]
+     || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+  </script>
+
+
+    
+
+  </div>
+
+  
+
+  <script type="text/javascript">
+  function loadScript(url, callback) {
+    var script = document.createElement('script')
+    script.type = 'text/javascript';
+
+    if (script.readyState) { //IE
+      script.onreadystatechange = function() {
+        if (script.readyState == 'loaded' ||
+          script.readyState == 'complete') {
+          script.onreadystatechange = null;
+          callback();
+        }
+      };
+    } else { //Others
+      script.onload = function() {
+        callback();
+      };
+    }
+
+    script.src = url;
+    document.getElementsByTagName('head')[0].appendChild(script);
+  }
+
+  window.onload = function() {
+    loadScript('/js/bundle.js?235683', function() {
+      // load success
+    });
+  }
+</script>
+
+</body>
+</html>

@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2017-09-25T14:31:20.604Z</updated>
+  <updated>2017-11-23T13:52:59.665Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -14,6 +14,104 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>使用Pyunit构建一个灵活的全自动测试平台</title>
+    <link href="http://yoursite.com/2017/10/20/build_platform_by_pyunit/"/>
+    <id>http://yoursite.com/2017/10/20/build_platform_by_pyunit/</id>
+    <published>2017-10-20T03:40:00.000Z</published>
+    <updated>2017-11-23T13:52:59.665Z</updated>
+    
+    <content type="html"><![CDATA[<p><img src="http://oi16bpd89.bkt.clouddn.com/201710312150_58.png" alt=""></p>
+<p>&emsp;&emsp;主要讨论的话题：  </p>
+<ol>
+<li>方案背景</li>
+<li>方案实现</li>
+</ol>
+<h2 id="一、方案背景"><a href="#一、方案背景" class="headerlink" title="一、方案背景"></a>一、方案背景</h2><p>掌握python脚本的编写，希望通过使用简单的框架，实现全自动化测试</p>
+<h4 id="emsp-emsp-1-1-方案产生"><a href="#emsp-emsp-1-1-方案产生" class="headerlink" title="&emsp;&emsp;1.1 方案产生"></a>&emsp;&emsp;1.1 方案产生</h4><ul>
+<li>产品测试的需求分析中，发现所有的测试步骤都可以通过python自动化控制。尤其是HTX工具可以使用pywin32控制，射频仪表可以通过pyvisa控制。</li>
+<li>已经有一些通过python实现好的单个脚本的话，需要简单改写为Pyunit的格式。</li>
+<li>使用pyunit做执行框架，使用开源的HTMLTestRunner作为测试报告生成工具</li>
+</ul>
+<h4 id="emsp-emsp-1-2-方案简介"><a href="#emsp-emsp-1-2-方案简介" class="headerlink" title="&emsp;&emsp; 1.2 方案简介"></a>&emsp;&emsp; 1.2 方案简介</h4><h4 id="a-什么是Pyunit"><a href="#a-什么是Pyunit" class="headerlink" title="a. 什么是Pyunit"></a>a. 什么是Pyunit</h4><ul>
+<li>简介：Pyunit是专业单元测试框架，通过断言方法，判断测试结果。 优雅简洁，被设计用于白盒测试。但是由于它足够简单，我认为可以用它编写更复杂一点点的脚本，用于作产品测试。</li>
+<li>背景：Pyunit是Python版本的Junit, 隶属于Xunit系列，XUnit系列里最有名的是Junit<br> Junit是一款开源框架，在业界是单元测试的标杆。</li>
+<li>Pyunit大概出现于1999年左右，于2002年在python2.1往后的版本中被官方收录（python始于1989年，往后数第13年），成为官方集成的内建包。往后每个官方版本安装之后，直接可以import unittest。<h4 id="c-用白盒测试框架来测黑盒真的好吗"><a href="#c-用白盒测试框架来测黑盒真的好吗" class="headerlink" title="c.用白盒测试框架来测黑盒真的好吗"></a>c.用白盒测试框架来测黑盒真的好吗</h4>其实Pyunit本身是用来写白盒测试的，我也一度觉得似乎用的工具不太匹配，很low，很不专业，后来逐渐改变了这种想法。测试活动的中心目的是，管理好测试的过程和结果，至于工具，尽力而为，只要能达到测试目的的工具，就是好工具。在有余力的时候，可以继续研究和转移到更高效的测试框架上。</li>
+</ul>
+<h4 id="emsp-emsp-1-3-Pyunit的特点："><a href="#emsp-emsp-1-3-Pyunit的特点：" class="headerlink" title="&emsp;&emsp; 1.3 Pyunit的特点："></a>&emsp;&emsp; 1.3 Pyunit的特点：</h4><ul>
+<li><h5 id="批量处理能力"><a href="#批量处理能力" class="headerlink" title="批量处理能力"></a>批量处理能力</h5> Pyunit像一顶机关枪，只要有足够的子弹，就可以持续射击。适合组织批量执行case。</li>
+<li><h5 id="二元扁平结构"><a href="#二元扁平结构" class="headerlink" title="二元扁平结构"></a>二元扁平结构</h5> Pyunit使用的时候，分为两部分code:<br> 执行器部分和测试用例部分，建议两部分分开，定义好接口后，分层管理code,这样单独修改某个文件不会牵连其他code，方便code管理和维护。测试用例部分建议做总体的设计和优化，这样方便迭代和扩展用例</li>
+</ul>
+<ul>
+<li><h5 id="Pyunit强在用例管理，注意做好单个脚本的架构设计和质量控制"><a href="#Pyunit强在用例管理，注意做好单个脚本的架构设计和质量控制" class="headerlink" title="Pyunit强在用例管理，注意做好单个脚本的架构设计和质量控制"></a>Pyunit强在用例管理，注意做好单个脚本的架构设计和质量控制</h5> Pyunit并不是具有魔力的万金油，   它依赖于测试用例code部分的质量，所以作为测试脚本的开发和维护者，需要做好case本身的细节管理。包测试需求量化，和测试脚本调试以及版本控制。这些都做到，就可以顺畅的跑测试，并且以后扩展case也不难了。</li>
+<li><h5 id="成熟、高质量的单个脚本，是实现系统的关键"><a href="#成熟、高质量的单个脚本，是实现系统的关键" class="headerlink" title="成熟、高质量的单个脚本，是实现系统的关键"></a>成熟、高质量的单个脚本，<em>是实现系统的关键</em></h5>  只有大量实现好并且调试通过的单个用例，才可以使用Pyunit框架，将它们串联成一串弹夹，然后如机关枪般串联发射。  </li>
+<li><h5 id="测试组特性"><a href="#测试组特性" class="headerlink" title="测试组特性"></a>测试组特性</h5><ul>
+<li>Pyunit可通过定义类来实现测试用例的集合，每个类是一个测试组，每个类方法是一个case。</li>
+<li>内个case 通过断言语句实现最终结果的判断。</li>
+</ul>
+</li>
+<li><h5 id="丰富的初始化和扫尾功能"><a href="#丰富的初始化和扫尾功能" class="headerlink" title="丰富的初始化和扫尾功能"></a>丰富的初始化和扫尾功能</h5><p>  支持单个用例前后的初始化操作和扫尾操作，<br>  也支持整个测试组前后的初始化操作和扫尾操作</p>
+</li>
+</ul>
+<h2 id="二、方案实现"><a href="#二、方案实现" class="headerlink" title="二、方案实现"></a>二、方案实现</h2><h3 id="2-1-一定要有详细的测试需求："><a href="#2-1-一定要有详细的测试需求：" class="headerlink" title="2.1 一定要有详细的测试需求："></a>2.1 一定要有详细的测试需求：</h3><p>&emsp;&emsp;自动化没有详细的测试需求就是扯淡，测试需求是测试的基本输入，没有之一。  </p>
+<p>下面是一个例子：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">Version: 17</div><div class="line">Author: 刘德华</div><div class="line">Create Time: 1999-01-01</div><div class="line">Update Time: 1999-08-08</div><div class="line">Setup Need: TAD-PC \ LMP \ VLAN258 \ FSV \ RF cable \ Power Switch</div><div class="line">  </div><div class="line">AHFB 5Mhz带宽，下行载波的射频性能中的ACLR指标检查</div><div class="line">1. AHFB上电</div><div class="line">2. 等待40秒，此时应该开机结束，可以ping通101.1的IP地址</div><div class="line">3. 初始化HTX，等待同步结束，等待5秒</div><div class="line">4. 建立第一路的TX载波，频率为1962.5Mhz</div><div class="line">5. 等待10秒，此时载波应该处于稳定状态</div><div class="line">6. 通过GPIB接口连接罗德施瓦茨的FSV，复位FSV</div><div class="line">7. FSV进入Lte Mode</div><div class="line">8. FSV设置当前测量频率为1962.5Mhz，带宽为5Mhz</div><div class="line">9. FSV设置使用外部参考信号，并设置频率为10Mhz信号</div><div class="line">10.FSV设置使用连续测量模式</div><div class="line">11.FSV设置外部线损</div><div class="line">12.FSV读取一次ACLR结果</div><div class="line">13.通过ssh连接，读取命令dapd -stat 0的返回结果</div><div class="line">13.删除第一路的TX载波</div><div class="line">14.以上操作中没有报错，且ACLR的值小于-45db 则为PASS，否则为FAIL</div></pre></td></tr></table></figure></p>
+<p>通过这个例子，可以看到</p>
+<ul>
+<li>测试需求是一次操作的真实写照，是一个执行清单，量化而具体，不管手动还是自动执行，均可以照着操作。  </li>
+<li>如果可能，在记录上最好再加上测试环境的信息，越丰富越好，比如依赖的硬件设备（TADX\系统模块\时钟盒子），需要几个DUT参与测试, 是否需要DUT处在特殊的状态下，等等都要注明下。</li>
+<li>每个case都需要清晰的测试预期，也就是Pass和Fail的判断准绳，如果没有，请标注好待观察，然后将多次测试的数据收集起来，作为经验值的输入信息。</li>
+</ul>
+<p><img src="http://oi16bpd89.bkt.clouddn.com/201710312224_172.png" alt=""></p>
+<h3 id="2-2-根据需求，实现用例的脚本"><a href="#2-2-根据需求，实现用例的脚本" class="headerlink" title="2.2 根据需求，实现用例的脚本"></a>2.2 根据需求，实现用例的脚本</h3><ol>
+<li>有了上述的需求清单，再去实现单个python脚本就容易一些</li>
+<li>新加入的测试用例需要几个有经验的同事一起review,大家多提意见，才可以集思广益，发现一些细节的疏漏，避免漏测和误测。</li>
+</ol>
+<h3 id="2-3-按照Pyunit的格式，集成为测试组"><a href="#2-3-按照Pyunit的格式，集成为测试组" class="headerlink" title="2.3 按照Pyunit的格式，集成为测试组"></a>2.3 按照Pyunit的格式，集成为测试组</h3><p>下面是我实现的一个基本例子，里面也有log和HTML report功能。 </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">from testGroup1 import *</div><div class="line">import unittest</div><div class="line">import sys</div><div class="line"></div><div class="line"></div><div class="line">def ak47():</div><div class="line">    suiteTest = unittest.TestSuite()</div><div class="line">    </div><div class="line">    suiteTest.addTest(txPerformance(&quot;tx_power_pipe1&quot;))</div><div class="line">    suiteTest.addTest(txPerformance(&quot;tx_Aclr_low_pipe1&quot;))</div><div class="line">    suiteTest.addTest(txPerformance(&quot;tx_Aclr_high_pipe1&quot;))</div><div class="line">    </div><div class="line">    return suiteTest</div><div class="line"></div><div class="line">if __name__ == &apos;__main__&apos;:</div><div class="line">    runner.run(ak47())</div></pre></td></tr></table></figure>
+<p>测试组1的简单Demo<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div></pre></td><td class="code"><pre><div class="line"># -*- coding:utf-8 -*-</div><div class="line"></div><div class="line">import unittest</div><div class="line">from def1 import *</div><div class="line">from time import sleep</div><div class="line">import time</div><div class="line"></div><div class="line">class txPerf(unittest.TestCase):</div><div class="line"># class TxPerf(object):    </div><div class="line">    </div><div class="line">    @classmethod</div><div class="line">    def setUpClass(cls):</div><div class="line">        </div><div class="line">        cls.lloogg = None</div><div class="line">        </div><div class="line">        </div><div class="line">        # ==== log instance init ====</div><div class="line">        tim = timestamp()</div><div class="line">        </div><div class="line">        cls.lloogg = &quot;log\\&quot; + &quot;case_TxPerf_&quot;+ tim + &quot;.log&quot;</div><div class="line">        # cls.lloogg = &quot;case_TxPerf.log&quot;</div><div class="line">        </div><div class="line">        msg = &quot;~~~~~~~~~~ Case Start [%s] at %s ~~~~~~~~~~&quot; % (&quot;TX_Performance&quot;,str(tim))</div><div class="line">        logAndPrint(msg,cls.lloogg)</div><div class="line">        </div><div class="line">        # ==== powerSupply instance init and power on ====</div><div class="line">        unit_power_on()</div><div class="line">        sleep(2)</div><div class="line">        msg = &quot;~~~ unit power on step Done ~~~&quot;</div><div class="line">        logAndPrint(msg,cls.lloogg)</div><div class="line">        </div><div class="line">        # ~~~~~~~~ active 4 carrier ~~~~~~~~</div><div class="line">        for pipe in range(4):</div><div class="line">            activeTxCarr(pipe+1)</div><div class="line">            sleep(2)</div><div class="line">            </div><div class="line">            msg = &quot;============ Pipe %d Active Tx OK ============&quot; % (pipe+1)</div><div class="line">            logAndPrint(msg,cls.lloogg)</div><div class="line">        </div><div class="line">        </div><div class="line">    @classmethod</div><div class="line">    def tearDownClass(cls):</div><div class="line">        sleep(1)</div><div class="line">        attempts = 0</div><div class="line">        allrecover = False</div><div class="line">        while attempts &lt; 2 and not allrecover:</div><div class="line">            try:</div><div class="line">                killnoUseprocess()</div><div class="line">                allrecover = True</div><div class="line">            except:</div><div class="line">                print &quot;error happen in clear environment for %d time &quot; % attempts</div><div class="line">                attempts += 1</div><div class="line">                sleep(3)</div><div class="line">        </div><div class="line">        # ==== power down ====</div><div class="line">        unit_power_down()</div><div class="line">        </div><div class="line">        # ==== log time ====</div><div class="line">        tim = timestamp()</div><div class="line">        msg = &quot;~~~~~~~~~~ Case ShutDown [%s] at %s ~~~~~~~~~~&quot; % (&quot;TX_Performance&quot;,str(tim))</div><div class="line">        logAndPrint(msg,cls.lloogg)</div><div class="line"></div><div class="line">    def setUp(self):</div><div class="line">        print &quot;===case init...&quot;</div><div class="line">        sleep(1)</div><div class="line">        pass</div><div class="line"></div><div class="line">    def tearDown(self):</div><div class="line">        print &quot;===case clear...&quot;</div><div class="line">        sleep(0.3)</div><div class="line">        pass</div><div class="line">    </div><div class="line">    def tx_power_pipe1(self):</div><div class="line">        readpower = 37.2</div><div class="line">        txp = readpower</div><div class="line">        msg = &quot;AHFB Tx Power low should below 36 and 38&quot;</div><div class="line">        print msg</div><div class="line">        sleep(1)</div><div class="line">        </div><div class="line">        msg = &quot;Test Over, get tx power on pipe1 is &quot;+ str(readpower)</div><div class="line">        logAndPrint(msg,self.lloogg)</div><div class="line">        </div><div class="line">        assert 36 &lt; txp &lt; 38 , &quot;power should between 36 and 38&quot;</div><div class="line">    </div><div class="line">    def tx_Aclr_low_pipe1(self):</div><div class="line">        readAclrLow = -56</div><div class="line">        </div><div class="line">        msg = &quot;aclr low should below -45&quot;</div><div class="line">        print msg</div><div class="line">        sleep(1)</div><div class="line">        </div><div class="line">        msg = &quot;Test Over, get tx aclr low on pipe1 is &quot;+ str(readAclrLow)</div><div class="line">        logAndPrint(msg,self.lloogg)</div><div class="line">        </div><div class="line">        assert readAclrLow &lt; -45</div><div class="line"></div><div class="line">    def tx_Aclr_high_pipe1(self):</div><div class="line">        readAclrHigh = -34</div><div class="line">        </div><div class="line">        msg = &quot;aclr low should below -45&quot;</div><div class="line">        print msg</div><div class="line">        sleep(1)</div><div class="line">        </div><div class="line">        msg = &quot;Test Over, get tx aclr high on pipe1 is &quot;+ str(readAclrHigh)</div><div class="line">        logAndPrint(msg,self.lloogg)</div><div class="line">        </div><div class="line">        assert readAclrHigh &lt; -45</div><div class="line">    </div><div class="line">if __name__ == &quot;__main__&quot;:</div><div class="line">    unittest.main()</div></pre></td></tr></table></figure></p>
+<h3 id="2-4-编写框架，应该注意的事情："><a href="#2-4-编写框架，应该注意的事情：" class="headerlink" title="2.4 编写框架，应该注意的事情："></a>2.4 编写框架，应该注意的事情：</h3><ul>
+<li>建议将每个测试组，放入不同的py文件，方便code管理。</li>
+<li>每个测试组起名字的时候，最好使用容易理解，独立的名字</li>
+<li>在测试组的类里，需要仔细想清楚初始化和扫尾需要做的事情，避免拖沓和无意义的操作。</li>
+<li>通过以下4个对象完成前后场景的高级功能：  <ol>
+<li>setUpClass 这个类方法，负责测试组前的初始化动作。适合放入“所有测试case只需要干一次的事情”（比如Radio开机上电）</li>
+<li>tearDownClass 这个类方法，负责测试组后的扫尾动作。适合放入“所有case都结束的时候执行的动作” （比如Radio下电，比如发送邮件通知测试者，测试结束）</li>
+<li>setUp 这个成员函数，负责每个case 执行前的初始化动作。适合放入“对于每个case都需要的初始动作，建议尽量少放入动作”</li>
+<li>tearDown 这个成员函数，负责每个case执行后的扫尾动作。适合放入“对于每个case执行完后都需要的动作，一般为清理环境的动作，尽量少放入动作”</li>
+</ol>
+</li>
+</ul>
+<h2 id="三、-其他注意事项："><a href="#三、-其他注意事项：" class="headerlink" title="三、 其他注意事项："></a>三、 其他注意事项：</h2><ul>
+<li>在执行“执行脚本”的时候，会在终端中打印当前测试的实时状态：<ul>
+<li>一个点表示Pass</li>
+<li>一个大写的F表示Fail</li>
+<li>一个大写的E表示异常，说明case非正常结束，可以在后面的报告中查看提示信息</li>
+</ul>
+</li>
+<li>建议在脚本里，尽量少用Print 函数，因为所有的打印信息都会被收集到HTML报告中，会显得很臃肿而且杂乱。一个优秀的测试系统，应该把必要的信息（case是Pass还是Fail）放在测试报告里，其他的详细信息（测试的过程，步骤的record,关键位置的mark信息）全部收录到测试log中。</li>
+<li>再次强调，这个系统依赖高质量的单个测试脚本，每个测试case应当经过几轮的验证和过滤再加入到测试系统里。否则不仅是一场不停修改错误的折磨人的循环，同时也是浪费大家的时间。对于测试活动来说，时间很重要，规则很重要。</li>
+<li>我在pyunit_demo\box 下面放了一个 check_set1.py 作为一个后悔药的例子 ，如果单独的脚本依然有问题，还是有办法在短时间内做debug检查的，那就是将测试组改写成独立的类，然后单独的调用它，观察过程是否正常，是否会报错。</li>
+</ul>
+<h4 id="3-3-最后把pyunit的官方文档附上，还有中文版哦"><a href="#3-3-最后把pyunit的官方文档附上，还有中文版哦" class="headerlink" title="3.3 最后把pyunit的官方文档附上，还有中文版哦"></a>3.3 最后把pyunit的官方文档附上，还有中文版哦</h4><p>pyunit.sourceforge.net/  </p>
+<h3 id="四、以后有时间，需要研究下，下面的高级工具"><a href="#四、以后有时间，需要研究下，下面的高级工具" class="headerlink" title="四、以后有时间，需要研究下，下面的高级工具"></a>四、以后有时间，需要研究下，下面的高级工具</h3><ul>
+<li>测试框架 Robot framework</li>
+<li>流行的CI外挂  Jenkins</li>
+</ul>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;&lt;img src=&quot;http://oi16bpd89.bkt.clouddn.com/201710312150_58.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&amp;emsp;&amp;emsp;主要讨论的话题：  &lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;方案背景&lt;/li&gt;
+&lt;li&gt;方案实现&lt;/li
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>将Notepad++ 配置成Python IDE</title>
@@ -50,6 +148,63 @@
       &lt;h2 id=&quot;一、必要条件&quot;&gt;&lt;a href=&quot;#一、必要条件&quot; class=&quot;headerlink&quot; title=&quot;一、必要条件&quot;&gt;&lt;/a&gt;一、必要条件&lt;/h2&gt;&lt;ul&gt;
 &lt;li&gt;安装好Python解释器&lt;/li&gt;
 &lt;li&gt;安装好Notepad++ ,目前建议安装X86-7.
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>在Ubuntu上搭建一个自己的Dokuwiki</title>
+    <link href="http://yoursite.com/2017/09/24/install_dokuwiki_on_ubuntu/"/>
+    <id>http://yoursite.com/2017/09/24/install_dokuwiki_on_ubuntu/</id>
+    <published>2017-09-24T03:40:00.000Z</published>
+    <updated>2017-11-23T14:52:54.023Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="一、-前言"><a href="#一、-前言" class="headerlink" title="一、 前言"></a>一、 前言</h2><p>有一个wiki是很方便的，主要可以用来：  </p>
+<ul>
+<li>记录自己的项目活动相关信息  </li>
+<li>记录测试需求  </li>
+<li>记录备忘事项，方便其他人查看  </li>
+<li>加入评论，可以形成部分电子白板的功能  </li>
+</ul>
+<h2 id="二、安装细节"><a href="#二、安装细节" class="headerlink" title="二、安装细节"></a>二、安装细节</h2><ol>
+<li>首先需要有一个ubuntu主机，我选择的是16.04 64bit的桌面系统</li>
+<li><p>在主机上安装apache2  </p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo apt-get install apache2</div></pre></td></tr></table></figure>
+</li>
+<li><p>安装php5.6  </p>
+<p> $ sudo apt-get install python-software-properties<br> $ sudo add-apt-repository ppa:ondrej/php<br> $ sudo apt-get update<br> $ sudo apt-get -y install php5.6 php5.6-mcrypt php5.6-mbstring php5.6-curl   php5.6-cli php5.6-mysql php5.6-gd php5.6-intl php5.6-xsl php5.6-zip  </p>
+</li>
+</ol>
+<p>安装结束后，查询php版本：<br>    php -v</p>
+<ol>
+<li><p>安装Dokuwiki  </p>
+<p> sudo wget <a href="https://download.dokuwiki.org/out/dokuwiki-c5525093cf2c4f47e2e5d2439fe13964.tgz" target="_blank" rel="external">https://download.dokuwiki.org/out/dokuwiki-c5525093cf2c4f47e2e5d2439fe13964.tgz</a> –no-check-certificate</p>
+</li>
+</ol>
+<p>下载压缩包后，解压，然后将内容放在 /var/www/html/dokuwiki/下，然后修改dokuwiki文件夹的所有者为阿帕奇，  </p>
+<pre><code>sudo chown -R www-data:www-data /var/www/html/dokuwiki
+sudo chmod -R 707 /var/www/html/dokuwiki
+</code></pre><p>浏览器输入<a href="http://localhost/dokuwiki/install.php" target="_blank" rel="external">http://localhost/dokuwiki/install.php</a> 应该可以查看到新安装的提示页面。</p>
+<ol>
+<li>配置Dokuwiki<br>按照上述的流程，安装完成Dokuwiki后，理论上，ubuntu上apache2 这个process的owner就是www-data:www-data, 而dokuwiki文件夹的所有者也是www-data:www-data。所有的功能都是通过浏览器实现。后台apache2会根据wiki网页自动地生成页面文件，所以不需要wiki使用者再通过linux去维护这个服务。</li>
+</ol>
+<h2 id="三、-使用小技巧："><a href="#三、-使用小技巧：" class="headerlink" title="三、 使用小技巧："></a>三、 使用小技巧：</h2><ul>
+<li>在浏览器的地址上后缀加上，aaa:bbb就会自动产生一个aaa文件夹，并在aaa文件夹下自动产生bbb页面，此时点击页面上的创建此页面，然后就顺利的完成了新建页面的动作。   </li>
+<li>dokuwiki有几款很好用的插件，插件可以通过浏览器安装，需要到插件下载页下载zip格式的插件，然后使用dokuwiki管理员页面的自定义插件选项卡上传，自动安装成功。</li>
+<li>通过管理员的设置，可以隐藏很多按钮，让wiki的主界面简洁一些，隐藏媒体管理器，输入media即可。</li>
+<li>dokuwiki有很强大的用户管理功能，可以设置分组，且可以设置查看权限。有效使用可以效率翻倍。</li>
+<li>dokuwiki有很多强大的功能都是通过插件实现的，后面我再更新一个介绍插件的文章。 </li>
+</ul>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;一、-前言&quot;&gt;&lt;a href=&quot;#一、-前言&quot; class=&quot;headerlink&quot; title=&quot;一、 前言&quot;&gt;&lt;/a&gt;一、 前言&lt;/h2&gt;&lt;p&gt;有一个wiki是很方便的，主要可以用来：  &lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;记录自己的项目活动相关信息  &lt;/li&gt;
+&lt;
     
     </summary>
     
@@ -140,13 +295,13 @@
     <link href="http://yoursite.com/2017/08/20/markdown_demo/"/>
     <id>http://yoursite.com/2017/08/20/markdown_demo/</id>
     <published>2017-08-20T13:23:35.726Z</published>
-    <updated>2016-12-11T16:47:10.512Z</updated>
+    <updated>2017-11-23T13:47:10.452Z</updated>
     
     <content type="html"><![CDATA[<h4 id="导语："><a href="#导语：" class="headerlink" title="导语："></a>导语：</h4><blockquote>
 <p><a href="http://zh.wikipedia.org/wiki/Markdown" target="_blank" rel="external">Markdown</a>是一种轻量级的<strong>「标记语言」</strong>，它的优点很多</p>
 </blockquote>
 <p><img src="http://ww3.sinaimg.cn/large/6aee7dbbgw1effia3l1xoj214z0n8dkl.jpg" alt=""></p>
-<p>###一，认识Markdown<br>在刚才的导语里提到，</p>
+<h3 id="一，认识Markdown"><a href="#一，认识Markdown" class="headerlink" title="一，认识Markdown"></a>一，认识Markdown</h3><p>在刚才的导语里提到，</p>
 <ul>
 <li><em><a href="www.google.com">创始人语法说明</a></em></li>
 <li><em><a href="www.google.com">Markdown中文版语法说明</a></em></li>
@@ -187,7 +342,7 @@
 </table>
 <p>代码段<br><code>hello world!</code></p>
 <hr>
-<p>######参考文献<br><a href="http://jianshu.io/users/ea86ff9520da" target="_blank" rel="external">Te_Lee</a>,<br><a href="http://jianshu.io/p/1e402922ee32" target="_blank" rel="external">「Markdown——入门指南」</a></p>
+<h6 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h6><p><a href="http://jianshu.io/users/ea86ff9520da" target="_blank" rel="external">Te_Lee</a>,<br><a href="http://jianshu.io/p/1e402922ee32" target="_blank" rel="external">「Markdown——入门指南」</a></p>
 ]]></content>
     
     <summary type="html">
@@ -205,20 +360,19 @@
     <link href="http://yoursite.com/2017/04/29/markdown_summary/"/>
     <id>http://yoursite.com/2017/04/29/markdown_summary/</id>
     <published>2017-04-29T09:03:00.000Z</published>
-    <updated>2017-04-29T09:16:18.405Z</updated>
+    <updated>2017-11-23T13:47:35.300Z</updated>
     
-    <content type="html"><![CDATA[<p>###放入文字超链接<br> [ESPyHarp](<a href="https://git/11" target="_blank" rel="external">https://git/11</a>)</p>
-<p>###放入图片<br>![](<a href="http://oi.com/aa.jpg" target="_blank" rel="external">http://oi.com/aa.jpg</a>)</p>
-<p>###段落前空两格<br>\&emsp;\&emsp;</p>
-<p>###另起一行<br>在前一行的行尾加入多过2个空格</p>
-<p>###插入code<br>方法是在code的上下一行各加上三个上标点 ```     </p>
+    <content type="html"><![CDATA[<h3 id="放入文字超链接"><a href="#放入文字超链接" class="headerlink" title="放入文字超链接"></a>放入文字超链接</h3><p> [ESPyHarp](<a href="https://git/11" target="_blank" rel="external">https://git/11</a>)</p>
+<h3 id="放入图片"><a href="#放入图片" class="headerlink" title="放入图片"></a>放入图片</h3><p>![](<a href="http://oi.com/aa.jpg" target="_blank" rel="external">http://oi.com/aa.jpg</a>)</p>
+<h3 id="段落前空两格"><a href="#段落前空两格" class="headerlink" title="段落前空两格"></a>段落前空两格</h3><p>\&emsp;\&emsp;</p>
+<h3 id="另起一行"><a href="#另起一行" class="headerlink" title="另起一行"></a>另起一行</h3><p>在前一行的行尾加入多过2个空格</p>
+<h3 id="插入code"><a href="#插入code" class="headerlink" title="插入code"></a>插入code</h3><p>方法是在code的上下一行各加上三个上标点 ```     </p>
 <h3 id="在-markdown-中显示-markdown-原文"><a href="#在-markdown-中显示-markdown-原文" class="headerlink" title="在 markdown 中显示 markdown 原文"></a>在 markdown 中显示 markdown 原文</h3><p>在特殊字符前加入\即可，即阻止转义</p>
 ]]></content>
     
     <summary type="html">
     
-      &lt;p&gt;###放入文字超链接&lt;br&gt; [ESPyHarp](&lt;a href=&quot;https://git/11&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;https://git/11&lt;/a&gt;)&lt;/p&gt;
-&lt;p&gt;###放入图片&lt;br&gt;![](&lt;a href=&quot;http
+      &lt;h3 id=&quot;放入文字超链接&quot;&gt;&lt;a href=&quot;#放入文字超链接&quot; class=&quot;headerlink&quot; title=&quot;放入文字超链接&quot;&gt;&lt;/a&gt;放入文字超链接&lt;/h3&gt;&lt;p&gt; [ESPyHarp](&lt;a href=&quot;https://git/11&quot; target=&quot;_blan
     
     </summary>
     
@@ -230,24 +384,24 @@
     <link href="http://yoursite.com/2017/03/20/ESP_MicroPython_Guide/"/>
     <id>http://yoursite.com/2017/03/20/ESP_MicroPython_Guide/</id>
     <published>2017-03-20T07:55:00.000Z</published>
-    <updated>2017-08-20T12:29:07.371Z</updated>
+    <updated>2017-11-23T13:48:23.133Z</updated>
     
-    <content type="html"><![CDATA[<p>##擦掉flash<br>MicroPython的 <a href="http://docs.micropython.org/en/latest/esp8266/esp8266/tutorial/intro.html#intro" target="_blank" rel="external">intro</a> 里1.4里有介绍。<br>另外，如果是在win os下，擦除flash的命令大概是<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">esptool.py --port com3 erase_flash</div></pre></td></tr></table></figure></p>
-<p>##刷入MicroPython 固件<br>下载对应ESP8266的MicroPython固件的地址在这里 <a href="http://www.micropython.org/download" target="_blank" rel="external">download</a> ，<br>你会得到类似esp8266-20170108-v1.8.7.bin 这样命名的文件。<br>刷入方法在上面的1.4节也有介绍，主要就是依靠下面这句<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">esptool.py --port com3 --baud 115200 write_flash --flash_size=detect 0 esp8266-20170108-v1.8.7.bin</div></pre></td></tr></table></figure></p>
+    <content type="html"><![CDATA[<h2 id="擦掉flash"><a href="#擦掉flash" class="headerlink" title="擦掉flash"></a>擦掉flash</h2><p>MicroPython的 <a href="http://docs.micropython.org/en/latest/esp8266/esp8266/tutorial/intro.html#intro" target="_blank" rel="external">intro</a> 里1.4里有介绍。<br>另外，如果是在win os下，擦除flash的命令大概是<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">esptool.py --port com3 erase_flash</div></pre></td></tr></table></figure></p>
+<h2 id="刷入MicroPython-固件"><a href="#刷入MicroPython-固件" class="headerlink" title="刷入MicroPython 固件"></a>刷入MicroPython 固件</h2><p>下载对应ESP8266的MicroPython固件的地址在这里 <a href="http://www.micropython.org/download" target="_blank" rel="external">download</a> ，<br>你会得到类似esp8266-20170108-v1.8.7.bin 这样命名的文件。<br>刷入方法在上面的1.4节也有介绍，主要就是依靠下面这句<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">esptool.py --port com3 --baud 115200 write_flash --flash_size=detect 0 esp8266-20170108-v1.8.7.bin</div></pre></td></tr></table></figure></p>
 <p>注意，我尝试过512k专属版，似乎不好用，所以还是使用长期稳定版比较好（每夜版没有试过）。</p>
-<p>##查看文件系统<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">uos.listdir() # 查看路径下的文件</div><div class="line">uos.listdir(&apos;dir&apos;) #查看文件夹下的文件</div><div class="line">uos.getcwd() #查看当前目录, 根目录是&apos;&apos;</div><div class="line">uos.chdir()  #改变当前目录</div></pre></td></tr></table></figure></p>
-<p>##查看文件<br>使用打开文件的方法<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">f = open(&apos;main.py&apos;, &apos;r&apos;)</div><div class="line">f.read()</div><div class="line">&quot;print(&apos;Welcome~&apos;)\nprint(&apos;Hello!&apos;)\n&quot;</div></pre></td></tr></table></figure></p>
-<p>##删除文件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">uos.remove(&apos;main.py&apos;)</div></pre></td></tr></table></figure></p>
-<p>##Software Reset<br>在串口可用的时候，输入Ctrl + D 即可软复位</p>
-<p>##Hardware Reset<br>断电时硬复位</p>
-<p>##常用工具<br> <a href="https://github.com/salesiopark/ESPyHarp" target="_blank" rel="external">ESPyHarp</a><br> 是一个可以给MP传输文件的java程序，win下使用，硬伤是无法快速便捷的中断com占用，导致使用起来不方便。<br><a href="https://github.com/micropython/webrepl/archive/master.zip" target="_blank" rel="external">webrepl client html</a><br>是一个网页形式的文件传输工具，使用起来比较方便，每次连接一般是要输入密码（根据MP的设置来）.<br>esptool<br>这个上面都有说，python 公共库里集成了，使用pip安装<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">pip install esptool</div></pre></td></tr></table></figure></p>
+<h2 id="查看文件系统"><a href="#查看文件系统" class="headerlink" title="查看文件系统"></a>查看文件系统</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">uos.listdir() # 查看路径下的文件</div><div class="line">uos.listdir(&apos;dir&apos;) #查看文件夹下的文件</div><div class="line">uos.getcwd() #查看当前目录, 根目录是&apos;&apos;</div><div class="line">uos.chdir()  #改变当前目录</div></pre></td></tr></table></figure>
+<h2 id="查看文件"><a href="#查看文件" class="headerlink" title="查看文件"></a>查看文件</h2><p>使用打开文件的方法<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">f = open(&apos;main.py&apos;, &apos;r&apos;)</div><div class="line">f.read()</div><div class="line">&quot;print(&apos;Welcome~&apos;)\nprint(&apos;Hello!&apos;)\n&quot;</div></pre></td></tr></table></figure></p>
+<h2 id="删除文件"><a href="#删除文件" class="headerlink" title="删除文件"></a>删除文件</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">uos.remove(&apos;main.py&apos;)</div></pre></td></tr></table></figure>
+<h2 id="Software-Reset"><a href="#Software-Reset" class="headerlink" title="Software Reset"></a>Software Reset</h2><p>在串口可用的时候，输入Ctrl + D 即可软复位</p>
+<h2 id="Hardware-Reset"><a href="#Hardware-Reset" class="headerlink" title="Hardware Reset"></a>Hardware Reset</h2><p>断电时硬复位</p>
+<h2 id="常用工具"><a href="#常用工具" class="headerlink" title="常用工具"></a>常用工具</h2><p> <a href="https://github.com/salesiopark/ESPyHarp" target="_blank" rel="external">ESPyHarp</a><br> 是一个可以给MP传输文件的java程序，win下使用，硬伤是无法快速便捷的中断com占用，导致使用起来不方便。<br><a href="https://github.com/micropython/webrepl/archive/master.zip" target="_blank" rel="external">webrepl client html</a><br>是一个网页形式的文件传输工具，使用起来比较方便，每次连接一般是要输入密码（根据MP的设置来）.<br>esptool<br>这个上面都有说，python 公共库里集成了，使用pip安装<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">pip install esptool</div></pre></td></tr></table></figure></p>
 <h2 id="已知问题"><a href="#已知问题" class="headerlink" title="已知问题"></a>已知问题</h2><p>利用http 按钮发送反馈的时候，不能使用360浏览器，它会拦截反馈信息</p>
 <h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a href="http://www.micropython.org" target="_blank" rel="external">MicroPython官网</a><br><a href="https://my.oschina.net/shaoziyang/blog/781235" target="_blank" rel="external">介绍1</a><br><a href="http://bbs.eeworld.com.cn/forum-243-1.html" target="_blank" rel="external">论坛</a><br><a href="http://blog.csdn.net/yannanxiu/article/details/53966374" target="_blank" rel="external">介绍2</a></p>
 ]]></content>
     
     <summary type="html">
     
-      &lt;p&gt;##擦掉flash&lt;br&gt;MicroPython的 &lt;a href=&quot;http://docs.micropython.org/en/latest/esp8266/esp8266/tutorial/intro.html#intro&quot; target=&quot;_blank&quot; rel=&quot;
+      &lt;h2 id=&quot;擦掉flash&quot;&gt;&lt;a href=&quot;#擦掉flash&quot; class=&quot;headerlink&quot; title=&quot;擦掉flash&quot;&gt;&lt;/a&gt;擦掉flash&lt;/h2&gt;&lt;p&gt;MicroPython的 &lt;a href=&quot;http://docs.micropython.org/
     
     </summary>
     
@@ -344,7 +498,7 @@
     <link href="http://yoursite.com/2015/05/15/remote_control_FSV/"/>
     <id>http://yoursite.com/2015/05/15/remote_control_FSV/</id>
     <published>2015-05-15T12:10:00.000Z</published>
-    <updated>2017-08-20T12:30:00.360Z</updated>
+    <updated>2017-11-23T13:50:13.607Z</updated>
     
     <content type="html"><![CDATA[<p>&emsp;&emsp;经常要手动控制FSV测试RRH的上下行射频性能指标。重复操作太枯燥，还好查找手册发现了可以通过RJ45或者GPIB端口发送SCPI命令实现远程控制，<br>总结命令如下</p>
 <h3 id="测试-TX-EVM"><a href="#测试-TX-EVM" class="headerlink" title="测试 TX EVM"></a>测试 TX EVM</h3><table>
@@ -471,7 +625,7 @@
 </tr>
 </tbody>
 </table>
-<p>###测试RX EVM<br>主要是设置信号发生器，发出制定的波形文件</p>
+<h3 id="测试RX-EVM"><a href="#测试RX-EVM" class="headerlink" title="测试RX EVM"></a>测试RX EVM</h3><p>主要是设置信号发生器，发出制定的波形文件</p>
 <table>
 <thead>
 <tr>
