@@ -1,25 +1,32 @@
 <!DOCTYPE html>
-
-
-  <html class="light page-post">
-
-
+<html>
 <head>
-  <meta charset="utf-8">
-  
-  <title>DIY 远程控制电源模块 | White Note</title>
+    
 
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
 
-  
-    <meta name="keywords" content="forsigner,Python,工具,创新,Server" />
-  
+    
 
-  <meta name="description" content="&amp;emsp;&amp;emsp;我们的自动化测试环境一直缺少一个可以远程控制的供电系统来控制Radio产品的开关机。之前在波兰的时候，我看到老外的自动化Lab全部采用的是商业控制产品，可使用web页面控制，也可以使用简单的协议控制（ssh或者Telnet发送简单的命令控制外部电路）。&amp;emsp;&amp;emsp;按照老外的配置，一套控制核心+几路ABB继电器+几路空开。我查了下报价，3000欧元一个控制中心，继">
+
+
+    <meta charset="utf-8">
+    
+    
+    <link rel="canonical" href="http://buildit.top/2016/08/15/DIY_remote_power_switch/">
+    
+    
+    <title>DIY 远程控制电源模块 | 物作小白 | Do the same, think different</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#000099">
+    
+    
+    <meta name="keywords" content="">
+    <meta name="description" content="&amp;emsp;&amp;emsp;我们的自动化测试环境一直缺少一个可以远程控制的供电系统来控制Radio产品的开关机。之前在波兰的时候，我看到老外的自动化Lab全部采用的是商业控制产品，可使用web页面控制，也可以使用简单的协议控制（ssh或者Telnet发送简单的命令控制外部电路）。&amp;emsp;&amp;emsp;按照老外的配置，一套控制核心+几路ABB继电器+几路空开。我查了下报价，3000欧元一个控制中心，继">
 <meta property="og:type" content="article">
 <meta property="og:title" content="DIY 远程控制电源模块">
-<meta property="og:url" content="http://yoursite.com/2016/08/15/DIY_remote_power_switch/index.html">
-<meta property="og:site_name" content="White Note">
+<meta property="og:url" content="http://buildit.top/2016/08/15/DIY_remote_power_switch/index.html">
+<meta property="og:site_name" content="物作小白">
 <meta property="og:description" content="&amp;emsp;&amp;emsp;我们的自动化测试环境一直缺少一个可以远程控制的供电系统来控制Radio产品的开关机。之前在波兰的时候，我看到老外的自动化Lab全部采用的是商业控制产品，可使用web页面控制，也可以使用简单的协议控制（ssh或者Telnet发送简单的命令控制外部电路）。&amp;emsp;&amp;emsp;按照老外的配置，一套控制核心+几路ABB继电器+几路空开。我查了下报价，3000欧元一个控制中心，继">
 <meta property="og:image" content="http://oi16bpd89.bkt.clouddn.com/setup_remote_power.jpg">
 <meta property="og:image" content="http://oi16bpd89.bkt.clouddn.com/logi1.png">
@@ -30,177 +37,177 @@
 <meta name="twitter:title" content="DIY 远程控制电源模块">
 <meta name="twitter:description" content="&amp;emsp;&amp;emsp;我们的自动化测试环境一直缺少一个可以远程控制的供电系统来控制Radio产品的开关机。之前在波兰的时候，我看到老外的自动化Lab全部采用的是商业控制产品，可使用web页面控制，也可以使用简单的协议控制（ssh或者Telnet发送简单的命令控制外部电路）。&amp;emsp;&amp;emsp;按照老外的配置，一套控制核心+几路ABB继电器+几路空开。我查了下报价，3000欧元一个控制中心，继">
 <meta name="twitter:image" content="http://oi16bpd89.bkt.clouddn.com/setup_remote_power.jpg">
+    
+        <link rel="alternate" type="application/atom+xml" title="物作小白" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
 
-  
+    <!-- custom head -->
+    
 
-  
-    <link rel="icon" href="/favicon.ico">
-  
-
-  <link href="/css/styles.css?v=c114cbe6" rel="stylesheet">
-
-
-  
-    <link rel="stylesheet" href="/css/personal-style.css">
-  
-
-  
-
-  
-
-  
-
-
-  
-    <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-  
-
-  
-    <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.3.0/css/font-awesome.min.css">
-  
 </head>
 
 <body>
+    <div id="loading" class="active"></div>
 
-
-  
-    <span id="toolbox-mobile" class="toolbox-mobile">盒子</span>
-  
-
-  <div class="post-header CENTER">
-   
-  <div class="toolbox">
-    <a class="toolbox-entry" href="/">
-      <span class="toolbox-entry-text">盒子</span>
-      <i class="icon-angle-down"></i>
-      <i class="icon-home"></i>
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
     </a>
-    <ul class="list-toolbox">
-      
-        <li class="item-toolbox">
-          <a
-            class="CIRCLE"
-            href="/archives/"
-            rel="noopener noreferrer"
-            target="_self"
-            >
-            博客
-          </a>
-        </li>
-      
-        <li class="item-toolbox">
-          <a
-            class="CIRCLE"
-            href="/category/"
-            rel="noopener noreferrer"
-            target="_self"
-            >
-            分类
-          </a>
-        </li>
-      
-        <li class="item-toolbox">
-          <a
-            class="CIRCLE"
-            href="/tag/"
-            rel="noopener noreferrer"
-            target="_self"
-            >
-            标签
-          </a>
-        </li>
-      
-        <li class="item-toolbox">
-          <a
-            class="CIRCLE"
-            href="/link/"
-            rel="noopener noreferrer"
-            target="_self"
-            >
-            友链
-          </a>
-        </li>
-      
-        <li class="item-toolbox">
-          <a
-            class="CIRCLE"
-            href="/about/"
-            rel="noopener noreferrer"
-            target="_self"
-            >
-            关于
-          </a>
-        </li>
-      
-        <li class="item-toolbox">
-          <a
-            class="CIRCLE"
-            href="/atom.xml"
-            rel="noopener noreferrer"
-            target="_blank"
-            >
-            RSS
-          </a>
-        </li>
-      
-    </ul>
-  </div>
-
-
-</div>
-
-
-  <div id="toc" class="toc-article">
-    <strong class="toc-title">Posts List</strong>
-    <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#直接上demo图"><span class="toc-text">直接上demo图</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#逻辑原理是这样的："><span class="toc-text">逻辑原理是这样的：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#经过我的尝试"><span class="toc-text">经过我的尝试</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#实验过程"><span class="toc-text">实验过程</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1-init-lua-传到ESP8266里。"><span class="toc-text">1.  init.lua 传到ESP8266里。</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-测试开始："><span class="toc-text">2. 测试开始：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#实验结束"><span class="toc-text">实验结束</span></a></li></ol></li></ol>
-  </div>
-
-
-
-<div class="content content-post CENTER">
-   <article id="post-DIY_remote_power_switch" class="article article-type-post" itemprop="blogPost">
-  <header class="article-header">
-    <h1 class="post-title">DIY 远程控制电源模块</h1>
-
-    <div class="article-meta">
-      <span>
-        <i class="icon-calendar"></i>
-        <span>2016.08.15</span>
-      </span>
-
-      
-        <span class="article-author">
-          <i class="icon-user"></i>
-          <span>Bai&#39;s Notes</span>
-        </span>
-      
-
-      
-
-
-      
-
-      
-      <i class="fa fa-eye"></i> 
-        <span id="busuanzi_container_page_pv">
-           &nbsp热度 <span id="busuanzi_value_page_pv">
-           <i class="fa fa-spinner fa-spin"></i></span>℃
-        </span>
-      
-
-      
-        <i class="icon-comment"></i> 
-        <span class="ds-thread-count" data-thread-key="post-DIY_remote_power_switch"><i class="fa fa-spinner fa-spin"></i></span> 条评论
-      
-      
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.png">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Yunpeng</h5>
+          <a href="mailto:byp_note@163.com" title="byp_note@163.com" class="mail">byp_note@163.com</a>
+        </hgroup>
+      </div>
     </div>
-  </header>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/yunpengb" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://www.weibo.com/runheart" target="_blank" >
+                <i class="icon icon-lg icon-weibo"></i>
+                微博
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
 
-  <div class="article-content">
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">DIY 远程控制电源模块</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">DIY 远程控制电源模块</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2016-08-15T15:39:00.000Z" itemprop="datePublished" class="page-time">
+  2016-08-15
+</time>
+
+
+            
+        </h5>
+    </div>
+
     
-      <p>&emsp;&emsp;我们的自动化测试环境一直缺少一个可以远程控制的供电系统来控制Radio产品的开关机。之前在波兰的时候，我看到老外的自动化Lab全部采用的是商业控制产品，可使用web页面控制，也可以使用简单的协议控制（ssh或者Telnet发送简单的命令控制外部电路）。<br>&emsp;&emsp;按照老外的配置，一套控制核心+几路ABB继电器+几路空开。我查了下报价，3000欧元一个控制中心，继电器也得300RMB一个。总体下来一万多RMB。就为了自动开个机，花销挺贵的。老板也没同意，搁置了这个想法一段时间。<br>&emsp;&emsp;后来混树莓派论坛的时候，我发现有人在用ESP8266组装各种很屌的玩意，其中就包括可控电源开关，很有意思。我随后淘宝了几只，一只只要25块，很便宜的说。<br>&emsp;&emsp;以下记录的就是实现可控电源开关的过程。</p>
-<h4 id="直接上demo图"><a href="#直接上demo图" class="headerlink" title="直接上demo图"></a>直接上demo图</h4><p><img src="http://oi16bpd89.bkt.clouddn.com/setup_remote_power.jpg" alt=""><br>&emsp;&emsp;这个demo使用的材料有：ESP8266开发板1只+ LED灯2个 + 电阻一只 + 若干导线 + 5V继电器一枚 + 小米移动电源一个，除掉小米移动电源，花销大概是50块不到。</p>
-<h4 id="逻辑原理是这样的："><a href="#逻辑原理是这样的：" class="headerlink" title="逻辑原理是这样的："></a>逻辑原理是这样的：</h4><p><img src="http://oi16bpd89.bkt.clouddn.com/logi1.png" alt=""></p>
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#直接上demo图"><span class="post-toc-number">1.</span> <span class="post-toc-text">直接上demo图</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#逻辑原理是这样的："><span class="post-toc-number">2.</span> <span class="post-toc-text">逻辑原理是这样的：</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#经过我的尝试"><span class="post-toc-number">3.</span> <span class="post-toc-text">经过我的尝试</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#实验过程"><span class="post-toc-number">4.</span> <span class="post-toc-text">实验过程</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#1-init-lua-传到ESP8266里。"><span class="post-toc-number">4.1.</span> <span class="post-toc-text">1.  init.lua 传到ESP8266里。</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#2-测试开始："><span class="post-toc-number">4.2.</span> <span class="post-toc-text">2. 测试开始：</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#实验结束"><span class="post-toc-number">4.3.</span> <span class="post-toc-text">实验结束</span></a></li></ol></li></ol>
+        </nav>
+    </aside>
+    
+<article id="post-DIY_remote_power_switch"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">DIY 远程控制电源模块</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2016-08-15 23:39:00" datetime="2016-08-15T15:39:00.000Z"  itemprop="datePublished">2016-08-15</time>
+
+            
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <p>&emsp;&emsp;我们的自动化测试环境一直缺少一个可以远程控制的供电系统来控制Radio产品的开关机。之前在波兰的时候，我看到老外的自动化Lab全部采用的是商业控制产品，可使用web页面控制，也可以使用简单的协议控制（ssh或者Telnet发送简单的命令控制外部电路）。<br>&emsp;&emsp;按照老外的配置，一套控制核心+几路ABB继电器+几路空开。我查了下报价，3000欧元一个控制中心，继电器也得300RMB一个。总体下来一万多RMB。就为了自动开个机，花销挺贵的。老板也没同意，搁置了这个想法一段时间。<br>&emsp;&emsp;后来混树莓派论坛的时候，我发现有人在用ESP8266组装各种很屌的玩意，其中就包括可控电源开关，很有意思。我随后淘宝了几只，一只只要25块，很便宜的说。<br>&emsp;&emsp;以下记录的就是实现可控电源开关的过程。</p>
+<h4 id="直接上demo图"><a href="#直接上demo图" class="headerlink" title="直接上demo图"></a>直接上demo图</h4><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://oi16bpd89.bkt.clouddn.com/setup_remote_power.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<p>&emsp;&emsp;这个demo使用的材料有：ESP8266开发板1只+ LED灯2个 + 电阻一只 + 若干导线 + 5V继电器一枚 + 小米移动电源一个，除掉小米移动电源，花销大概是50块不到。</p>
+<h4 id="逻辑原理是这样的："><a href="#逻辑原理是这样的：" class="headerlink" title="逻辑原理是这样的："></a>逻辑原理是这样的：</h4><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://oi16bpd89.bkt.clouddn.com/logi1.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
 <ul>
 <li>开发板有固定的3.3V和地，以及若干3.3V的GPIO引脚</li>
 <li>控制信号由D1 GPIO控制，图上的黄线</li>
@@ -212,210 +219,340 @@
 </ul>
 <p>&emsp;&emsp;这里比较凑巧的是3.3V可以给继电器供电。所以就不需要再麻烦给继电器连接额外的电源，从而可以把整个装置做的很小。<br>同时，毕竟它是一个IOT开发板，是带WIFI芯片的，可以连接路由器。<br>参考了dingzz的 <a href="http://blog.csdn.NET/dingzz/article/details/46876503" target="_blank" rel="external">http://blog.csdn.NET/dingzz/article/details/46876503</a> 文章<br>加入了一个网页特性，这里init.lua的代码如下(Lua脚本)：</p>
 <figure class="highlight lua"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">print</span>(<span class="string">'Setting up WIFI...'</span>)</div><div class="line">wifi.setmode(wifi.STATION)</div><div class="line">wifi.sta.config(<span class="string">'WIFI_ssid'</span>, <span class="string">'wifi_password'</span>)</div><div class="line">wifi.sta.connect()</div><div class="line">tmr.alarm(<span class="number">1</span>,<span class="number">1000</span>,<span class="number">1</span>,<span class="function"><span class="keyword">function</span><span class="params">()</span></span></div><div class="line"><span class="keyword">if</span> wifi.sta.getip()==<span class="keyword">nil</span> <span class="keyword">then</span></div><div class="line"><span class="built_in">print</span>(<span class="string">"IP unavaiable,Waiting..."</span>)</div><div class="line"><span class="keyword">else</span></div><div class="line">tmr.stop(<span class="number">1</span>)</div><div class="line"><span class="built_in">print</span>(<span class="string">"Config done, IP is "</span>..wifi.sta.getip())</div><div class="line"><span class="keyword">end</span></div><div class="line"><span class="keyword">end</span>)</div><div class="line">led1 = <span class="number">1</span></div><div class="line">led2 = <span class="number">2</span></div><div class="line">gpio.mode(led1, gpio.OUTPUT)</div><div class="line">gpio.mode(led2, gpio.OUTPUT)</div><div class="line">srv=net.createServer(net.TCP)</div><div class="line">srv:listen(<span class="number">80</span>,<span class="function"><span class="keyword">function</span><span class="params">(conn)</span></span></div><div class="line">    conn:on(<span class="string">"receive"</span>, <span class="function"><span class="keyword">function</span><span class="params">(client,request)</span></span></div><div class="line">        <span class="keyword">local</span> buf = <span class="string">""</span>;</div><div class="line">        <span class="keyword">local</span> _, _, method, path, vars = <span class="built_in">string</span>.find(request, <span class="string">"([A-Z]+) (.+)?(.+) HTTP"</span>);</div><div class="line">        <span class="keyword">if</span>(method == <span class="keyword">nil</span>)<span class="keyword">then</span></div><div class="line">            _, _, method, path = <span class="built_in">string</span>.find(request, <span class="string">"([A-Z]+) (.+) HTTP"</span>);</div><div class="line">        <span class="keyword">end</span></div><div class="line">        <span class="keyword">local</span> _GET = &#123;&#125;</div><div class="line">        <span class="keyword">if</span> (vars ~= <span class="keyword">nil</span>)<span class="keyword">then</span></div><div class="line">            <span class="keyword">for</span> k, v <span class="keyword">in</span> <span class="built_in">string</span>.gmatch(vars, <span class="string">"(%w+)=(%w+)&amp;*"</span>) <span class="keyword">do</span></div><div class="line">                _GET[k] = v</div><div class="line">            <span class="keyword">end</span></div><div class="line">        <span class="keyword">end</span></div><div class="line">        buf = buf..<span class="string">"&lt;h1&gt; ESP 8266 server&lt;/h1&gt;"</span>;</div><div class="line">        buf = buf..<span class="string">"&lt;p&gt;switch1 &lt;a href=\"?pin=ON1\"&gt;&lt;button&gt;ON&lt;/button&gt;&lt;/a&gt; &lt;a href=\"?pin=OFF1\"&gt;&lt;button&gt;OFF&lt;/button&gt;&lt;/a&gt;&lt;/p&gt;"</span>;</div><div class="line">        buf = buf..<span class="string">"&lt;p&gt;switch2 &lt;a href=\"?pin=ON2\"&gt;&lt;button&gt;ON&lt;/button&gt;&lt;/a&gt; &lt;a href=\"?pin=OFF2\"&gt;&lt;button&gt;OFF&lt;/button&gt;&lt;/a&gt;&lt;/p&gt;"</span>;</div><div class="line">        <span class="keyword">local</span> _on,_off = <span class="string">""</span>,<span class="string">""</span></div><div class="line">        <span class="keyword">if</span>(_GET.pin == <span class="string">"ON1"</span>)<span class="keyword">then</span></div><div class="line">              gpio.write(led1, gpio.HIGH);</div><div class="line">        <span class="keyword">elseif</span>(_GET.pin == <span class="string">"OFF1"</span>)<span class="keyword">then</span></div><div class="line">              gpio.write(led1, gpio.LOW);</div><div class="line">        <span class="keyword">elseif</span>(_GET.pin == <span class="string">"ON2"</span>)<span class="keyword">then</span></div><div class="line">              gpio.write(led2, gpio.HIGH);</div><div class="line">        <span class="keyword">elseif</span>(_GET.pin == <span class="string">"OFF2"</span>)<span class="keyword">then</span></div><div class="line">              gpio.write(led2, gpio.LOW);</div><div class="line">        <span class="keyword">end</span></div><div class="line">        client:send(buf);</div><div class="line">        client:close();</div><div class="line">        <span class="built_in">collectgarbage</span>();</div><div class="line">    <span class="keyword">end</span>)</div><div class="line"><span class="keyword">end</span>)</div></pre></td></tr></table></figure>
-<p>init.lua传入开发板后，每次开机都会执行它，<br>这是NodeMcu的设计。<br>这里代码实现的功能就是连接WIFI，并建立了一个网页server.<br>只要知道开发板的IP地址，就可以通过浏览器控制你想控制的电源。<br>效果是这样的：<br><img src="http://oi16bpd89.bkt.clouddn.com/remote_web.png" alt=""></p>
+<p>init.lua传入开发板后，每次开机都会执行它，<br>这是NodeMcu的设计。<br>这里代码实现的功能就是连接WIFI，并建立了一个网页server.<br>只要知道开发板的IP地址，就可以通过浏览器控制你想控制的电源。<br>效果是这样的：<br><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://oi16bpd89.bkt.clouddn.com/remote_web.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure></p>
 <h4 id="实验过程"><a href="#实验过程" class="headerlink" title="实验过程"></a>实验过程</h4><h5 id="1-init-lua-传到ESP8266里。"><a href="#1-init-lua-传到ESP8266里。" class="headerlink" title="1.  init.lua 传到ESP8266里。"></a>1.  init.lua 传到ESP8266里。</h5><p>开机，它即可连接上指定的WIFI信号，假如PC同时连入同一个无线网，就可以简单的通过网页访问ESP8266 server。<br>然后用浏览器打开IP地址（实际上，我之前调试的时候通过串口打印已经知道了这个IP，但是如果是首次换了脚本，直接通过外部电源开机，是不知道它的IP地址的。</p>
 <h5 id="2-测试开始："><a href="#2-测试开始：" class="headerlink" title="2. 测试开始："></a>2. 测试开始：</h5><p>插入小米电源，继电器供上了电，亮灯。<br>从串口可以看到，大概经过10秒，ESP8266自动连上WIFI，获得IP地址，在浏览器敲入这个IP地址可以进入WEB界面。<br>点击GPIO 0 ON，此时D1的高电平打开，但是LED并没有变化。<br>点击GPIO 2 OFF，此时D2变为低电平，然后应该是这个下降沿触发了继电器的输出端吸合，两端连接，形成回路。LED亮起。<br>点击GPIO 2 ON， D2变为高电平，继电器两端悬空，断开。LED灯熄灭。</p>
 <h5 id="实验结束"><a href="#实验结束" class="headerlink" title="实验结束"></a>实验结束</h5><p>&emsp;&emsp;如果和欧洲那个商用电源开关相比，不说安全和稳定性，咱这个功能也差不多了…嘿嘿，而且很便宜。<br>&emsp;&emsp;我使用的这个继电器是松乐的5V模块，我找了我们这的电源designer给我评估下这个小装置的安全性.他认为<br>继电器本身弱电和强电是分离的，是相对成熟的技术。所以没有什么风险。<br>&emsp;&emsp;这样我可以经由WIFI控制直流27V 和交流220V的设备无压力。只要不是频繁开关（也不建议这样做），都是OK的。后来我又加装了一个20A空气开关，防止短路情况发生。算是加了一道防护。<br>&emsp;&emsp;目前这个装置总是通过IP地址来控制，不太智能，我考虑后续再改进改进，比如加入一个字符串作为标志，然后通过ARP或者什么别的方式找标志，来实现“不知道IP地址”也可以建立通信的办法。<br>埋下待续。</p>
 <p>PS: 附上ESP 8266 原理图</p>
-<p><img src="http://oi16bpd89.bkt.clouddn.com/pinpin.png" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://oi16bpd89.bkt.clouddn.com/pinpin.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    Last updated: <time datetime="2017-08-20T12:28:52.991Z" itemprop="dateUpdated">2017-08-20 20:28:52</time>
+</span><br>
+
+
+        
+        转载请注明：作者Yunpeng和原文地址：<a href="/2016/08/15/DIY_remote_power_switch/" target="_blank" rel="external">http://buildit.top/2016/08/15/DIY_remote_power_switch/</a>
+        
+    </div>
+    <footer>
+        <a href="http://buildit.top">
+            <img src="/img/avatar.png" alt="Yunpeng">
+            Yunpeng
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://buildit.top/2016/08/15/DIY_remote_power_switch/&title=《DIY 远程控制电源模块》 — 物作小白&pic=http://buildit.top/img/avatar.png" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://buildit.top/2016/08/15/DIY_remote_power_switch/&title=《DIY 远程控制电源模块》 — 物作小白&source=Think \ Summary \ Record \ Share" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://buildit.top/2016/08/15/DIY_remote_power_switch/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《DIY 远程控制电源模块》 — 物作小白&url=http://buildit.top/2016/08/15/DIY_remote_power_switch/&via=http://buildit.top" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://buildit.top/2016/08/15/DIY_remote_power_switch/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
 
     
-  </div>
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2016/10/09/create_daily_dir/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">每日工作划分文件夹</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2015/05/15/remote_control_FSV/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">远程控制FSV读取EVM值</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Valine Comments -->
+    <div class="comments vcomment" id="comments"></div>
+    <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+    <script src="//unpkg.com/valine@latest/dist/Valine.min.js"></script>
+    <!-- Valine Comments script -->
+    <script>
+        var GUEST_INFO = ['nick','mail','link'];
+        var guest_info = 'nick,mail,link'.split(',').filter(function(item){
+          return GUEST_INFO.indexOf(item) > -1
+        });
+        new Valine({
+            el: '#comments',
+            notify: 'true' == 'true',
+            verify: 'false' == 'true',
+            appId: "5gmDM1zHdpO2vDhA72Ab7N9P-gzGzoHsz",
+            appKey: "K5MjLPGsccOODYNdEbu1TmfJ",
+            avatar: "mm",
+            placeholder: "来啊，评论一下",
+            guest_info: guest_info.length == 0 ? GUEST_INFO : guest_info,
+            pageSize: "10"
+        })
+    </script>
+    <!-- Valine Comments end -->
+
+
+
+
 </article>
 
-
-   
-  <div class="text-center donation">
-    <div class="inner-donation">
-      <span class="btn-donation">支持一下</span>
-      <div class="donation-body">
-        <div class="tip text-center">扫一扫，支持我</div>
-        <ul class="theme.donation.items.length">
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢小主~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
         
-          <li class="item">
-            <img src="/images/qr-wechat.png" alt="">
-          </li>
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.jpg" alt="打赏二维码">
+        </div>
         
-          <li class="item">
-            <img src="/images/qr-alipay.png" alt="">
-          </li>
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.jpg" data-alipay="/img/alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
         
-        </ul>
-      </div>
     </div>
-  </div>
-
-
-   
-  <div class="box-prev-next clearfix">
-    <a class="show pull-left" href="/2015/05/15/remote_control_FSV/">
-        <i class="icon icon-angle-left"></i>
-    </a>
-    <a class="show pull-right" href="/2016/10/09/create_daily_dir/">
-        <i class="icon icon-angle-right"></i>
-    </a>
-  </div>
-
+</div>
 
 
 
 </div>
 
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
 
-  <a id="backTop" class="back-top">
-    <i class="icon-angle-up"></i>
-  </a>
 
-
-
-
-  <div class="modal" id="modal">
-  <span id="cover" class="cover hide"></span>
-  <div id="modal-dialog" class="modal-dialog hide-dialog">
-    <div class="modal-header">
-      <span id="close" class="btn-close">Close</span>
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>This blog is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.</span>
+        </p>
     </div>
-    <hr>
-    <div class="modal-body">
-      <ul class="list-toolbox">
-        
-          <li class="item-toolbox">
-            <a
-              class="CIRCLE"
-              href="/archives/"
-              rel="noopener noreferrer"
-              target="_self"
-              >
-              博客
-            </a>
-          </li>
-        
-          <li class="item-toolbox">
-            <a
-              class="CIRCLE"
-              href="/category/"
-              rel="noopener noreferrer"
-              target="_self"
-              >
-              分类
-            </a>
-          </li>
-        
-          <li class="item-toolbox">
-            <a
-              class="CIRCLE"
-              href="/tag/"
-              rel="noopener noreferrer"
-              target="_self"
-              >
-              标签
-            </a>
-          </li>
-        
-          <li class="item-toolbox">
-            <a
-              class="CIRCLE"
-              href="/link/"
-              rel="noopener noreferrer"
-              target="_self"
-              >
-              友链
-            </a>
-          </li>
-        
-          <li class="item-toolbox">
-            <a
-              class="CIRCLE"
-              href="/about/"
-              rel="noopener noreferrer"
-              target="_self"
-              >
-              关于
-            </a>
-          </li>
-        
-          <li class="item-toolbox">
-            <a
-              class="CIRCLE"
-              href="/atom.xml"
-              rel="noopener noreferrer"
-              target="_blank"
-              >
-              RSS
-            </a>
-          </li>
-        
-      </ul>
-
+    <div class="bottom">
+        <p><span>Yunpeng &copy; 2015 - 2017</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
     </div>
-  </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://buildit.top/2016/08/15/DIY_remote_power_switch/&title=《DIY 远程控制电源模块》 — 物作小白&pic=http://buildit.top/img/avatar.png" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://buildit.top/2016/08/15/DIY_remote_power_switch/&title=《DIY 远程控制电源模块》 — 物作小白&source=Think \ Summary \ Record \ Share" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://buildit.top/2016/08/15/DIY_remote_power_switch/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《DIY 远程控制电源模块》 — 物作小白&url=http://buildit.top/2016/08/15/DIY_remote_power_switch/&via=http://buildit.top" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://buildit.top/2016/08/15/DIY_remote_power_switch/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACNElEQVR42u3awU7DMBAEUP7/p4vECQkSZjYpau2XU4XS4JfDdO3dj4/4enxd3z9//8vRPT/vP/rW+T23XRgYGG/LeJxeP5eVP+H8uwk1WRsGBsY+jOTfHN2fLCKP7/YVYGBgYMwWlNyf/AUDAwPjrsBNtr7J0mdlJQYGxj6MZCOaxOX1ovDpe3EMDIw3ZMwaA//z+en9DQwMjJdnPG662mfO4vXwaRgYGEszzsu4NnzzTWzbbIiCGAMDY1HGLC5nG8u8JVBvUzEwMLZh5KNdV47ekufkkY2BgbEDI4m5pICb3XnveBkGBsaqjCRYZ8MQV1oO9c8ABgbGBox8oXmMtmVl2+D8pb+BgYGxKKMdC0uaCu1AWFIOYmBgYMyaBG2bId8wJy/xtnYmBgbGyzPag7Z7S8N2M3z4QjEwMDZgzEYf7hqzuKEtgYGBsQ2jnWfID+5nBWLdg8XAwNiGcf0Qfza7lcc3BgbGzoy8LJuNR7QthLyNioGBsTajPdZvj8ZmsTsbIMPAwFibMYu8toxrv5WsZNhBxcDAWI6Rj1m0jYQr8frEgTAMDIyXZLQPyo/12w3wLIIxMDDWZjzKa3ZMdleD84+iEAMDY1FGG3OzLM8P8q40JDAwMNZm5CGbwGbB2rYNDvfiGBgYSzNmwdd2Sq+Uen/8VmBgYGAE4dtGdhu79UAYBgbGlozZCFdyzJe/LAwMjJ0ZbTOgjdRzwDBkMTAwtmHMGgOzNmdeFLYvGgMDY1HGJ5UhQc/sDyBAAAAAAElFTkSuQmCC" alt="微信分享二维码">
 </div>
 
 
 
-  
-      <div class="fexo-comments comments-post">
-    
 
-    
-  <section class="duoshuo-comments">
-    <!-- 多说评论框 start -->
-    <div class="ds-thread" data-thread-key="post-DIY_remote_power_switch" 
-      data-title="DIY 远程控制电源模块" data-url="http://yoursite.com/2016/08/15/DIY_remote_power_switch/index.html"></div>
-    <!-- 多说评论框 end -->
-  </section>
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
 
 
+lazyScripts.push('//s95.cnzz.com/z_stat.php?id=1271202907&web_id=1271202907')
 
-
-  <script type="text/javascript">
-  var duoshuoQuery = {short_name:"yunpengb"};
-  (function() {
-    var ds = document.createElement('script');
-    ds.type = 'text/javascript';ds.async = true;
-    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-    ds.charset = 'UTF-8';
-    (document.getElementsByTagName('head')[0]
-     || document.getElementsByTagName('body')[0]).appendChild(ds);
-  })();
-  </script>
-
-
-    
-
-  </div>
-
-  
-
-  <script type="text/javascript">
-  function loadScript(url, callback) {
-    var script = document.createElement('script')
-    script.type = 'text/javascript';
-
-    if (script.readyState) { //IE
-      script.onreadystatechange = function() {
-        if (script.readyState == 'loaded' ||
-          script.readyState == 'complete') {
-          script.onreadystatechange = null;
-          callback();
-        }
-      };
-    } else { //Others
-      script.onload = function() {
-        callback();
-      };
-    }
-
-    script.src = url;
-    document.getElementsByTagName('head')[0].appendChild(script);
-  }
-
-  window.onload = function() {
-    loadScript('/js/bundle.js?235683', function() {
-      // load success
-    });
-  }
 </script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '死鬼去哪里了！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
 
 </body>
 </html>

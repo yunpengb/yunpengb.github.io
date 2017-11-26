@@ -1,26 +1,33 @@
 <!DOCTYPE html>
-
-
-  <html class="light page-post">
-
-
+<html>
 <head>
-  <meta charset="utf-8">
-  
-  <title>MicroPython ESP8266 操作指南 | White Note</title>
+    
 
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
 
-  
-    <meta name="keywords" content="forsigner,Python,工具,创新,Server" />
-  
+    
 
-  <meta name="description" content="擦掉flashMicroPython的 intro 里1.4里有介绍。另外，如果是在win os下，擦除flash的命令大概是1esptool.py --port com3 erase_flash
+
+
+    <meta charset="utf-8">
+    
+    
+    <link rel="canonical" href="http://buildit.top/2017/03/20/ESP_MicroPython_Guide/">
+    
+    
+    <title>MicroPython ESP8266 操作指南 | 物作小白 | Do the same, think different</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#000099">
+    
+    
+    <meta name="keywords" content="">
+    <meta name="description" content="擦掉flashMicroPython的 intro 里1.4里有介绍。另外，如果是在win os下，擦除flash的命令大概是1esptool.py --port com3 erase_flash
 刷入MicroPython 固件下载对应ESP8266的MicroPython固件的地址在这里 download ，你会得到类似esp8266-20170108-v1.8.7.bin 这样命名的文件。刷">
 <meta property="og:type" content="article">
 <meta property="og:title" content="MicroPython ESP8266 操作指南">
-<meta property="og:url" content="http://yoursite.com/2017/03/20/ESP_MicroPython_Guide/index.html">
-<meta property="og:site_name" content="White Note">
+<meta property="og:url" content="http://buildit.top/2017/03/20/ESP_MicroPython_Guide/index.html">
+<meta property="og:site_name" content="物作小白">
 <meta property="og:description" content="擦掉flashMicroPython的 intro 里1.4里有介绍。另外，如果是在win os下，擦除flash的命令大概是1esptool.py --port com3 erase_flash
 刷入MicroPython 固件下载对应ESP8266的MicroPython固件的地址在这里 download ，你会得到类似esp8266-20170108-v1.8.7.bin 这样命名的文件。刷">
 <meta property="og:updated_time" content="2017-11-23T13:48:23.133Z">
@@ -28,175 +35,162 @@
 <meta name="twitter:title" content="MicroPython ESP8266 操作指南">
 <meta name="twitter:description" content="擦掉flashMicroPython的 intro 里1.4里有介绍。另外，如果是在win os下，擦除flash的命令大概是1esptool.py --port com3 erase_flash
 刷入MicroPython 固件下载对应ESP8266的MicroPython固件的地址在这里 download ，你会得到类似esp8266-20170108-v1.8.7.bin 这样命名的文件。刷">
+    
+        <link rel="alternate" type="application/atom+xml" title="物作小白" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
 
-  
+    <!-- custom head -->
+    
 
-  
-    <link rel="icon" href="/favicon.ico">
-  
-
-  <link href="/css/styles.css?v=c114cbe6" rel="stylesheet">
-
-
-  
-    <link rel="stylesheet" href="/css/personal-style.css">
-  
-
-  
-
-  
-
-  
-
-
-  
-    <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-  
-
-  
-    <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.3.0/css/font-awesome.min.css">
-  
 </head>
 
 <body>
+    <div id="loading" class="active"></div>
 
-
-  
-    <span id="toolbox-mobile" class="toolbox-mobile">盒子</span>
-  
-
-  <div class="post-header CENTER">
-   
-  <div class="toolbox">
-    <a class="toolbox-entry" href="/">
-      <span class="toolbox-entry-text">盒子</span>
-      <i class="icon-angle-down"></i>
-      <i class="icon-home"></i>
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
     </a>
-    <ul class="list-toolbox">
-      
-        <li class="item-toolbox">
-          <a
-            class="CIRCLE"
-            href="/archives/"
-            rel="noopener noreferrer"
-            target="_self"
-            >
-            博客
-          </a>
-        </li>
-      
-        <li class="item-toolbox">
-          <a
-            class="CIRCLE"
-            href="/category/"
-            rel="noopener noreferrer"
-            target="_self"
-            >
-            分类
-          </a>
-        </li>
-      
-        <li class="item-toolbox">
-          <a
-            class="CIRCLE"
-            href="/tag/"
-            rel="noopener noreferrer"
-            target="_self"
-            >
-            标签
-          </a>
-        </li>
-      
-        <li class="item-toolbox">
-          <a
-            class="CIRCLE"
-            href="/link/"
-            rel="noopener noreferrer"
-            target="_self"
-            >
-            友链
-          </a>
-        </li>
-      
-        <li class="item-toolbox">
-          <a
-            class="CIRCLE"
-            href="/about/"
-            rel="noopener noreferrer"
-            target="_self"
-            >
-            关于
-          </a>
-        </li>
-      
-        <li class="item-toolbox">
-          <a
-            class="CIRCLE"
-            href="/atom.xml"
-            rel="noopener noreferrer"
-            target="_blank"
-            >
-            RSS
-          </a>
-        </li>
-      
-    </ul>
-  </div>
-
-
-</div>
-
-
-  <div id="toc" class="toc-article">
-    <strong class="toc-title">Posts List</strong>
-    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#擦掉flash"><span class="toc-text">擦掉flash</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#刷入MicroPython-固件"><span class="toc-text">刷入MicroPython 固件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#查看文件系统"><span class="toc-text">查看文件系统</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#查看文件"><span class="toc-text">查看文件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#删除文件"><span class="toc-text">删除文件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Software-Reset"><span class="toc-text">Software Reset</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Hardware-Reset"><span class="toc-text">Hardware Reset</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#常用工具"><span class="toc-text">常用工具</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#已知问题"><span class="toc-text">已知问题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考"><span class="toc-text">参考</span></a></li></ol>
-  </div>
-
-
-
-<div class="content content-post CENTER">
-   <article id="post-ESP_MicroPython_Guide" class="article article-type-post" itemprop="blogPost">
-  <header class="article-header">
-    <h1 class="post-title">MicroPython ESP8266 操作指南</h1>
-
-    <div class="article-meta">
-      <span>
-        <i class="icon-calendar"></i>
-        <span>2017.03.20</span>
-      </span>
-
-      
-        <span class="article-author">
-          <i class="icon-user"></i>
-          <span>Bai&#39;s Notes</span>
-        </span>
-      
-
-      
-
-
-      
-
-      
-      <i class="fa fa-eye"></i> 
-        <span id="busuanzi_container_page_pv">
-           &nbsp热度 <span id="busuanzi_value_page_pv">
-           <i class="fa fa-spinner fa-spin"></i></span>℃
-        </span>
-      
-
-      
-        <i class="icon-comment"></i> 
-        <span class="ds-thread-count" data-thread-key="post-ESP_MicroPython_Guide"><i class="fa fa-spinner fa-spin"></i></span> 条评论
-      
-      
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.png">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Yunpeng</h5>
+          <a href="mailto:byp_note@163.com" title="byp_note@163.com" class="mail">byp_note@163.com</a>
+        </hgroup>
+      </div>
     </div>
-  </header>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/yunpengb" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://www.weibo.com/runheart" target="_blank" >
+                <i class="icon icon-lg icon-weibo"></i>
+                微博
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
 
-  <div class="article-content">
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">MicroPython ESP8266 操作指南</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">MicroPython ESP8266 操作指南</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2017-03-20T07:55:00.000Z" itemprop="datePublished" class="page-time">
+  2017-03-20
+</time>
+
+
+            
+        </h5>
+    </div>
+
     
-      <h2 id="擦掉flash"><a href="#擦掉flash" class="headerlink" title="擦掉flash"></a>擦掉flash</h2><p>MicroPython的 <a href="http://docs.micropython.org/en/latest/esp8266/esp8266/tutorial/intro.html#intro" target="_blank" rel="external">intro</a> 里1.4里有介绍。<br>另外，如果是在win os下，擦除flash的命令大概是<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">esptool.py --port com3 erase_flash</div></pre></td></tr></table></figure></p>
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#擦掉flash"><span class="post-toc-number">1.</span> <span class="post-toc-text">擦掉flash</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#刷入MicroPython-固件"><span class="post-toc-number">2.</span> <span class="post-toc-text">刷入MicroPython 固件</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#查看文件系统"><span class="post-toc-number">3.</span> <span class="post-toc-text">查看文件系统</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#查看文件"><span class="post-toc-number">4.</span> <span class="post-toc-text">查看文件</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#删除文件"><span class="post-toc-number">5.</span> <span class="post-toc-text">删除文件</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Software-Reset"><span class="post-toc-number">6.</span> <span class="post-toc-text">Software Reset</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Hardware-Reset"><span class="post-toc-number">7.</span> <span class="post-toc-text">Hardware Reset</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#常用工具"><span class="post-toc-number">8.</span> <span class="post-toc-text">常用工具</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#已知问题"><span class="post-toc-number">9.</span> <span class="post-toc-text">已知问题</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#参考"><span class="post-toc-number">10.</span> <span class="post-toc-text">参考</span></a></li></ol>
+        </nav>
+    </aside>
+    
+<article id="post-ESP_MicroPython_Guide"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">MicroPython ESP8266 操作指南</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2017-03-20 15:55:00" datetime="2017-03-20T07:55:00.000Z"  itemprop="datePublished">2017-03-20</time>
+
+            
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h2 id="擦掉flash"><a href="#擦掉flash" class="headerlink" title="擦掉flash"></a>擦掉flash</h2><p>MicroPython的 <a href="http://docs.micropython.org/en/latest/esp8266/esp8266/tutorial/intro.html#intro" target="_blank" rel="external">intro</a> 里1.4里有介绍。<br>另外，如果是在win os下，擦除flash的命令大概是<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">esptool.py --port com3 erase_flash</div></pre></td></tr></table></figure></p>
 <h2 id="刷入MicroPython-固件"><a href="#刷入MicroPython-固件" class="headerlink" title="刷入MicroPython 固件"></a>刷入MicroPython 固件</h2><p>下载对应ESP8266的MicroPython固件的地址在这里 <a href="http://www.micropython.org/download" target="_blank" rel="external">download</a> ，<br>你会得到类似esp8266-20170108-v1.8.7.bin 这样命名的文件。<br>刷入方法在上面的1.4节也有介绍，主要就是依靠下面这句<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">esptool.py --port com3 --baud 115200 write_flash --flash_size=detect 0 esp8266-20170108-v1.8.7.bin</div></pre></td></tr></table></figure></p>
 <p>注意，我尝试过512k专属版，似乎不好用，所以还是使用长期稳定版比较好（每夜版没有试过）。</p>
 <h2 id="查看文件系统"><a href="#查看文件系统" class="headerlink" title="查看文件系统"></a>查看文件系统</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">uos.listdir() # 查看路径下的文件</div><div class="line">uos.listdir(&apos;dir&apos;) #查看文件夹下的文件</div><div class="line">uos.getcwd() #查看当前目录, 根目录是&apos;&apos;</div><div class="line">uos.chdir()  #改变当前目录</div></pre></td></tr></table></figure>
@@ -208,203 +202,322 @@
 <h2 id="已知问题"><a href="#已知问题" class="headerlink" title="已知问题"></a>已知问题</h2><p>利用http 按钮发送反馈的时候，不能使用360浏览器，它会拦截反馈信息</p>
 <h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a href="http://www.micropython.org" target="_blank" rel="external">MicroPython官网</a><br><a href="https://my.oschina.net/shaoziyang/blog/781235" target="_blank" rel="external">介绍1</a><br><a href="http://bbs.eeworld.com.cn/forum-243-1.html" target="_blank" rel="external">论坛</a><br><a href="http://blog.csdn.net/yannanxiu/article/details/53966374" target="_blank" rel="external">介绍2</a></p>
 
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    Last updated: <time datetime="2017-11-23T13:48:23.133Z" itemprop="dateUpdated">2017-11-23 21:48:23</time>
+</span><br>
+
+
+        
+        转载请注明：作者Yunpeng和原文地址：<a href="/2017/03/20/ESP_MicroPython_Guide/" target="_blank" rel="external">http://buildit.top/2017/03/20/ESP_MicroPython_Guide/</a>
+        
+    </div>
+    <footer>
+        <a href="http://buildit.top">
+            <img src="/img/avatar.png" alt="Yunpeng">
+            Yunpeng
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+
+            
+<div class="page-share-wrap">
     
-  </div>
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://buildit.top/2017/03/20/ESP_MicroPython_Guide/&title=《MicroPython ESP8266 操作指南》 — 物作小白&pic=http://buildit.top/img/avatar.png" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://buildit.top/2017/03/20/ESP_MicroPython_Guide/&title=《MicroPython ESP8266 操作指南》 — 物作小白&source=Think \ Summary \ Record \ Share" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://buildit.top/2017/03/20/ESP_MicroPython_Guide/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《MicroPython ESP8266 操作指南》 — 物作小白&url=http://buildit.top/2017/03/20/ESP_MicroPython_Guide/&via=http://buildit.top" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://buildit.top/2017/03/20/ESP_MicroPython_Guide/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2017/04/29/markdown_summary/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">MarkDown 小总结</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2017/01/20/py_esp_server/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">python 版的ESP控制端</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Valine Comments -->
+    <div class="comments vcomment" id="comments"></div>
+    <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+    <script src="//unpkg.com/valine@latest/dist/Valine.min.js"></script>
+    <!-- Valine Comments script -->
+    <script>
+        var GUEST_INFO = ['nick','mail','link'];
+        var guest_info = 'nick,mail,link'.split(',').filter(function(item){
+          return GUEST_INFO.indexOf(item) > -1
+        });
+        new Valine({
+            el: '#comments',
+            notify: 'true' == 'true',
+            verify: 'false' == 'true',
+            appId: "5gmDM1zHdpO2vDhA72Ab7N9P-gzGzoHsz",
+            appKey: "K5MjLPGsccOODYNdEbu1TmfJ",
+            avatar: "mm",
+            placeholder: "来啊，评论一下",
+            guest_info: guest_info.length == 0 ? GUEST_INFO : guest_info,
+            pageSize: "10"
+        })
+    </script>
+    <!-- Valine Comments end -->
+
+
+
+
 </article>
 
-
-   
-  <div class="text-center donation">
-    <div class="inner-donation">
-      <span class="btn-donation">支持一下</span>
-      <div class="donation-body">
-        <div class="tip text-center">扫一扫，支持我</div>
-        <ul class="theme.donation.items.length">
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢小主~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
         
-          <li class="item">
-            <img src="/images/qr-wechat.png" alt="">
-          </li>
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.jpg" alt="打赏二维码">
+        </div>
         
-          <li class="item">
-            <img src="/images/qr-alipay.png" alt="">
-          </li>
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.jpg" data-alipay="/img/alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
         
-        </ul>
-      </div>
     </div>
-  </div>
-
-
-   
-  <div class="box-prev-next clearfix">
-    <a class="show pull-left" href="/2017/01/20/py_esp_server/">
-        <i class="icon icon-angle-left"></i>
-    </a>
-    <a class="show pull-right" href="/2017/04/29/markdown_summary/">
-        <i class="icon icon-angle-right"></i>
-    </a>
-  </div>
-
+</div>
 
 
 
 </div>
 
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
 
-  <a id="backTop" class="back-top">
-    <i class="icon-angle-up"></i>
-  </a>
 
-
-
-
-  <div class="modal" id="modal">
-  <span id="cover" class="cover hide"></span>
-  <div id="modal-dialog" class="modal-dialog hide-dialog">
-    <div class="modal-header">
-      <span id="close" class="btn-close">Close</span>
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>This blog is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.</span>
+        </p>
     </div>
-    <hr>
-    <div class="modal-body">
-      <ul class="list-toolbox">
-        
-          <li class="item-toolbox">
-            <a
-              class="CIRCLE"
-              href="/archives/"
-              rel="noopener noreferrer"
-              target="_self"
-              >
-              博客
-            </a>
-          </li>
-        
-          <li class="item-toolbox">
-            <a
-              class="CIRCLE"
-              href="/category/"
-              rel="noopener noreferrer"
-              target="_self"
-              >
-              分类
-            </a>
-          </li>
-        
-          <li class="item-toolbox">
-            <a
-              class="CIRCLE"
-              href="/tag/"
-              rel="noopener noreferrer"
-              target="_self"
-              >
-              标签
-            </a>
-          </li>
-        
-          <li class="item-toolbox">
-            <a
-              class="CIRCLE"
-              href="/link/"
-              rel="noopener noreferrer"
-              target="_self"
-              >
-              友链
-            </a>
-          </li>
-        
-          <li class="item-toolbox">
-            <a
-              class="CIRCLE"
-              href="/about/"
-              rel="noopener noreferrer"
-              target="_self"
-              >
-              关于
-            </a>
-          </li>
-        
-          <li class="item-toolbox">
-            <a
-              class="CIRCLE"
-              href="/atom.xml"
-              rel="noopener noreferrer"
-              target="_blank"
-              >
-              RSS
-            </a>
-          </li>
-        
-      </ul>
-
+    <div class="bottom">
+        <p><span>Yunpeng &copy; 2015 - 2017</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
     </div>
-  </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://buildit.top/2017/03/20/ESP_MicroPython_Guide/&title=《MicroPython ESP8266 操作指南》 — 物作小白&pic=http://buildit.top/img/avatar.png" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://buildit.top/2017/03/20/ESP_MicroPython_Guide/&title=《MicroPython ESP8266 操作指南》 — 物作小白&source=Think \ Summary \ Record \ Share" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://buildit.top/2017/03/20/ESP_MicroPython_Guide/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《MicroPython ESP8266 操作指南》 — 物作小白&url=http://buildit.top/2017/03/20/ESP_MicroPython_Guide/&via=http://buildit.top" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://buildit.top/2017/03/20/ESP_MicroPython_Guide/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACJ0lEQVR42u3aQW7DMAwEwPz/0+m1QGpnV3QKRB6dCieRNTqwlMjHIx7Pl/H7efvN10/Pn182MDAwvpbxPB35d45mPp8hwUfvxcDAuAEjWcT5K89/dRRSk9B8vjYMDAyMNrHLc7Y8TGNgYGC0jByThNckHGNgYGDkh9jzqecB9J/O4hgYGF/ImCzl039/pL6BgYHxVYxnOfIUMLmYy4sHb1aFgYGxNSMPcO2C2jjZzoOBgXFPRnuh1h4429aK/HoOAwPjnoy1loh2nrYA8CY0Y2BgbM1oU7c12Lwgmq8NAwNjP8aknpCngO1y22InBgbGroyrCgNt4M5bOqIkEgMDY2tG/uMkpZsfg9srtsP/GxgYGBsx2qStZeRb016r/ZEaYmBgbM1or+nXXpxsSn6sPaxsYGBgbMeYX+LP07vLnmNgYNyGMSkVJAG0PcRe0DOCgYGxBSMpErSNEe1G5G+/bCIMDIwvYeTHyJa31nKRb9bhrSEGBsZ2jEnIm7R2tVdsxRZgYGBsymgXXTdsjds4IjYGBsYNGG01MG/UmCSUBRIDA+MGjLUWseTJWrtGW1rAwMDYlfEsR9sGsdaWUZcwMTAwtmZMSozzA3BekMDAwMBIgmyeJk7C9yjgYmBg3IAxD3xtAbI9xL5ZCQYGBkbwyhyTpIl1URMDAwOjTObawuQFrRgYGBg3YKw1WLQBOgmya+VMDAyMvRnt0XF+9d/OmW8lBgbGdowfU3myUAwRO2YAAAAASUVORK5CYII=" alt="微信分享二维码">
 </div>
 
 
 
-  
-      <div class="fexo-comments comments-post">
-    
 
-    
-  <section class="duoshuo-comments">
-    <!-- 多说评论框 start -->
-    <div class="ds-thread" data-thread-key="post-ESP_MicroPython_Guide" 
-      data-title="MicroPython ESP8266 操作指南" data-url="http://yoursite.com/2017/03/20/ESP_MicroPython_Guide/index.html"></div>
-    <!-- 多说评论框 end -->
-  </section>
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
 
 
+lazyScripts.push('//s95.cnzz.com/z_stat.php?id=1271202907&web_id=1271202907')
 
-
-  <script type="text/javascript">
-  var duoshuoQuery = {short_name:"yunpengb"};
-  (function() {
-    var ds = document.createElement('script');
-    ds.type = 'text/javascript';ds.async = true;
-    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-    ds.charset = 'UTF-8';
-    (document.getElementsByTagName('head')[0]
-     || document.getElementsByTagName('body')[0]).appendChild(ds);
-  })();
-  </script>
-
-
-    
-
-  </div>
-
-  
-
-  <script type="text/javascript">
-  function loadScript(url, callback) {
-    var script = document.createElement('script')
-    script.type = 'text/javascript';
-
-    if (script.readyState) { //IE
-      script.onreadystatechange = function() {
-        if (script.readyState == 'loaded' ||
-          script.readyState == 'complete') {
-          script.onreadystatechange = null;
-          callback();
-        }
-      };
-    } else { //Others
-      script.onload = function() {
-        callback();
-      };
-    }
-
-    script.src = url;
-    document.getElementsByTagName('head')[0].appendChild(script);
-  }
-
-  window.onload = function() {
-    loadScript('/js/bundle.js?235683', function() {
-      // load success
-    });
-  }
 </script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '死鬼去哪里了！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
 
 </body>
 </html>

@@ -1,194 +1,186 @@
 <!DOCTYPE html>
-
-
-  <html class="light page-post">
-
-
+<html>
 <head>
-  <meta charset="utf-8">
-  
-  <title>python 版的ESP控制端 | White Note</title>
+    
 
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
 
-  
-    <meta name="keywords" content="forsigner,Python,工具,创新,Server" />
-  
+    
 
-  <meta name="description" content="&amp;emsp;&amp;emsp;之前用lua脚本写了一个发送html的http server放在ESP里控制电路通断很好用，&amp;emsp;&amp;emsp;最近发现这货竟然还有专属的MicroPython 固件，作为一个pythoner,我必须要写个python版的，也方面以后加入更多的自定义功能。&amp;emsp;&amp;emsp;所以最近花了点时间写了一个python版的ESP power control server。">
+
+
+    <meta charset="utf-8">
+    
+    
+    <link rel="canonical" href="http://buildit.top/2017/01/20/py_esp_server/">
+    
+    
+    <title>python 版的ESP控制端 | 物作小白 | Do the same, think different</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#000099">
+    
+    
+    <meta name="keywords" content="">
+    <meta name="description" content="&amp;emsp;&amp;emsp;之前用lua脚本写了一个发送html的http server放在ESP里控制电路通断很好用，&amp;emsp;&amp;emsp;最近发现这货竟然还有专属的MicroPython 固件，作为一个pythoner,我必须要写个python版的，也方面以后加入更多的自定义功能。&amp;emsp;&amp;emsp;所以最近花了点时间写了一个python版的ESP power control server。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="python 版的ESP控制端">
-<meta property="og:url" content="http://yoursite.com/2017/01/20/py_esp_server/index.html">
-<meta property="og:site_name" content="White Note">
+<meta property="og:url" content="http://buildit.top/2017/01/20/py_esp_server/index.html">
+<meta property="og:site_name" content="物作小白">
 <meta property="og:description" content="&amp;emsp;&amp;emsp;之前用lua脚本写了一个发送html的http server放在ESP里控制电路通断很好用，&amp;emsp;&amp;emsp;最近发现这货竟然还有专属的MicroPython 固件，作为一个pythoner,我必须要写个python版的，也方面以后加入更多的自定义功能。&amp;emsp;&amp;emsp;所以最近花了点时间写了一个python版的ESP power control server。">
 <meta property="og:updated_time" content="2017-08-20T12:29:43.029Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="python 版的ESP控制端">
 <meta name="twitter:description" content="&amp;emsp;&amp;emsp;之前用lua脚本写了一个发送html的http server放在ESP里控制电路通断很好用，&amp;emsp;&amp;emsp;最近发现这货竟然还有专属的MicroPython 固件，作为一个pythoner,我必须要写个python版的，也方面以后加入更多的自定义功能。&amp;emsp;&amp;emsp;所以最近花了点时间写了一个python版的ESP power control server。">
+    
+        <link rel="alternate" type="application/atom+xml" title="物作小白" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
 
-  
+    <!-- custom head -->
+    
 
-  
-    <link rel="icon" href="/favicon.ico">
-  
-
-  <link href="/css/styles.css?v=c114cbe6" rel="stylesheet">
-
-
-  
-    <link rel="stylesheet" href="/css/personal-style.css">
-  
-
-  
-
-  
-
-  
-
-
-  
-    <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-  
-
-  
-    <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.3.0/css/font-awesome.min.css">
-  
 </head>
 
 <body>
+    <div id="loading" class="active"></div>
 
-
-  
-    <span id="toolbox-mobile" class="toolbox-mobile">盒子</span>
-  
-
-  <div class="post-header CENTER">
-   
-  <div class="toolbox">
-    <a class="toolbox-entry" href="/">
-      <span class="toolbox-entry-text">盒子</span>
-      <i class="icon-angle-down"></i>
-      <i class="icon-home"></i>
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
     </a>
-    <ul class="list-toolbox">
-      
-        <li class="item-toolbox">
-          <a
-            class="CIRCLE"
-            href="/archives/"
-            rel="noopener noreferrer"
-            target="_self"
-            >
-            博客
-          </a>
-        </li>
-      
-        <li class="item-toolbox">
-          <a
-            class="CIRCLE"
-            href="/category/"
-            rel="noopener noreferrer"
-            target="_self"
-            >
-            分类
-          </a>
-        </li>
-      
-        <li class="item-toolbox">
-          <a
-            class="CIRCLE"
-            href="/tag/"
-            rel="noopener noreferrer"
-            target="_self"
-            >
-            标签
-          </a>
-        </li>
-      
-        <li class="item-toolbox">
-          <a
-            class="CIRCLE"
-            href="/link/"
-            rel="noopener noreferrer"
-            target="_self"
-            >
-            友链
-          </a>
-        </li>
-      
-        <li class="item-toolbox">
-          <a
-            class="CIRCLE"
-            href="/about/"
-            rel="noopener noreferrer"
-            target="_self"
-            >
-            关于
-          </a>
-        </li>
-      
-        <li class="item-toolbox">
-          <a
-            class="CIRCLE"
-            href="/atom.xml"
-            rel="noopener noreferrer"
-            target="_blank"
-            >
-            RSS
-          </a>
-        </li>
-      
-    </ul>
-  </div>
-
-
-</div>
-
-
-
-
-<div class="content content-post CENTER">
-   <article id="post-py_esp_server" class="article article-type-post" itemprop="blogPost">
-  <header class="article-header">
-    <h1 class="post-title">python 版的ESP控制端</h1>
-
-    <div class="article-meta">
-      <span>
-        <i class="icon-calendar"></i>
-        <span>2017.01.20</span>
-      </span>
-
-      
-        <span class="article-author">
-          <i class="icon-user"></i>
-          <span>Bai&#39;s Notes</span>
-        </span>
-      
-
-      
-
-
-      
-
-      
-      <i class="fa fa-eye"></i> 
-        <span id="busuanzi_container_page_pv">
-           &nbsp热度 <span id="busuanzi_value_page_pv">
-           <i class="fa fa-spinner fa-spin"></i></span>℃
-        </span>
-      
-
-      
-        <i class="icon-comment"></i> 
-        <span class="ds-thread-count" data-thread-key="post-py_esp_server"><i class="fa fa-spinner fa-spin"></i></span> 条评论
-      
-      
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.png">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Yunpeng</h5>
+          <a href="mailto:byp_note@163.com" title="byp_note@163.com" class="mail">byp_note@163.com</a>
+        </hgroup>
+      </div>
     </div>
-  </header>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/yunpengb" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://www.weibo.com/runheart" target="_blank" >
+                <i class="icon icon-lg icon-weibo"></i>
+                微博
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
 
-  <div class="article-content">
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">python 版的ESP控制端</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">python 版的ESP控制端</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2017-01-20T07:40:00.000Z" itemprop="datePublished" class="page-time">
+  2017-01-20
+</time>
+
+
+            
+        </h5>
+    </div>
+
     
-      <p>&emsp;&emsp;之前用lua脚本写了一个发送html的http server放在ESP里控制电路通断很好用，<br>&emsp;&emsp;最近发现这货竟然还有专属的MicroPython 固件，作为一个pythoner,我必须要写个python版的，也方面以后加入更多的自定义功能。<br>&emsp;&emsp;所以最近花了点时间写了一个python版的ESP power control server。<br>代码如下：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># -*- coding: utf-8 -*-</span></div><div class="line"></div><div class="line"><span class="keyword">from</span> machine <span class="keyword">import</span> Pin</div><div class="line"><span class="keyword">import</span> socket</div><div class="line"><span class="keyword">import</span> network</div><div class="line"><span class="keyword">import</span> webrepl</div><div class="line"><span class="keyword">from</span> time <span class="keyword">import</span> sleep</div><div class="line"></div><div class="line">html = <span class="string">"""</span></div><div class="line">&lt;h1&gt; Power switch&lt;/h1&gt;</div><div class="line">&lt;p&gt;switch1 &lt;a href=\"?pin=ON1\"&gt;&lt;button&gt;ON&lt;/button&gt;&lt;/a&gt; &lt;a href=\"?pin=OFF1\"&gt;&lt;button&gt;OFF&lt;/button&gt;&lt;/a&gt;&lt;/p&gt;</div><div class="line">&lt;p&gt;switch2 &lt;a href=\"?pin=ON2\"&gt;&lt;button&gt;ON&lt;/button&gt;&lt;/a&gt; &lt;a href=\"?pin=OFF2\"&gt;&lt;button&gt;OFF&lt;/button&gt;&lt;/a&gt;&lt;/p&gt;</div><div class="line">"""</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">connectwifi</span><span class="params">()</span>:</span></div><div class="line">    sta_if = network.WLAN(network.STA_IF)</div><div class="line">    sta_if.active(<span class="keyword">True</span>)</div><div class="line">    <span class="keyword">print</span> (<span class="string">"connect WIFI, please wait..."</span>)</div><div class="line">    sleep(<span class="number">4</span>)</div><div class="line">    sta_if.connect(<span class="string">"wifi-ssid"</span>,<span class="string">"wifi-password"</span>)</div><div class="line">    sleep(<span class="number">6</span>)</div><div class="line">    print(<span class="string">"WIFI connected ! IP address is ("</span>,sta_if.ifconfig()[<span class="number">0</span>],<span class="string">")"</span>)</div><div class="line">    webrepl.start()</div><div class="line">    print(<span class="string">"User init Done!"</span>)</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">op1</span><span class="params">()</span>:</span></div><div class="line">    p2.value(<span class="number">0</span>)</div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">dn1</span><span class="params">()</span>:</span></div><div class="line">    p2.value(<span class="number">1</span>)</div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">op2</span><span class="params">()</span>:</span></div><div class="line">    <span class="keyword">print</span> (<span class="string">"switch 2 is open"</span>)</div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">dn2</span><span class="params">()</span>:</span></div><div class="line">    <span class="keyword">print</span> (<span class="string">"switch 2 is down"</span>)    </div><div class="line"></div><div class="line">p2 = Pin(<span class="number">2</span>,Pin.OUT)</div><div class="line">pool = &#123;<span class="string">'ON1'</span>:op1,<span class="string">'ON2'</span>:op2,<span class="string">'OFF1'</span>:dn1,<span class="string">'OFF2'</span>:dn2&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">startServer</span><span class="params">()</span>:</span></div><div class="line">    addr = socket.getaddrinfo(<span class="string">'0.0.0.0'</span>, <span class="number">80</span>)[<span class="number">0</span>][<span class="number">-1</span>]</div><div class="line">    sleep(<span class="number">2</span>)</div><div class="line">    s = socket.socket()</div><div class="line">    sleep(<span class="number">2</span>)</div><div class="line">    s.bind(addr)</div><div class="line">    sleep(<span class="number">2</span>)</div><div class="line">    s.listen(<span class="number">1</span>)</div><div class="line">    print(<span class="string">'listening on'</span>, addr)</div><div class="line">    sleep(<span class="number">2</span>)</div><div class="line">    <span class="keyword">while</span> <span class="keyword">True</span>:</div><div class="line">        cl, addr = s.accept()</div><div class="line">        cl_file = cl.makefile(<span class="string">'rwb'</span>, <span class="number">0</span>)</div><div class="line">        <span class="keyword">while</span> <span class="keyword">True</span>:</div><div class="line">            <span class="keyword">try</span>:</div><div class="line">                line = cl_file.readline()</div><div class="line">            <span class="keyword">except</span>:</div><div class="line">                <span class="keyword">continue</span></div><div class="line">            <span class="keyword">if</span> <span class="keyword">not</span> line <span class="keyword">or</span> line == <span class="string">b'\r\n'</span>:</div><div class="line">                <span class="keyword">break</span></div><div class="line">            <span class="keyword">else</span>:</div><div class="line">                firstline = str(line).split(<span class="string">"\n"</span>)[<span class="number">0</span>]</div><div class="line">                <span class="keyword">if</span> <span class="string">"GET"</span> <span class="keyword">in</span> firstline:</div><div class="line">                    <span class="keyword">for</span> i <span class="keyword">in</span> pool.keys():</div><div class="line">                        <span class="keyword">if</span> i <span class="keyword">in</span> firstline:</div><div class="line">                            pool.get(i)()</div><div class="line">                            <span class="keyword">break</span></div><div class="line"></div><div class="line">        cl.send(html)</div><div class="line">        cl.close()</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">ok</span><span class="params">()</span>:</span></div><div class="line">    connectwifi()</div><div class="line">    startServer()</div><div class="line"><span class="keyword">if</span> __name__ == <span class="string">"__main__"</span>:</div><div class="line">    ok()</div></pre></td></tr></table></figure></p>
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+<article id="post-py_esp_server"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">python 版的ESP控制端</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2017-01-20 15:40:00" datetime="2017-01-20T07:40:00.000Z"  itemprop="datePublished">2017-01-20</time>
+
+            
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <p>&emsp;&emsp;之前用lua脚本写了一个发送html的http server放在ESP里控制电路通断很好用，<br>&emsp;&emsp;最近发现这货竟然还有专属的MicroPython 固件，作为一个pythoner,我必须要写个python版的，也方面以后加入更多的自定义功能。<br>&emsp;&emsp;所以最近花了点时间写了一个python版的ESP power control server。<br>代码如下：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># -*- coding: utf-8 -*-</span></div><div class="line"></div><div class="line"><span class="keyword">from</span> machine <span class="keyword">import</span> Pin</div><div class="line"><span class="keyword">import</span> socket</div><div class="line"><span class="keyword">import</span> network</div><div class="line"><span class="keyword">import</span> webrepl</div><div class="line"><span class="keyword">from</span> time <span class="keyword">import</span> sleep</div><div class="line"></div><div class="line">html = <span class="string">"""</span></div><div class="line">&lt;h1&gt; Power switch&lt;/h1&gt;</div><div class="line">&lt;p&gt;switch1 &lt;a href=\"?pin=ON1\"&gt;&lt;button&gt;ON&lt;/button&gt;&lt;/a&gt; &lt;a href=\"?pin=OFF1\"&gt;&lt;button&gt;OFF&lt;/button&gt;&lt;/a&gt;&lt;/p&gt;</div><div class="line">&lt;p&gt;switch2 &lt;a href=\"?pin=ON2\"&gt;&lt;button&gt;ON&lt;/button&gt;&lt;/a&gt; &lt;a href=\"?pin=OFF2\"&gt;&lt;button&gt;OFF&lt;/button&gt;&lt;/a&gt;&lt;/p&gt;</div><div class="line">"""</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">connectwifi</span><span class="params">()</span>:</span></div><div class="line">    sta_if = network.WLAN(network.STA_IF)</div><div class="line">    sta_if.active(<span class="keyword">True</span>)</div><div class="line">    <span class="keyword">print</span> (<span class="string">"connect WIFI, please wait..."</span>)</div><div class="line">    sleep(<span class="number">4</span>)</div><div class="line">    sta_if.connect(<span class="string">"wifi-ssid"</span>,<span class="string">"wifi-password"</span>)</div><div class="line">    sleep(<span class="number">6</span>)</div><div class="line">    print(<span class="string">"WIFI connected ! IP address is ("</span>,sta_if.ifconfig()[<span class="number">0</span>],<span class="string">")"</span>)</div><div class="line">    webrepl.start()</div><div class="line">    print(<span class="string">"User init Done!"</span>)</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">op1</span><span class="params">()</span>:</span></div><div class="line">    p2.value(<span class="number">0</span>)</div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">dn1</span><span class="params">()</span>:</span></div><div class="line">    p2.value(<span class="number">1</span>)</div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">op2</span><span class="params">()</span>:</span></div><div class="line">    <span class="keyword">print</span> (<span class="string">"switch 2 is open"</span>)</div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">dn2</span><span class="params">()</span>:</span></div><div class="line">    <span class="keyword">print</span> (<span class="string">"switch 2 is down"</span>)    </div><div class="line"></div><div class="line">p2 = Pin(<span class="number">2</span>,Pin.OUT)</div><div class="line">pool = &#123;<span class="string">'ON1'</span>:op1,<span class="string">'ON2'</span>:op2,<span class="string">'OFF1'</span>:dn1,<span class="string">'OFF2'</span>:dn2&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">startServer</span><span class="params">()</span>:</span></div><div class="line">    addr = socket.getaddrinfo(<span class="string">'0.0.0.0'</span>, <span class="number">80</span>)[<span class="number">0</span>][<span class="number">-1</span>]</div><div class="line">    sleep(<span class="number">2</span>)</div><div class="line">    s = socket.socket()</div><div class="line">    sleep(<span class="number">2</span>)</div><div class="line">    s.bind(addr)</div><div class="line">    sleep(<span class="number">2</span>)</div><div class="line">    s.listen(<span class="number">1</span>)</div><div class="line">    print(<span class="string">'listening on'</span>, addr)</div><div class="line">    sleep(<span class="number">2</span>)</div><div class="line">    <span class="keyword">while</span> <span class="keyword">True</span>:</div><div class="line">        cl, addr = s.accept()</div><div class="line">        cl_file = cl.makefile(<span class="string">'rwb'</span>, <span class="number">0</span>)</div><div class="line">        <span class="keyword">while</span> <span class="keyword">True</span>:</div><div class="line">            <span class="keyword">try</span>:</div><div class="line">                line = cl_file.readline()</div><div class="line">            <span class="keyword">except</span>:</div><div class="line">                <span class="keyword">continue</span></div><div class="line">            <span class="keyword">if</span> <span class="keyword">not</span> line <span class="keyword">or</span> line == <span class="string">b'\r\n'</span>:</div><div class="line">                <span class="keyword">break</span></div><div class="line">            <span class="keyword">else</span>:</div><div class="line">                firstline = str(line).split(<span class="string">"\n"</span>)[<span class="number">0</span>]</div><div class="line">                <span class="keyword">if</span> <span class="string">"GET"</span> <span class="keyword">in</span> firstline:</div><div class="line">                    <span class="keyword">for</span> i <span class="keyword">in</span> pool.keys():</div><div class="line">                        <span class="keyword">if</span> i <span class="keyword">in</span> firstline:</div><div class="line">                            pool.get(i)()</div><div class="line">                            <span class="keyword">break</span></div><div class="line"></div><div class="line">        cl.send(html)</div><div class="line">        cl.close()</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">ok</span><span class="params">()</span>:</span></div><div class="line">    connectwifi()</div><div class="line">    startServer()</div><div class="line"><span class="keyword">if</span> __name__ == <span class="string">"__main__"</span>:</div><div class="line">    ok()</div></pre></td></tr></table></figure></p>
 <p>将以上文件命名为ss.py 放入ESP 根目录<br>按照MicroPython 的Guide的说法来做，放入一个main.py文件作为钩子来启动它：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> ss</div><div class="line">ss.ok()</div></pre></td></tr></table></figure></p>
 <p>然后下电复位下，就可以自动连接WIFI，并建立HTTP server.外部用户通过IP地址找到它，并控制电路通断。<br>&emsp;&emsp;<br>&emsp;&emsp;已知问题</p>
 <ul>
@@ -196,203 +188,322 @@
 <li>稳定性待验证，暂未做过长时间使用测试</li>
 </ul>
 
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    Last updated: <time datetime="2017-08-20T12:29:43.029Z" itemprop="dateUpdated">2017-08-20 20:29:43</time>
+</span><br>
+
+
+        
+        转载请注明：作者Yunpeng和原文地址：<a href="/2017/01/20/py_esp_server/" target="_blank" rel="external">http://buildit.top/2017/01/20/py_esp_server/</a>
+        
+    </div>
+    <footer>
+        <a href="http://buildit.top">
+            <img src="/img/avatar.png" alt="Yunpeng">
+            Yunpeng
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+
+            
+<div class="page-share-wrap">
     
-  </div>
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://buildit.top/2017/01/20/py_esp_server/&title=《python 版的ESP控制端》 — 物作小白&pic=http://buildit.top/img/avatar.png" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://buildit.top/2017/01/20/py_esp_server/&title=《python 版的ESP控制端》 — 物作小白&source=Think \ Summary \ Record \ Share" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://buildit.top/2017/01/20/py_esp_server/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《python 版的ESP控制端》 — 物作小白&url=http://buildit.top/2017/01/20/py_esp_server/&via=http://buildit.top" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://buildit.top/2017/01/20/py_esp_server/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2017/03/20/ESP_MicroPython_Guide/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">MicroPython ESP8266 操作指南</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2016/10/09/create_daily_dir/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">每日工作划分文件夹</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Valine Comments -->
+    <div class="comments vcomment" id="comments"></div>
+    <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+    <script src="//unpkg.com/valine@latest/dist/Valine.min.js"></script>
+    <!-- Valine Comments script -->
+    <script>
+        var GUEST_INFO = ['nick','mail','link'];
+        var guest_info = 'nick,mail,link'.split(',').filter(function(item){
+          return GUEST_INFO.indexOf(item) > -1
+        });
+        new Valine({
+            el: '#comments',
+            notify: 'true' == 'true',
+            verify: 'false' == 'true',
+            appId: "5gmDM1zHdpO2vDhA72Ab7N9P-gzGzoHsz",
+            appKey: "K5MjLPGsccOODYNdEbu1TmfJ",
+            avatar: "mm",
+            placeholder: "来啊，评论一下",
+            guest_info: guest_info.length == 0 ? GUEST_INFO : guest_info,
+            pageSize: "10"
+        })
+    </script>
+    <!-- Valine Comments end -->
+
+
+
+
 </article>
 
-
-   
-  <div class="text-center donation">
-    <div class="inner-donation">
-      <span class="btn-donation">支持一下</span>
-      <div class="donation-body">
-        <div class="tip text-center">扫一扫，支持我</div>
-        <ul class="theme.donation.items.length">
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢小主~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
         
-          <li class="item">
-            <img src="/images/qr-wechat.png" alt="">
-          </li>
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.jpg" alt="打赏二维码">
+        </div>
         
-          <li class="item">
-            <img src="/images/qr-alipay.png" alt="">
-          </li>
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.jpg" data-alipay="/img/alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
         
-        </ul>
-      </div>
     </div>
-  </div>
-
-
-   
-  <div class="box-prev-next clearfix">
-    <a class="show pull-left" href="/2016/10/09/create_daily_dir/">
-        <i class="icon icon-angle-left"></i>
-    </a>
-    <a class="show pull-right" href="/2017/03/20/ESP_MicroPython_Guide/">
-        <i class="icon icon-angle-right"></i>
-    </a>
-  </div>
-
+</div>
 
 
 
 </div>
 
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
 
-  <a id="backTop" class="back-top">
-    <i class="icon-angle-up"></i>
-  </a>
 
-
-
-
-  <div class="modal" id="modal">
-  <span id="cover" class="cover hide"></span>
-  <div id="modal-dialog" class="modal-dialog hide-dialog">
-    <div class="modal-header">
-      <span id="close" class="btn-close">Close</span>
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>This blog is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.</span>
+        </p>
     </div>
-    <hr>
-    <div class="modal-body">
-      <ul class="list-toolbox">
-        
-          <li class="item-toolbox">
-            <a
-              class="CIRCLE"
-              href="/archives/"
-              rel="noopener noreferrer"
-              target="_self"
-              >
-              博客
-            </a>
-          </li>
-        
-          <li class="item-toolbox">
-            <a
-              class="CIRCLE"
-              href="/category/"
-              rel="noopener noreferrer"
-              target="_self"
-              >
-              分类
-            </a>
-          </li>
-        
-          <li class="item-toolbox">
-            <a
-              class="CIRCLE"
-              href="/tag/"
-              rel="noopener noreferrer"
-              target="_self"
-              >
-              标签
-            </a>
-          </li>
-        
-          <li class="item-toolbox">
-            <a
-              class="CIRCLE"
-              href="/link/"
-              rel="noopener noreferrer"
-              target="_self"
-              >
-              友链
-            </a>
-          </li>
-        
-          <li class="item-toolbox">
-            <a
-              class="CIRCLE"
-              href="/about/"
-              rel="noopener noreferrer"
-              target="_self"
-              >
-              关于
-            </a>
-          </li>
-        
-          <li class="item-toolbox">
-            <a
-              class="CIRCLE"
-              href="/atom.xml"
-              rel="noopener noreferrer"
-              target="_blank"
-              >
-              RSS
-            </a>
-          </li>
-        
-      </ul>
-
+    <div class="bottom">
+        <p><span>Yunpeng &copy; 2015 - 2017</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
     </div>
-  </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://buildit.top/2017/01/20/py_esp_server/&title=《python 版的ESP控制端》 — 物作小白&pic=http://buildit.top/img/avatar.png" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://buildit.top/2017/01/20/py_esp_server/&title=《python 版的ESP控制端》 — 物作小白&source=Think \ Summary \ Record \ Share" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://buildit.top/2017/01/20/py_esp_server/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《python 版的ESP控制端》 — 物作小白&url=http://buildit.top/2017/01/20/py_esp_server/&via=http://buildit.top" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://buildit.top/2017/01/20/py_esp_server/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACJklEQVR42u3aQW7DMAwEwP7/0+m1QFpll3IKRB6dAsexOTkQFMWvr3g9ntbP6+2dz9+ur1+2MDAwPpbxWK51cH9h1qHnz09iw8DAuA8jCWKdZPM7E1IeGwYGBkaeOtfPycs+DAwMjH1GnmTXpd76CgYGBsZOuTbrgyVh/dNeHAMD4wMZO6G8+/NbzjcwMDA+ivEo1/q48armWh0VBgbG0Yw8wV1QlpUjF3k8GBgYZzPyNJqk3Xa0Ytae+4WKgYFxNGNns9r+BbNA88MJDAyMUxmzhNiWfe12d80r6lYMDIyDGFel1Hck3HpaBAMD4waMfPu6f8+wO9j28DAwMD6cMftB3npr22rtIcSLGTcMDIyjGclhQF7AJel4dgUDA+NujPwFbTJtu2TJH1QXixgYGEcwZuk1b8y179pqvWFgYBzHmLXp81Iy37i27TkMDIw7MJJQipmy0T3t2zEwMO7JSBJiO2xx1bY2KjoxMDCOZuRHj/thtQViPaiBgYFxA0Y+6DAr5mZb3KL9h4GBcRvGzvZy5zltWn9R52JgYBzKaANNCsStUq9t5GFgYBzKeJRr9qt2jKymYmBgHM3IV96Ga9v9+TZ1dpiKgYFxBmM/Reb9+bygrGPAwMC4ASMJqE2C1x6Ivji6wMDAwNjYTM42pcXhJQYGBsZoq7kuBPMWW5GmMTAwbsCYjUTkjblZOy+/HwMD42zG1qRGnGTzZ14wP4KBgXEO4xvuX7JQBcV22wAAAABJRU5ErkJggg==" alt="微信分享二维码">
 </div>
 
 
 
-  
-      <div class="fexo-comments comments-post">
-    
 
-    
-  <section class="duoshuo-comments">
-    <!-- 多说评论框 start -->
-    <div class="ds-thread" data-thread-key="post-py_esp_server" 
-      data-title="python 版的ESP控制端" data-url="http://yoursite.com/2017/01/20/py_esp_server/index.html"></div>
-    <!-- 多说评论框 end -->
-  </section>
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
 
 
+lazyScripts.push('//s95.cnzz.com/z_stat.php?id=1271202907&web_id=1271202907')
 
-
-  <script type="text/javascript">
-  var duoshuoQuery = {short_name:"yunpengb"};
-  (function() {
-    var ds = document.createElement('script');
-    ds.type = 'text/javascript';ds.async = true;
-    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-    ds.charset = 'UTF-8';
-    (document.getElementsByTagName('head')[0]
-     || document.getElementsByTagName('body')[0]).appendChild(ds);
-  })();
-  </script>
-
-
-    
-
-  </div>
-
-  
-
-  <script type="text/javascript">
-  function loadScript(url, callback) {
-    var script = document.createElement('script')
-    script.type = 'text/javascript';
-
-    if (script.readyState) { //IE
-      script.onreadystatechange = function() {
-        if (script.readyState == 'loaded' ||
-          script.readyState == 'complete') {
-          script.onreadystatechange = null;
-          callback();
-        }
-      };
-    } else { //Others
-      script.onload = function() {
-        callback();
-      };
-    }
-
-    script.src = url;
-    document.getElementsByTagName('head')[0].appendChild(script);
-  }
-
-  window.onload = function() {
-    loadScript('/js/bundle.js?235683', function() {
-      // load success
-    });
-  }
 </script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '死鬼去哪里了！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
 
 </body>
 </html>

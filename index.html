@@ -1,224 +1,788 @@
 <!DOCTYPE html>
-
-
-  <html class="light page-home">
-
-
+<html>
 <head>
-  <meta charset="utf-8">
-  
-  <title>White Note</title>
+    
 
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
 
-  
-    <meta name="keywords" content="forsigner,Python,工具,创新,Server" />
-  
+    
 
-  <meta name="description" content="Think \ Summary \ Record \ Share">
+
+
+    <meta charset="utf-8">
+    
+    
+    <link rel="canonical" href="http://buildit.top/">
+    
+    
+    <title>物作小白 | Do the same, think different</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#000099">
+    
+    
+    <meta name="keywords" content="undefined">
+    <meta name="description" content="Think \ Summary \ Record \ Share">
 <meta property="og:type" content="website">
-<meta property="og:title" content="White Note">
-<meta property="og:url" content="http://yoursite.com/index.html">
-<meta property="og:site_name" content="White Note">
+<meta property="og:title" content="物作小白">
+<meta property="og:url" content="http://buildit.top/index.html">
+<meta property="og:site_name" content="物作小白">
 <meta property="og:description" content="Think \ Summary \ Record \ Share">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="White Note">
+<meta name="twitter:title" content="物作小白">
 <meta name="twitter:description" content="Think \ Summary \ Record \ Share">
+    
+        <link rel="alternate" type="application/atom+xml" title="物作小白" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
 
-  
+    <!-- custom head -->
+    
 
-  
-    <link rel="icon" href="/favicon.ico">
-  
-
-  <link href="/css/styles.css?v=c114cbe6" rel="stylesheet">
-
-
-  
-    <link rel="stylesheet" href="/css/personal-style.css">
-  
-
-  
-
-  
-
-  
-
-
-  
-    <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-  
-
-  
-    <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.3.0/css/font-awesome.min.css">
-  
 </head>
 
 <body>
+    <div id="loading" class="active"></div>
 
-
-  
-
-  
-  <div class="content-home text-center">
-  <a class="avatar" href="/">
-    <img src="/images/bb.png" alt="" />
-  </a>
-  <h1 class="name" style="font-family: calligraffittiregular">
-    物作小白
-  </h1>
-  <div class="slogan">
-    Think Positively
-  </div>
-
-  <hr>
-
-  <ul class="text-center nav">
-    
-      <li class="item">
-        
-          <a href="/archives">Blog</a>
-        
-        <span>|</span>
-      </li>
-    
-      <li class="item">
-        
-          <a href="/about/">About</a>
-        
-        <span>|</span>
-      </li>
-    
-      <li class="item">
-        
-          <a href="https://github.com/yunpengb" rel="noopener noreferrer" target="_blank">Github</a>
-        
-        <span>|</span>
-      </li>
-    
-  </ul>
-
-</div>
-
-
-
-
-
-  <div class="modal" id="modal">
-  <span id="cover" class="cover hide"></span>
-  <div id="modal-dialog" class="modal-dialog hide-dialog">
-    <div class="modal-header">
-      <span id="close" class="btn-close">Close</span>
+    <aside id="menu"  >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.png">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Yunpeng</h5>
+          <a href="mailto:byp_note@163.com" title="byp_note@163.com" class="mail">byp_note@163.com</a>
+        </hgroup>
+      </div>
     </div>
-    <hr>
-    <div class="modal-body">
-      <ul class="list-toolbox">
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
         
-          <li class="item-toolbox">
-            <a
-              class="CIRCLE"
-              href="/archives/"
-              rel="noopener noreferrer"
-              target="_self"
-              >
-              博客
-            </a>
-          </li>
+            <li class="waves-block waves-effect active">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
         
-          <li class="item-toolbox">
-            <a
-              class="CIRCLE"
-              href="/category/"
-              rel="noopener noreferrer"
-              target="_self"
-              >
-              分类
-            </a>
-          </li>
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
         
-          <li class="item-toolbox">
-            <a
-              class="CIRCLE"
-              href="/tag/"
-              rel="noopener noreferrer"
-              target="_self"
-              >
-              标签
-            </a>
-          </li>
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
         
-          <li class="item-toolbox">
-            <a
-              class="CIRCLE"
-              href="/link/"
-              rel="noopener noreferrer"
-              target="_self"
-              >
-              友链
-            </a>
-          </li>
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
         
-          <li class="item-toolbox">
-            <a
-              class="CIRCLE"
-              href="/about/"
-              rel="noopener noreferrer"
-              target="_self"
-              >
-              关于
-            </a>
-          </li>
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/yunpengb" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
         
-          <li class="item-toolbox">
-            <a
-              class="CIRCLE"
-              href="/atom.xml"
-              rel="noopener noreferrer"
-              target="_blank"
-              >
-              RSS
-            </a>
-          </li>
+            <li class="waves-block waves-effect">
+              <a href="http://www.weibo.com/runheart" target="_blank" >
+                <i class="icon icon-lg icon-weibo"></i>
+                微博
+              </a>
+            </li>
         
       </ul>
-
     </div>
   </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">物作小白</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header index-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">物作小白</h1>
+        <h5 class="subtitle">
+            
+                Do the same, think different
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+<div class="container body-wrap">
+
+    <ul class="post-list">
+    
+        <li class="post-list-item fade">
+            <article id="post-build_platform_by_pyunit"
+  class="article-card article-type-post" itemprop="blogPost">
+
+    <div class="post-meta">
+        <time class="post-time" title="2017-10-20 11:40:00" datetime="2017-10-20T03:40:00.000Z"  itemprop="datePublished">2017-10-20</time>
+
+        
+
+
+    </div>
+
+    
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/2017/10/20/build_platform_by_pyunit/">使用Pyunit构建一个灵活的全自动测试平台</a>
+    </h3>
+  
+
+
+
+
+    <div class="post-content" id="post-content" itemprop="postContent">
+
+    
+        
+                
+                    
+                    
+                
+                
+            
+&emsp;&emsp;主要讨论的话题：  
+
+方案背景
+方案实现
+
+一、方案背景掌握python脚本的编写，希望通过使用简单的框架，实现全自动化测试
+&emsp;&emsp;1....
+    
+
+        <a href="/2017/10/20/build_platform_by_pyunit/" class="post-more waves-effect waves-button">
+            Continue reading...
+        </a>
+    </div>
+    
+</article>
+
+        </li>
+    
+        <li class="post-list-item fade">
+            <article id="post-config_notepad_to_pyide"
+  class="article-card article-type-post" itemprop="blogPost">
+
+    <div class="post-meta">
+        <time class="post-time" title="2017-09-25 21:42:00" datetime="2017-09-25T13:42:00.000Z"  itemprop="datePublished">2017-09-25</time>
+
+        
+
+
+    </div>
+
+    
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/2017/09/25/config_notepad_to_pyide/">将Notepad++ 配置成Python IDE</a>
+    </h3>
+  
+
+
+
+
+    <div class="post-content" id="post-content" itemprop="postContent">
+
+    
+        一、必要条件
+安装好Python解释器
+安装好Notepad++ ,目前建议安装X86-7.4.2 版本，X64的版本没有插件管理器，且X86-7.4.2版本以上的版本暂时也没有插件管理器。
+
+二、配置nppexec插件
+安装nppexec 插件点击菜单里的插件–plugin manager —show piugin manager , 选择nppexec插件安装。中间可能会碰到升级plug...
+    
+
+        <a href="/2017/09/25/config_notepad_to_pyide/" class="post-more waves-effect waves-button">
+            Continue reading...
+        </a>
+    </div>
+    
+</article>
+
+        </li>
+    
+        <li class="post-list-item fade">
+            <article id="post-install_dokuwiki_on_ubuntu"
+  class="article-card article-type-post" itemprop="blogPost">
+
+    <div class="post-meta">
+        <time class="post-time" title="2017-09-24 11:41:00" datetime="2017-09-24T03:41:00.000Z"  itemprop="datePublished">2017-09-24</time>
+
+        
+
+
+    </div>
+
+    
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/2017/09/24/install_dokuwiki_on_ubuntu/">在Ubuntu上搭建一个自己的Dokuwiki</a>
+    </h3>
+  
+
+
+
+
+    <div class="post-content" id="post-content" itemprop="postContent">
+
+    
+        一、 前言有一个wiki是很方便的，主要可以用来：  
+
+记录自己的项目活动相关信息  
+记录测试需求  
+记录备忘事项，方便其他人查看  
+加入评论，可以形成部分电子白板的功能  
+
+二、安装细节
+首先需要有一个ubuntu主机，我选择的是16.04 64bit的桌面系统
+在主机上安装apache2  
+ 1sudo apt-get install apache2
+
+安装php5.6  
+...
+    
+
+        <a href="/2017/09/24/install_dokuwiki_on_ubuntu/" class="post-more waves-effect waves-button">
+            Continue reading...
+        </a>
+    </div>
+    
+</article>
+
+        </li>
+    
+        <li class="post-list-item fade">
+            <article id="post-recover_python"
+  class="article-card article-type-post" itemprop="blogPost">
+
+    <div class="post-meta">
+        <time class="post-time" title="2017-09-17 12:04:00" datetime="2017-09-17T04:04:00.000Z"  itemprop="datePublished">2017-09-17</time>
+
+        
+
+
+    </div>
+
+    
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/2017/09/17/recover_python/">WIN Python环境指南恢复指南</a>
+    </h3>
+  
+
+
+
+
+    <div class="post-content" id="post-content" itemprop="postContent">
+
+    
+        一、恢复Python开发环境的场景
+重装系统
+转移到新的工作站
+
+二、需要备份的材料
+编辑器\IDE （这个就不多说了）
+Python解释器套装（一般为Cpython）
+
+三、Python解释器和依赖包的备份
+Cpython解释器就到官网下载安装即可恢复
+对于第三方库，如果你可以上网的话，做一个你的环境的备份的方法如下
+
+cmd输入下面的命令
+pip freeze &gt; requirem...
+    
+
+        <a href="/2017/09/17/recover_python/" class="post-more waves-effect waves-button">
+            Continue reading...
+        </a>
+    </div>
+    
+</article>
+
+        </li>
+    
+        <li class="post-list-item fade">
+            <article id="post-useMP_read_temp_from_DHT11"
+  class="article-card article-type-post" itemprop="blogPost">
+
+    <div class="post-meta">
+        <time class="post-time" title="2017-09-09 20:40:00" datetime="2017-09-09T12:40:00.000Z"  itemprop="datePublished">2017-09-09</time>
+
+        
+
+
+    </div>
+
+    
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/2017/09/09/useMP_read_temp_from_DHT11/">MicroPython 访问DHT11获得温湿度数据</a>
+    </h3>
+  
+
+
+
+
+    <div class="post-content" id="post-content" itemprop="postContent">
+
+    
+        如题目的
+获取数据
+
+
+温度
+湿度
+
+demo需要的硬件
+ESP8266开发板*1，预计TB售价20块不到
+DHT11 温湿度传感器*1，预计TB售价3块
+实验用的面包板*2和面包线几根
+5k 欧姆的电阻一个，（按照DHT11的手册推荐使用）
+
+组装方法如下图
+
+                
+                    
+                    
+      ...
+    
+
+        <a href="/2017/09/09/useMP_read_temp_from_DHT11/" class="post-more waves-effect waves-button">
+            Continue reading...
+        </a>
+    </div>
+    
+</article>
+
+        </li>
+    
+        <li class="post-list-item fade">
+            <article id="post-markdown_demo"
+  class="article-card article-type-post" itemprop="blogPost">
+
+    <div class="post-meta">
+        <time class="post-time" title="2017-08-20 21:23:35" datetime="2017-08-20T13:23:35.726Z"  itemprop="datePublished">2017-08-20</time>
+
+        
+
+
+    </div>
+
+    
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/2017/08/20/markdown_demo/">Markdown 粘贴学习用</a>
+    </h3>
+  
+
+
+
+
+    <div class="post-content" id="post-content" itemprop="postContent">
+
+    
+        导语：
+Markdown是一种轻量级的「标记语言」，它的优点很多
+
+
+                
+                    
+                    
+                
+                
+            
+一，认识Markdown在刚才的导语里提到，
+
+创始人语法说明
+Markdown中文版语法说明
+
+使用Markd...
+    
+
+        <a href="/2017/08/20/markdown_demo/" class="post-more waves-effect waves-button">
+            Continue reading...
+        </a>
+    </div>
+    
+</article>
+
+        </li>
+    
+        <li class="post-list-item fade">
+            <article id="post-markdown_summary"
+  class="article-card article-type-post" itemprop="blogPost">
+
+    <div class="post-meta">
+        <time class="post-time" title="2017-04-29 17:03:00" datetime="2017-04-29T09:03:00.000Z"  itemprop="datePublished">2017-04-29</time>
+
+        
+
+
+    </div>
+
+    
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/2017/04/29/markdown_summary/">MarkDown 小总结</a>
+    </h3>
+  
+
+
+
+
+    <div class="post-content" id="post-content" itemprop="postContent">
+
+    
+        放入文字超链接 [ESPyHarp](https://git/11)
+放入图片![](http://oi.com/aa.jpg)
+段落前空两格\&emsp;\&emsp;
+另起一行在前一行的行尾加入多过2个空格
+插入code方法是在code的上下一行各加上三个上标点 ```     
+在 markdown 中显示 markdown 原文在特殊字符前加入\即可，即阻止转义
+
+    
+
+        <a href="/2017/04/29/markdown_summary/" class="post-more waves-effect waves-button">
+            Continue reading...
+        </a>
+    </div>
+    
+</article>
+
+        </li>
+    
+        <li class="post-list-item fade">
+            <article id="post-ESP_MicroPython_Guide"
+  class="article-card article-type-post" itemprop="blogPost">
+
+    <div class="post-meta">
+        <time class="post-time" title="2017-03-20 15:55:00" datetime="2017-03-20T07:55:00.000Z"  itemprop="datePublished">2017-03-20</time>
+
+        
+
+
+    </div>
+
+    
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/2017/03/20/ESP_MicroPython_Guide/">MicroPython ESP8266 操作指南</a>
+    </h3>
+  
+
+
+
+
+    <div class="post-content" id="post-content" itemprop="postContent">
+
+    
+        擦掉flashMicroPython的 intro 里1.4里有介绍。另外，如果是在win os下，擦除flash的命令大概是1esptool.py --port com3 erase_flash
+刷入MicroPython 固件下载对应ESP8266的MicroPython固件的地址在这里 download ，你会得到类似esp8266-20170108-v1.8.7.bin 这样命名的文...
+    
+
+        <a href="/2017/03/20/ESP_MicroPython_Guide/" class="post-more waves-effect waves-button">
+            Continue reading...
+        </a>
+    </div>
+    
+</article>
+
+        </li>
+    
+        <li class="post-list-item fade">
+            <article id="post-py_esp_server"
+  class="article-card article-type-post" itemprop="blogPost">
+
+    <div class="post-meta">
+        <time class="post-time" title="2017-01-20 15:40:00" datetime="2017-01-20T07:40:00.000Z"  itemprop="datePublished">2017-01-20</time>
+
+        
+
+
+    </div>
+
+    
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/2017/01/20/py_esp_server/">python 版的ESP控制端</a>
+    </h3>
+  
+
+
+
+
+    <div class="post-content" id="post-content" itemprop="postContent">
+
+    
+        &emsp;&emsp;之前用lua脚本写了一个发送html的http server放在ESP里控制电路通断很好用，&emsp;&emsp;最近发现这货竟然还有专属的MicroPython 固件，作为一个pythoner,我必须要写个python版的，也方面以后加入更多的自定义功能。&emsp;&emsp;所以最近花了点时间写了一个python版的ESP power control serv...
+    
+
+        <a href="/2017/01/20/py_esp_server/" class="post-more waves-effect waves-button">
+            Continue reading...
+        </a>
+    </div>
+    
+</article>
+
+        </li>
+    
+        <li class="post-list-item fade">
+            <article id="post-create_daily_dir"
+  class="article-card article-type-post" itemprop="blogPost">
+
+    <div class="post-meta">
+        <time class="post-time" title="2016-10-09 02:08:00" datetime="2016-10-08T18:08:00.000Z"  itemprop="datePublished">2016-10-09</time>
+
+        
+
+
+    </div>
+
+    
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/2016/10/09/create_daily_dir/">每日工作划分文件夹</a>
+    </h3>
+  
+
+
+
+
+    <div class="post-content" id="post-content" itemprop="postContent">
+
+    
+        &emsp;&emsp;经常工作的时候，每天处理大量的文件很容易混乱和丢失。&emsp;&emsp;我有个想法，每天的工作用到的文件都独立的放到一个文件夹里。这样整齐一些也方便管理。&emsp;&emsp;于是我用python写了一个小脚本。在安装了解释器的PC里只需要双击即可执行，即可生成以当天日期为名字的文件夹。
+123456789101112import osimport timede...
+    
+
+        <a href="/2016/10/09/create_daily_dir/" class="post-more waves-effect waves-button">
+            Continue reading...
+        </a>
+    </div>
+    
+</article>
+
+        </li>
+    
+    </ul>
+
+    
+<nav id="page-nav">
+    <div class="inner">
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">下一页</a>
+    </div>
+</nav>
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>This blog is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.</span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>Yunpeng &copy; 2015 - 2017</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://buildit.top/&title=物作小白&pic=http://buildit.top/img/avatar.png" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://buildit.top/&title=物作小白&source=Think \ Summary \ Record \ Share" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://buildit.top/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=物作小白&url=http://buildit.top/&via=http://buildit.top" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://buildit.top/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAJYAAACWCAAAAAAZai4+AAABYElEQVR42u3aQQ6EIAxAUe9/aSeZrQF/W13YflbGKD4WQqE9DtzOf7ter568tuONJktWI9a5batnSD+rISG6LFkjWXxSIJMFId4YZMmStf2xV58nb8mSJetZVm5plyVL1p5FPkMGQ1gPx/KyZLVgVQ6SKoH1i+dbsmR9inUWWi50Rj3LkjWMRbqoHw/tF2wUy8uS1ZrFA9/9cdI+mN7fCeynZclqzSJLb3RTSga5pMuSNYzFpwle1pNLmt4EzbJkDWNFpwa+wJdKf2TJas3KbUGjm9LwIGXJGsaqJFF4p/WkqSxZvVnkiPaNsDic85ElqzULHejgIrxcEQMqTZAlqzUr9+sGfuzcyitL1jBWvQiPQPm7smRNZuUmhejWNFy+IEvWSFY9wZlbdGXJkpVjRe/wSAHVQciSNZ6VKz6IJkFlyZrMygXN0S0u3/TKkjWNlQtt993lkjSl8y1Zsr7K+gHkOEsSHu1GRwAAAABJRU5ErkJggg==" alt="微信分享二维码">
 </div>
 
 
 
-  
 
-  <script type="text/javascript">
-  function loadScript(url, callback) {
-    var script = document.createElement('script')
-    script.type = 'text/javascript';
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: false };
 
-    if (script.readyState) { //IE
-      script.onreadystatechange = function() {
-        if (script.readyState == 'loaded' ||
-          script.readyState == 'complete') {
-          script.onreadystatechange = null;
-          callback();
-        }
-      };
-    } else { //Others
-      script.onload = function() {
-        callback();
-      };
-    }
 
-    script.src = url;
-    document.getElementsByTagName('head')[0].appendChild(script);
-  }
+lazyScripts.push('//s95.cnzz.com/z_stat.php?id=1271202907&web_id=1271202907')
 
-  window.onload = function() {
-    loadScript('/js/bundle.js?235683', function() {
-      // load success
-    });
-  }
 </script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '死鬼去哪里了！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
 
 </body>
 </html>

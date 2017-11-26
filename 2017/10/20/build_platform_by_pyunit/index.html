@@ -1,42 +1,45 @@
 <!DOCTYPE html>
-
-
-  <html class="light page-post">
-
-
+<html>
 <head>
-  <meta charset="utf-8">
-  
-  <title>使用Pyunit构建一个灵活的全自动测试平台 | White Note</title>
+    
 
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
 
-  
-    <meta name="keywords" content="forsigner,Python,工具,创新,Server" />
-  
+    
 
-  <meta name="description" content="&amp;emsp;&amp;emsp;主要讨论的话题：  
+
+
+    <meta charset="utf-8">
+    
+    
+    <link rel="canonical" href="http://buildit.top/2017/10/20/build_platform_by_pyunit/">
+    
+    
+    <title>使用Pyunit构建一个灵活的全自动测试平台 | 物作小白 | Do the same, think different</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#000099">
+    
+    
+    <meta name="keywords" content="">
+    <meta name="description" content="&amp;emsp;&amp;emsp;主要讨论的话题：  
 
 方案背景
 方案实现
 
 一、方案背景掌握python脚本的编写，希望通过使用简单的框架，实现全自动化测试
-&amp;emsp;&amp;emsp;1.1 方案产生
-产品测试的需求分析中，发现所有的测试步骤都可以通过python自动化控制。尤其是HTX工具可以使用pywin32控制，射频仪表可以通过pyvisa控制。
-已经有一些通过python实现好的单个脚本的话，需">
+&amp;emsp;&amp;emsp;1.1 方">
 <meta property="og:type" content="article">
 <meta property="og:title" content="使用Pyunit构建一个灵活的全自动测试平台">
-<meta property="og:url" content="http://yoursite.com/2017/10/20/build_platform_by_pyunit/index.html">
-<meta property="og:site_name" content="White Note">
+<meta property="og:url" content="http://buildit.top/2017/10/20/build_platform_by_pyunit/index.html">
+<meta property="og:site_name" content="物作小白">
 <meta property="og:description" content="&amp;emsp;&amp;emsp;主要讨论的话题：  
 
 方案背景
 方案实现
 
 一、方案背景掌握python脚本的编写，希望通过使用简单的框架，实现全自动化测试
-&amp;emsp;&amp;emsp;1.1 方案产生
-产品测试的需求分析中，发现所有的测试步骤都可以通过python自动化控制。尤其是HTX工具可以使用pywin32控制，射频仪表可以通过pyvisa控制。
-已经有一些通过python实现好的单个脚本的话，需">
+&amp;emsp;&amp;emsp;1.1 方">
 <meta property="og:image" content="http://oi16bpd89.bkt.clouddn.com/201710312150_58.png">
 <meta property="og:image" content="http://oi16bpd89.bkt.clouddn.com/201710312224_172.png">
 <meta property="og:updated_time" content="2017-11-23T13:52:59.665Z">
@@ -48,179 +51,170 @@
 方案实现
 
 一、方案背景掌握python脚本的编写，希望通过使用简单的框架，实现全自动化测试
-&amp;emsp;&amp;emsp;1.1 方案产生
-产品测试的需求分析中，发现所有的测试步骤都可以通过python自动化控制。尤其是HTX工具可以使用pywin32控制，射频仪表可以通过pyvisa控制。
-已经有一些通过python实现好的单个脚本的话，需">
+&amp;emsp;&amp;emsp;1.1 方">
 <meta name="twitter:image" content="http://oi16bpd89.bkt.clouddn.com/201710312150_58.png">
+    
+        <link rel="alternate" type="application/atom+xml" title="物作小白" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
 
-  
+    <!-- custom head -->
+    
 
-  
-    <link rel="icon" href="/favicon.ico">
-  
-
-  <link href="/css/styles.css?v=c114cbe6" rel="stylesheet">
-
-
-  
-    <link rel="stylesheet" href="/css/personal-style.css">
-  
-
-  
-
-  
-
-  
-
-
-  
-    <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-  
-
-  
-    <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.3.0/css/font-awesome.min.css">
-  
 </head>
 
 <body>
+    <div id="loading" class="active"></div>
 
-
-  
-    <span id="toolbox-mobile" class="toolbox-mobile">盒子</span>
-  
-
-  <div class="post-header CENTER">
-   
-  <div class="toolbox">
-    <a class="toolbox-entry" href="/">
-      <span class="toolbox-entry-text">盒子</span>
-      <i class="icon-angle-down"></i>
-      <i class="icon-home"></i>
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
     </a>
-    <ul class="list-toolbox">
-      
-        <li class="item-toolbox">
-          <a
-            class="CIRCLE"
-            href="/archives/"
-            rel="noopener noreferrer"
-            target="_self"
-            >
-            博客
-          </a>
-        </li>
-      
-        <li class="item-toolbox">
-          <a
-            class="CIRCLE"
-            href="/category/"
-            rel="noopener noreferrer"
-            target="_self"
-            >
-            分类
-          </a>
-        </li>
-      
-        <li class="item-toolbox">
-          <a
-            class="CIRCLE"
-            href="/tag/"
-            rel="noopener noreferrer"
-            target="_self"
-            >
-            标签
-          </a>
-        </li>
-      
-        <li class="item-toolbox">
-          <a
-            class="CIRCLE"
-            href="/link/"
-            rel="noopener noreferrer"
-            target="_self"
-            >
-            友链
-          </a>
-        </li>
-      
-        <li class="item-toolbox">
-          <a
-            class="CIRCLE"
-            href="/about/"
-            rel="noopener noreferrer"
-            target="_self"
-            >
-            关于
-          </a>
-        </li>
-      
-        <li class="item-toolbox">
-          <a
-            class="CIRCLE"
-            href="/atom.xml"
-            rel="noopener noreferrer"
-            target="_blank"
-            >
-            RSS
-          </a>
-        </li>
-      
-    </ul>
-  </div>
-
-
-</div>
-
-
-  <div id="toc" class="toc-article">
-    <strong class="toc-title">Posts List</strong>
-    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#一、方案背景"><span class="toc-text">一、方案背景</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#emsp-emsp-1-1-方案产生"><span class="toc-text">  1.1 方案产生</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#emsp-emsp-1-2-方案简介"><span class="toc-text">   1.2 方案简介</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#a-什么是Pyunit"><span class="toc-text">a. 什么是Pyunit</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#c-用白盒测试框架来测黑盒真的好吗"><span class="toc-text">c.用白盒测试框架来测黑盒真的好吗</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#emsp-emsp-1-3-Pyunit的特点："><span class="toc-text">   1.3 Pyunit的特点：</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#批量处理能力"><span class="toc-text">批量处理能力</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#二元扁平结构"><span class="toc-text">二元扁平结构</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Pyunit强在用例管理，注意做好单个脚本的架构设计和质量控制"><span class="toc-text">Pyunit强在用例管理，注意做好单个脚本的架构设计和质量控制</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#成熟、高质量的单个脚本，是实现系统的关键"><span class="toc-text">成熟、高质量的单个脚本，是实现系统的关键</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#测试组特性"><span class="toc-text">测试组特性</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#丰富的初始化和扫尾功能"><span class="toc-text">丰富的初始化和扫尾功能</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#二、方案实现"><span class="toc-text">二、方案实现</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-一定要有详细的测试需求："><span class="toc-text">2.1 一定要有详细的测试需求：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-根据需求，实现用例的脚本"><span class="toc-text">2.2 根据需求，实现用例的脚本</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-按照Pyunit的格式，集成为测试组"><span class="toc-text">2.3 按照Pyunit的格式，集成为测试组</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-4-编写框架，应该注意的事情："><span class="toc-text">2.4 编写框架，应该注意的事情：</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#三、-其他注意事项："><span class="toc-text">三、 其他注意事项：</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#3-3-最后把pyunit的官方文档附上，还有中文版哦"><span class="toc-text">3.3 最后把pyunit的官方文档附上，还有中文版哦</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#四、以后有时间，需要研究下，下面的高级工具"><span class="toc-text">四、以后有时间，需要研究下，下面的高级工具</span></a></li></ol></li></ol>
-  </div>
-
-
-
-<div class="content content-post CENTER">
-   <article id="post-build_platform_by_pyunit" class="article article-type-post" itemprop="blogPost">
-  <header class="article-header">
-    <h1 class="post-title">使用Pyunit构建一个灵活的全自动测试平台</h1>
-
-    <div class="article-meta">
-      <span>
-        <i class="icon-calendar"></i>
-        <span>2017.10.20</span>
-      </span>
-
-      
-        <span class="article-author">
-          <i class="icon-user"></i>
-          <span>Bai&#39;s Notes</span>
-        </span>
-      
-
-      
-
-
-      
-
-      
-      <i class="fa fa-eye"></i> 
-        <span id="busuanzi_container_page_pv">
-           &nbsp热度 <span id="busuanzi_value_page_pv">
-           <i class="fa fa-spinner fa-spin"></i></span>℃
-        </span>
-      
-
-      
-        <i class="icon-comment"></i> 
-        <span class="ds-thread-count" data-thread-key="post-build_platform_by_pyunit"><i class="fa fa-spinner fa-spin"></i></span> 条评论
-      
-      
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.png">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Yunpeng</h5>
+          <a href="mailto:byp_note@163.com" title="byp_note@163.com" class="mail">byp_note@163.com</a>
+        </hgroup>
+      </div>
     </div>
-  </header>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/yunpengb" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://www.weibo.com/runheart" target="_blank" >
+                <i class="icon icon-lg icon-weibo"></i>
+                微博
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
 
-  <div class="article-content">
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">使用Pyunit构建一个灵活的全自动测试平台</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">使用Pyunit构建一个灵活的全自动测试平台</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2017-10-20T03:40:00.000Z" itemprop="datePublished" class="page-time">
+  2017-10-20
+</time>
+
+
+            
+        </h5>
+    </div>
+
     
-      <p><img src="http://oi16bpd89.bkt.clouddn.com/201710312150_58.png" alt=""></p>
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#一、方案背景"><span class="post-toc-number">1.</span> <span class="post-toc-text">一、方案背景</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#emsp-emsp-1-1-方案产生"><span class="post-toc-number">1.0.1.</span> <span class="post-toc-text">  1.1 方案产生</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#emsp-emsp-1-2-方案简介"><span class="post-toc-number">1.0.2.</span> <span class="post-toc-text">   1.2 方案简介</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#a-什么是Pyunit"><span class="post-toc-number">1.0.3.</span> <span class="post-toc-text">a. 什么是Pyunit</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#c-用白盒测试框架来测黑盒真的好吗"><span class="post-toc-number">1.0.4.</span> <span class="post-toc-text">c.用白盒测试框架来测黑盒真的好吗</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#emsp-emsp-1-3-Pyunit的特点："><span class="post-toc-number">1.0.5.</span> <span class="post-toc-text">   1.3 Pyunit的特点：</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#批量处理能力"><span class="post-toc-number">1.0.5.1.</span> <span class="post-toc-text">批量处理能力</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#二元扁平结构"><span class="post-toc-number">1.0.5.2.</span> <span class="post-toc-text">二元扁平结构</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#Pyunit强在用例管理，注意做好单个脚本的架构设计和质量控制"><span class="post-toc-number">1.0.5.3.</span> <span class="post-toc-text">Pyunit强在用例管理，注意做好单个脚本的架构设计和质量控制</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#成熟、高质量的单个脚本，是实现系统的关键"><span class="post-toc-number">1.0.5.4.</span> <span class="post-toc-text">成熟、高质量的单个脚本，是实现系统的关键</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#测试组特性"><span class="post-toc-number">1.0.5.5.</span> <span class="post-toc-text">测试组特性</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#丰富的初始化和扫尾功能"><span class="post-toc-number">1.0.5.6.</span> <span class="post-toc-text">丰富的初始化和扫尾功能</span></a></li></ol></li></ol></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#二、方案实现"><span class="post-toc-number">2.</span> <span class="post-toc-text">二、方案实现</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#2-1-一定要有详细的测试需求："><span class="post-toc-number">2.1.</span> <span class="post-toc-text">2.1 一定要有详细的测试需求：</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#2-2-根据需求，实现用例的脚本"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">2.2 根据需求，实现用例的脚本</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#2-3-按照Pyunit的格式，集成为测试组"><span class="post-toc-number">2.3.</span> <span class="post-toc-text">2.3 按照Pyunit的格式，集成为测试组</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#2-4-编写框架，应该注意的事情："><span class="post-toc-number">2.4.</span> <span class="post-toc-text">2.4 编写框架，应该注意的事情：</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#三、-其他注意事项："><span class="post-toc-number">3.</span> <span class="post-toc-text">三、 其他注意事项：</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#3-3-最后把pyunit的官方文档附上，还有中文版哦"><span class="post-toc-number">3.0.1.</span> <span class="post-toc-text">3.3 最后把pyunit的官方文档附上，还有中文版哦</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#四、以后有时间，需要研究下，下面的高级工具"><span class="post-toc-number">3.1.</span> <span class="post-toc-text">四、以后有时间，需要研究下，下面的高级工具</span></a></li></ol></li></ol>
+        </nav>
+    </aside>
+    
+<article id="post-build_platform_by_pyunit"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">使用Pyunit构建一个灵活的全自动测试平台</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2017-10-20 11:40:00" datetime="2017-10-20T03:40:00.000Z"  itemprop="datePublished">2017-10-20</time>
+
+            
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://oi16bpd89.bkt.clouddn.com/201710312150_58.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
 <p>&emsp;&emsp;主要讨论的话题：  </p>
 <ol>
 <li>方案背景</li>
@@ -260,7 +254,13 @@
 <li>如果可能，在记录上最好再加上测试环境的信息，越丰富越好，比如依赖的硬件设备（TADX\系统模块\时钟盒子），需要几个DUT参与测试, 是否需要DUT处在特殊的状态下，等等都要注明下。</li>
 <li>每个case都需要清晰的测试预期，也就是Pass和Fail的判断准绳，如果没有，请标注好待观察，然后将多次测试的数据收集起来，作为经验值的输入信息。</li>
 </ul>
-<p><img src="http://oi16bpd89.bkt.clouddn.com/201710312224_172.png" alt=""></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://oi16bpd89.bkt.clouddn.com/201710312224_172.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
 <h3 id="2-2-根据需求，实现用例的脚本"><a href="#2-2-根据需求，实现用例的脚本" class="headerlink" title="2.2 根据需求，实现用例的脚本"></a>2.2 根据需求，实现用例的脚本</h3><ol>
 <li>有了上述的需求清单，再去实现单个python脚本就容易一些</li>
 <li>新加入的测试用例需要几个有经验的同事一起review,大家多提意见，才可以集思广益，发现一些细节的疏漏，避免漏测和误测。</li>
@@ -297,203 +297,315 @@
 <li>流行的CI外挂  Jenkins</li>
 </ul>
 
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    Last updated: <time datetime="2017-11-23T13:52:59.665Z" itemprop="dateUpdated">2017-11-23 21:52:59</time>
+</span><br>
+
+
+        
+        转载请注明：作者Yunpeng和原文地址：<a href="/2017/10/20/build_platform_by_pyunit/" target="_blank" rel="external">http://buildit.top/2017/10/20/build_platform_by_pyunit/</a>
+        
+    </div>
+    <footer>
+        <a href="http://buildit.top">
+            <img src="/img/avatar.png" alt="Yunpeng">
+            Yunpeng
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+
+            
+<div class="page-share-wrap">
     
-  </div>
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://buildit.top/2017/10/20/build_platform_by_pyunit/&title=《使用Pyunit构建一个灵活的全自动测试平台》 — 物作小白&pic=http://buildit.top/img/avatar.png" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://buildit.top/2017/10/20/build_platform_by_pyunit/&title=《使用Pyunit构建一个灵活的全自动测试平台》 — 物作小白&source=Think \ Summary \ Record \ Share" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://buildit.top/2017/10/20/build_platform_by_pyunit/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《使用Pyunit构建一个灵活的全自动测试平台》 — 物作小白&url=http://buildit.top/2017/10/20/build_platform_by_pyunit/&via=http://buildit.top" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://buildit.top/2017/10/20/build_platform_by_pyunit/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between flex-row-reverse">
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2017/09/25/config_notepad_to_pyide/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">将Notepad++ 配置成Python IDE</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Valine Comments -->
+    <div class="comments vcomment" id="comments"></div>
+    <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+    <script src="//unpkg.com/valine@latest/dist/Valine.min.js"></script>
+    <!-- Valine Comments script -->
+    <script>
+        var GUEST_INFO = ['nick','mail','link'];
+        var guest_info = 'nick,mail,link'.split(',').filter(function(item){
+          return GUEST_INFO.indexOf(item) > -1
+        });
+        new Valine({
+            el: '#comments',
+            notify: 'true' == 'true',
+            verify: 'false' == 'true',
+            appId: "5gmDM1zHdpO2vDhA72Ab7N9P-gzGzoHsz",
+            appKey: "K5MjLPGsccOODYNdEbu1TmfJ",
+            avatar: "mm",
+            placeholder: "来啊，评论一下",
+            guest_info: guest_info.length == 0 ? GUEST_INFO : guest_info,
+            pageSize: "10"
+        })
+    </script>
+    <!-- Valine Comments end -->
+
+
+
+
 </article>
 
-
-   
-  <div class="text-center donation">
-    <div class="inner-donation">
-      <span class="btn-donation">支持一下</span>
-      <div class="donation-body">
-        <div class="tip text-center">扫一扫，支持我</div>
-        <ul class="theme.donation.items.length">
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢小主~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
         
-          <li class="item">
-            <img src="/images/qr-wechat.png" alt="">
-          </li>
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.jpg" alt="打赏二维码">
+        </div>
         
-          <li class="item">
-            <img src="/images/qr-alipay.png" alt="">
-          </li>
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.jpg" data-alipay="/img/alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
         
-        </ul>
-      </div>
     </div>
-  </div>
-
-
-   
-  <div class="box-prev-next clearfix">
-    <a class="show pull-left" href="/2017/09/25/config_notepad_to_pyide/">
-        <i class="icon icon-angle-left"></i>
-    </a>
-    <a class="hide pull-right" href="/">
-        <i class="icon icon-angle-right"></i>
-    </a>
-  </div>
-
+</div>
 
 
 
 </div>
 
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
 
-  <a id="backTop" class="back-top">
-    <i class="icon-angle-up"></i>
-  </a>
 
-
-
-
-  <div class="modal" id="modal">
-  <span id="cover" class="cover hide"></span>
-  <div id="modal-dialog" class="modal-dialog hide-dialog">
-    <div class="modal-header">
-      <span id="close" class="btn-close">Close</span>
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>This blog is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.</span>
+        </p>
     </div>
-    <hr>
-    <div class="modal-body">
-      <ul class="list-toolbox">
-        
-          <li class="item-toolbox">
-            <a
-              class="CIRCLE"
-              href="/archives/"
-              rel="noopener noreferrer"
-              target="_self"
-              >
-              博客
-            </a>
-          </li>
-        
-          <li class="item-toolbox">
-            <a
-              class="CIRCLE"
-              href="/category/"
-              rel="noopener noreferrer"
-              target="_self"
-              >
-              分类
-            </a>
-          </li>
-        
-          <li class="item-toolbox">
-            <a
-              class="CIRCLE"
-              href="/tag/"
-              rel="noopener noreferrer"
-              target="_self"
-              >
-              标签
-            </a>
-          </li>
-        
-          <li class="item-toolbox">
-            <a
-              class="CIRCLE"
-              href="/link/"
-              rel="noopener noreferrer"
-              target="_self"
-              >
-              友链
-            </a>
-          </li>
-        
-          <li class="item-toolbox">
-            <a
-              class="CIRCLE"
-              href="/about/"
-              rel="noopener noreferrer"
-              target="_self"
-              >
-              关于
-            </a>
-          </li>
-        
-          <li class="item-toolbox">
-            <a
-              class="CIRCLE"
-              href="/atom.xml"
-              rel="noopener noreferrer"
-              target="_blank"
-              >
-              RSS
-            </a>
-          </li>
-        
-      </ul>
-
+    <div class="bottom">
+        <p><span>Yunpeng &copy; 2015 - 2017</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
     </div>
-  </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://buildit.top/2017/10/20/build_platform_by_pyunit/&title=《使用Pyunit构建一个灵活的全自动测试平台》 — 物作小白&pic=http://buildit.top/img/avatar.png" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://buildit.top/2017/10/20/build_platform_by_pyunit/&title=《使用Pyunit构建一个灵活的全自动测试平台》 — 物作小白&source=Think \ Summary \ Record \ Share" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://buildit.top/2017/10/20/build_platform_by_pyunit/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《使用Pyunit构建一个灵活的全自动测试平台》 — 物作小白&url=http://buildit.top/2017/10/20/build_platform_by_pyunit/&via=http://buildit.top" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://buildit.top/2017/10/20/build_platform_by_pyunit/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACKElEQVR42u3aQW7jMAwF0Nz/0pntABNr+Mm4qKWnVZHalp4WBEnp9SqP9z/j79+vnqk8eTXL646BgYHxWMZ7Oa4mmP/S+/2SioGBcQDjKoKtn6kH0PUi1qF5vTYMDAyMSmI3TxzXX8bAwMDoBdx6wbl+sl76YmBgYKTNskl7rpJE3liLY2BgPJBR77r//N+3nG9gYGA8ivEOx/xoc76GDzNiYGBszfhWqlcqMsPjhPhdDAyMTRmVo8TKNGnZ2TtyuFwDBgbGMYzKdYr0KkYvyasH9w8BFwMDYztG72JWevEiDdD1I1IMDIxzGOkRYxD+BsVwJYi/elktBgbGYxlpkZkG0zTdrG8fBgbG3ox0mniHxptVarphYGBszai3xnqANED3GnkYGBgnMHrLmlywSJt66wIYAwPjBEYlgauUl/XJ0gthcWsPAwPjMEZ9TJb+5aMIDAyMTRnzRlj9rXq5e8udEQwMjAcy0hZ/pZUWFJytRhsGBgZGrxmXbsS8hA72AAMDYyPGfdOnJW6MwcDAOICRlqaTNLFeMAcbjYGBcQBjEnzr7f758cOX220YGBi/nvEOR6WJnx4VzMM9BgbG3oxemVopVtOlp4epTRgGBsZjGd8Kl/WLXOnFi1IKi4GBcQBjcvVhHUabywqRGBgYGOlhZPpk/b//qcgxMDAwwoK2927vCxgYGCcwes36NI2rpI/1cIyBgXEOY3KdYpLw3fcFDAyMjRh/AF+UdHJC2tl1AAAAAElFTkSuQmCC" alt="微信分享二维码">
 </div>
 
 
 
-  
-      <div class="fexo-comments comments-post">
-    
 
-    
-  <section class="duoshuo-comments">
-    <!-- 多说评论框 start -->
-    <div class="ds-thread" data-thread-key="post-build_platform_by_pyunit" 
-      data-title="使用Pyunit构建一个灵活的全自动测试平台" data-url="http://yoursite.com/2017/10/20/build_platform_by_pyunit/index.html"></div>
-    <!-- 多说评论框 end -->
-  </section>
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
 
 
+lazyScripts.push('//s95.cnzz.com/z_stat.php?id=1271202907&web_id=1271202907')
 
-
-  <script type="text/javascript">
-  var duoshuoQuery = {short_name:"yunpengb"};
-  (function() {
-    var ds = document.createElement('script');
-    ds.type = 'text/javascript';ds.async = true;
-    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-    ds.charset = 'UTF-8';
-    (document.getElementsByTagName('head')[0]
-     || document.getElementsByTagName('body')[0]).appendChild(ds);
-  })();
-  </script>
-
-
-    
-
-  </div>
-
-  
-
-  <script type="text/javascript">
-  function loadScript(url, callback) {
-    var script = document.createElement('script')
-    script.type = 'text/javascript';
-
-    if (script.readyState) { //IE
-      script.onreadystatechange = function() {
-        if (script.readyState == 'loaded' ||
-          script.readyState == 'complete') {
-          script.onreadystatechange = null;
-          callback();
-        }
-      };
-    } else { //Others
-      script.onload = function() {
-        callback();
-      };
-    }
-
-    script.src = url;
-    document.getElementsByTagName('head')[0].appendChild(script);
-  }
-
-  window.onload = function() {
-    loadScript('/js/bundle.js?235683', function() {
-      // load success
-    });
-  }
 </script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '死鬼去哪里了！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
 
 </body>
 </html>
